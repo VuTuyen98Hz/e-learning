@@ -6,6 +6,7 @@ import 'package:learn_japanese/app/learning/main/progress_bar_learning.dart';
 import 'package:learn_japanese/app/learning/type_with_hint/text_form_field_fill_word.dart';
 import 'package:learn_japanese/app/learning/type_with_hint/type_with_hint_controller.dart';
 import '../../../animation/slide_animation.dart';
+import '../../../components/show_answer.dart';
 import '../../../models/word_model.dart';
 import '../ending/ending_controller.dart';
 import '../flashcard/flashcard_controller.dart';
@@ -55,9 +56,9 @@ class TypeWithHint extends GetView<TypeWithHintController> {
                           controller.rxCheckButton.value = true;
                           if (value.toLowerCase().trim() ==
                               controller.rxListWord[index].word) {
-                            controller.hintGameResult.value = true;
+                            controller.rxHintGameResult.value = true;
                           } else {
-                            controller.hintGameResult.value = false;
+                            controller.rxHintGameResult.value = false;
                           }
                         } else {
                           controller.rxCheckButton.value = false;
@@ -86,13 +87,13 @@ class TypeWithHint extends GetView<TypeWithHintController> {
                                 // add to run round two
                                 learnController.checkResultRoundOne(
                                     listenGameResult,
-                                    controller.hintGameResult.value,
+                                    controller.rxHintGameResult.value,
                                     index);
                                 // run round two
                                 if (learnController.rxIsEndRoundOne.value ==
                                     true) {
                                   learnController.checkResulRoundTwo(
-                                      controller.hintGameResult.value, index);
+                                      controller.rxHintGameResult.value, index);
                                 }
                               }
                             : null,
@@ -164,114 +165,18 @@ class TypeWithHint extends GetView<TypeWithHintController> {
             ],
           ),
           controller.rxIsCheckAnswerActive.value == true
-              ? showAnswer(controller.hintGameResult.value, context)
+              ? ShowAnswer(
+                  answer: controller.rxHintGameResult.value,
+                  isVisibleMeaning: controller.rxIsVisibleMeaning.value,
+                  word: controller.rxListWord[index].word,
+                  phonetic: controller.rxListWord[index].phonetic,
+                  pathAudio: controller.rxListWord[index].audioAsset,
+                  vietnameseMeaning:
+                      controller.rxListWord[index].vietnameseMeaning,
+                  example: controller.rxListWord[index].example,
+                  translateExample:
+                      controller.rxListWord[index].translateExample)
               : Container(),
-        ]),
-      ),
-    );
-  }
-
-  Widget showAnswer(bool value, context) {
-    final size = MediaQuery.of(context).size;
-    return Container(
-      width: size.width,
-      height: size.height * 0.30,
-      alignment: Alignment.center,
-      color: value == true ? Colors.green : Colors.red,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 20, 10, 20),
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  controller.rxListWord[index].word,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 23),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  controller.rxListWord.first.phonetic,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 20),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Text(controller.rxListWord[index].vietnameseMeaning,
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20)),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  controller.rxListWord[index].example,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Visibility(
-                  visible: controller.isVisibleMeaning.value,
-                  child: Text(controller.rxListWord[index].translateExample,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 20)),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            width: 15,
-          ),
-          Column(
-            children: [
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                  padding: const EdgeInsets.all(20),
-                ),
-                child: const Icon(
-                  Icons.volume_down_alt,
-                  color: Colors.yellow,
-                  size: 20.0,
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  controller.isVisibleMeaning.value =
-                      !controller.isVisibleMeaning.value;
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                  padding: const EdgeInsets.all(20),
-                ),
-                child: const Icon(
-                  Icons.visibility,
-                  color: Colors.yellow,
-                  size: 20.0,
-                ),
-              ),
-            ],
-          )
         ]),
       ),
     );

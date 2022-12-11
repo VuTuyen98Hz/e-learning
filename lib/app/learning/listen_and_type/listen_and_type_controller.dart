@@ -12,6 +12,7 @@ class ListenAndTypeController extends GetxController {
   RxBool rxListenResult = RxBool(false);
   RxBool rxIsVisibleMeaning = RxBool(false);
   RxList<WordModel> rxListWord = RxList<WordModel>();
+  RxInt rxIndex = RxInt(0);
   final audioPlayer = AudioPlayer();
 
   @override
@@ -21,7 +22,12 @@ class ListenAndTypeController extends GetxController {
     audioPlayer.onPlayerStateChanged.listen((state) {
       state == PlayerState.playing;
     });
-    audioPlayer.play(AssetSource('audio/example.mp3'));
+  }
+
+
+  @override
+  void onReady() {
+    audioPlayer.play(AssetSource(rxListWord[rxIndex.value].audioAsset));
   }
 
   @override

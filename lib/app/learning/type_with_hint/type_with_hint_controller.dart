@@ -9,8 +9,8 @@ class TypeWithHintController extends GetxController {
   RxBool rxCheckAnswer = RxBool(true);
   RxBool rxChangeButton = RxBool(false);
   RxBool rxIsCheckAnswerActive = RxBool(false);
-  RxBool hintGameResult = RxBool(false);
-  RxBool isVisibleMeaning = RxBool(false);
+  RxBool rxHintGameResult = RxBool(false);
+  RxBool rxIsVisibleMeaning = RxBool(false);
   RxList<WordModel> rxListWord = RxList<WordModel>();
 
   @override

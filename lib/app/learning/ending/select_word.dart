@@ -11,14 +11,14 @@ class SelectWord extends GetView<EndingController> {
         child: Center(
           child: Column(
             children: [
-              SizedBox(height: 50),
+              const SizedBox(height: 50),
               const Text("Chọn từ vựng mà bạn muốn ôn tập",
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 20,
                       fontWeight: FontWeight.w500)),
               Container(
-                padding: EdgeInsets.all(35),
+                padding: const EdgeInsets.all(35),
                 height: 300,
                 child: ListView.builder(
                     itemCount: 6,
@@ -26,15 +26,15 @@ class SelectWord extends GetView<EndingController> {
                       return Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Example',
+                            const Text('Example',
                                 style: (TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black))),
-                            Text('(n)',
+                            const Text('(n)',
                                 style: (TextStyle(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black))),
-                            Text('Ví dụ Ví dụ Ví dụ Ví dụ',
+                            const Text('Ví dụ Ví dụ Ví dụ Ví dụ',
                                 style: (TextStyle(
                                     fontWeight: FontWeight.w400,
                                     color: Colors.black))),
@@ -53,7 +53,7 @@ class SelectWord extends GetView<EndingController> {
                 child:
                     const Text('ÔN TẬP NGAY', style: TextStyle(fontSize: 20)),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               ElevatedButton(
                   onPressed: () {
                     Get.offAll(const HomeUI());

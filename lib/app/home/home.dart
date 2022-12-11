@@ -37,15 +37,15 @@ class HomeUI extends StatelessWidget {
             elevation: 0,
             items: [
               _bottomNavigationBarItem(
-                icon: CupertinoIcons.book,
+                icon: Icons.newspaper,
                 label: 'Topics',
               ),
               _bottomNavigationBarItem(
-                icon: CupertinoIcons.table,
+                icon: Icons.table_chart,
                 label: 'Quiz',
               ),
               _bottomNavigationBarItem(
-                icon: CupertinoIcons.person,
+                icon: Icons.person,
                 label: 'Account',
               ),
             ],

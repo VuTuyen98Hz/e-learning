@@ -72,7 +72,8 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    - assets/audio/
+    - assets/audio/lesson/school/
+    - assets/audio/sound_effect/
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:learn_japanese/app/learning/main/learning_controller.dart';
 import 'package:learn_japanese/app/learning/main/progress_bar_learning.dart';
 import 'package:learn_japanese/app/learning/type_with_hint/type_with_hint.dart';
+import 'package:learn_japanese/components/show_answer.dart';
 import '../../../models/word_model.dart';
 import '../ending/ending.dart';
 import '../ending/ending_controller.dart';
@@ -20,6 +21,7 @@ class ListenAndType extends GetView<ListenAndTypeController> {
   @override
   Widget build(BuildContext context) {
     controller.rxListWord.value = listLesson[indexTopic].listWord;
+    controller.rxIndex.value = index;
     return ProgressBarLearning(
       child: Obx(
         () => Stack(alignment: Alignment.center, children: [
@@ -34,9 +36,8 @@ class ListenAndType extends GetView<ListenAndTypeController> {
                   const SizedBox(height: 40),
                   ElevatedButton(
                     onPressed: () async {
-                      // await controller.audioPlayer.play(
-                      //     UrlSource(controller.rxListWord[index].audioUrl));
-                      controller.audioPlayer.play(AssetSource('audio/example.mp3'));
+                      controller.audioPlayer.play(
+                          AssetSource(controller.rxListWord[index].audioAsset));
                     },
                     style: ElevatedButton.styleFrom(
                       shape: const CircleBorder(),
@@ -174,114 +175,18 @@ class ListenAndType extends GetView<ListenAndTypeController> {
             ],
           ),
           controller.rxIsCheckAnswerActive.value == true
-              ? showAnswer(controller.rxListenResult.value, context)
+              ? ShowAnswer(
+                  answer: controller.rxListenResult.value,
+                  isVisibleMeaning: controller.rxIsVisibleMeaning.value,
+                  word: controller.rxListWord[index].word,
+                  phonetic: controller.rxListWord[index].phonetic,
+                  pathAudio: controller.rxListWord[index].audioAsset,
+                  vietnameseMeaning:
+                      controller.rxListWord[index].vietnameseMeaning,
+                  example: controller.rxListWord[index].example,
+                  translateExample:
+                      controller.rxListWord[index].translateExample)
               : Container(),
-        ]),
-      ),
-    );
-  }
-
-  Widget showAnswer(bool value, context) {
-    final size = MediaQuery.of(context).size;
-    return Container(
-      width: size.width,
-      height: size.height * 0.30,
-      alignment: Alignment.center,
-      color: value == true ? Colors.green : Colors.red,
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 20, 10, 20),
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  controller.rxListWord[index].word,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w500,
-                      fontSize: 23),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  controller.rxListWord[index].phonetic,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 20),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                Text(controller.rxListWord[index].vietnameseMeaning,
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 20)),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  controller.rxListWord[index].example,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w400,
-                      fontSize: 20),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Visibility(
-                  visible: controller.rxIsVisibleMeaning.value,
-                  child: Text(controller.rxListWord[index].translateExample,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 20)),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            width: 15,
-          ),
-          Column(
-            children: [
-              ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                  padding: const EdgeInsets.all(20),
-                ),
-                child: const Icon(
-                  Icons.volume_down_alt,
-                  color: Colors.yellow,
-                  size: 20.0,
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  controller.rxIsVisibleMeaning.value =
-                      !controller.rxIsVisibleMeaning.value;
-                },
-                style: ElevatedButton.styleFrom(
-                  shape: const CircleBorder(),
-                  padding: const EdgeInsets.all(20),
-                ),
-                child: const Icon(
-                  Icons.visibility,
-                  color: Colors.yellow,
-                  size: 20.0,
-                ),
-              ),
-            ],
-          )
         ]),
       ),
     );

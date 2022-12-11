@@ -27,6 +27,7 @@ class FlashCard extends GetView<FlashCardController> {
     final size = MediaQuery.of(context).size;
     Get.put(LearningController());
     controller.rxListWord.value = listLesson[indexTopic].listWord;
+    controller.rxIndex.value = index;
     return Obx(
       () => ProgressBarLearning(
         child: Center(
@@ -65,7 +66,8 @@ class FlashCard extends GetView<FlashCardController> {
                               "assets/icons/sound_icon.png",
                             ),
                             onPressed: () async {
-                              controller.audioPlayer.play(AssetSource('audio/example.mp3'));
+                              controller.audioPlayer.play(AssetSource(
+                                  controller.rxListWord[index].audioAsset));
                             },
                           ),
                           Padding(
@@ -128,7 +130,10 @@ class FlashCard extends GetView<FlashCardController> {
                             icon: Image.asset(
                               "assets/icons/sound_icon.png",
                             ),
-                            onPressed: () {},
+                            onPressed: () async {
+                              controller.audioPlayer.play(AssetSource(
+                                  controller.rxListWord[index].audioAsset));
+                            },
                           ),
                           const SizedBox(height: 120),
                           Column(children: [
@@ -196,7 +201,7 @@ class FlashCard extends GetView<FlashCardController> {
                     const SizedBox(
                       height: 5,
                     ),
-                    visibleTextButton == false
+                    visibleTextButton == true
                         ? TextButton(
                             onPressed: () {
                               if (index < controller.rxListWord.length - 1 &&
