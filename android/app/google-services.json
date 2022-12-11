@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "234354561147",
+    "project_id": "learn-japanese-71b37",
+    "storage_bucket": "learn-japanese-71b37.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234354561147:android:7773a8f7668df8ec1792de",
+        "android_client_info": {
+          "package_name": "com.example.learn_japanese"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234354561147-n43kbdfa61amaq8e3h6n0q0qivl02eqp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.learn_japanese",
+            "certificate_hash": "4a0478fb4b7b2bfffd25bc17a775a613ab68f700"
+          }
+        },
+        {
+          "client_id": "234354561147-p9k6mnq1n1i46cvbhoql2g1b5d595jgq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAoEubnfDGI9FvIKL_l77oUOyjzXsK9uGI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234354561147-p9k6mnq1n1i46cvbhoql2g1b5d595jgq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
