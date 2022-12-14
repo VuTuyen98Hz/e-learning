@@ -2,7 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 class ShowAnswer extends StatefulWidget {
-  final bool answer;
+  final bool result;
   bool isVisibleMeaning;
   final String pathAudio;
   final String word;
@@ -13,7 +13,7 @@ class ShowAnswer extends StatefulWidget {
 
   ShowAnswer(
       {Key? key,
-      required this.answer,
+      required this.result,
       required this.isVisibleMeaning,
       required this.word,
       required this.phonetic,
@@ -35,7 +35,7 @@ class _ShowAnswerState extends State<ShowAnswer> {
     audioPlayer.onPlayerStateChanged.listen((state) {
       state == PlayerState.playing;
     });
-    if (widget.answer == true) {
+    if (widget.result == true) {
       audioPlayer.play(AssetSource('audio/sound_effect/correct_answer.mp3'));
     } else {
       audioPlayer.play(AssetSource('audio/sound_effect/wrong_answer.mp3'));
@@ -49,7 +49,7 @@ class _ShowAnswerState extends State<ShowAnswer> {
       width: size.width,
       height: size.height * 0.30,
       alignment: Alignment.center,
-      color: widget.answer == true ? Colors.green : Colors.red,
+      color: widget.result == true ? Colors.green : Colors.red,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(15, 20, 10, 20),
         child:

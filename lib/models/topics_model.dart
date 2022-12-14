@@ -2,7 +2,6 @@ class TopicsModel {
   String descriptions = "";
   String imageUrl = "";
   String meaning = "";
-
   TopicsModel(this.descriptions, this.imageUrl, this.meaning);
 }
 

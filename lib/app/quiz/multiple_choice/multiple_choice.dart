@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_japanese/app/quiz/main/progress_bar_quiz.dart';
+import 'package:learn_japanese/models/word_model.dart';
 import '../../../animation/slide_animation.dart';
 import '../../../helpers/show_example.dart';
+import '../listen_and_type_quiz/listen_and_type_quiz_controller.dart';
 import '../main/quiz_controller.dart';
+import '../type_with_hint_quiz/type_with_hint_quiz_controller.dart';
 import 'multiple_choice_controller.dart';
 
 class MultipleChoice extends GetView<MultipleChoiceController> {
   MultipleChoice({super.key});
 
+
   @override
   Widget build(BuildContext context) {
+    WordModel quizWord = Get.arguments;
     Get.put(QuizController());
     Get.put(MultipleChoiceController());
+    Get.put(ListenAndTypeQuizController());
+    Get.put(TypeWithHintQuizController());
+    controller.initListValueOption(quizWord);
     final size = MediaQuery.of(context).size;
     return ProgressBarQuiz(
       child: Obx(
@@ -39,27 +47,33 @@ class MultipleChoice extends GetView<MultipleChoiceController> {
                       alignment: Alignment.center,
                       padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
                       child: showExample(
-                          example:
-                              "I don't think this classroom have enough chair",
-                          highlightWord: "chair"),
+                          example: quizWord.example,
+                          highlightWord: quizWord.word),
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Option(thisOption: 1, textOption: "Nghĩa tiếng việt 1"),
-                  Option(thisOption: 2, textOption: "Nghĩa tiếng việt 2"),
-                  Option(thisOption: 3, textOption: "Nghĩa tiếng việt 3"),
+                  Option(
+                      thisOption: 1,
+                      text: controller.listValueOption[0],
+                      word: quizWord.vietnameseMeaning),
+                  Option(
+                      thisOption: 2,
+                      text: controller.listValueOption[1],
+                      word: quizWord.vietnameseMeaning),
+                  Option(
+                      thisOption: 3,
+                      text: controller.listValueOption[2],
+                      word: quizWord.vietnameseMeaning),
                   const SizedBox(height: 100),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(0, 50, 0, 40),
                     child: controller.rxChangeButton.value == false
                         ? ElevatedButton(
-                            onPressed: controller.currentOption.value != 0
+                            onPressed: controller.rxCurrentOption.value != 0
                                 ? () {
-                                    if (controller.currentOption.value !=
-                                        controller.rxRightOption.value) {
-                                      controller.rxAnswerColor.value = false;
-                                    } else {}
-                                    controller.rxChangeButton.value = true;
+                                    controller.checkResult(quizWord);
+                                    QuizController.to.plusProgressbarPoint(
+                                        quizWord, controller.rxAnswerColor.value);
                                   }
                                 : null,
                             style: ElevatedButton.styleFrom(
@@ -72,7 +86,9 @@ class MultipleChoice extends GetView<MultipleChoiceController> {
                             ),
                           )
                         : ElevatedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              QuizController.to.startQuiz();
+                            },
                             style: ElevatedButton.styleFrom(
                                 fixedSize: const Size(300, 50),
                                 shape: RoundedRectangleBorder(
@@ -92,14 +108,17 @@ class MultipleChoice extends GetView<MultipleChoiceController> {
     );
   }
 
-  Widget Option({required thisOption, required String textOption}) {
+  Widget Option({required thisOption, required String text, String word = ''}) {
+    if (text == word) {
+      controller.rxRightOption.value = thisOption;
+    }
     return Flexible(
       child: ClipRRect(
         borderRadius: BorderRadius.circular(25.0),
         child: GestureDetector(
           onTap: controller.rxChangeButton.value == false
               ? () {
-                  controller.currentOption.value = thisOption;
+                  controller.rxCurrentOption.value = thisOption;
                 }
               : null,
           child: Container(
@@ -110,11 +129,11 @@ class MultipleChoice extends GetView<MultipleChoiceController> {
             decoration: BoxDecoration(
               border: Border.all(
                   color: optionBorderColor(
-                      controller.currentOption.value, thisOption),
+                      controller.rxCurrentOption.value, thisOption),
                   width: 3),
               borderRadius: BorderRadius.circular(25.0),
               color: answerBackgroundColor(
-                  controller.currentOption.value, thisOption),
+                  controller.rxCurrentOption.value, thisOption),
               boxShadow: const [
                 BoxShadow(
                   color: Colors.grey,
@@ -123,10 +142,10 @@ class MultipleChoice extends GetView<MultipleChoiceController> {
                 ),
               ],
             ),
-            child: Text(textOption,
+            child: Text(text,
                 style: TextStyle(
                     color: answerTextColor(
-                        controller.currentOption.value, thisOption),
+                        controller.rxCurrentOption.value, thisOption),
                     fontSize: 16,
                     fontWeight: FontWeight.w400)),
           ),

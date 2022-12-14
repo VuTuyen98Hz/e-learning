@@ -9,6 +9,7 @@ import 'package:learn_japanese/models/models.dart';
 import 'package:learn_japanese/app/home/home.dart';
 import 'dart:convert';
 import '../../components/loading.dart';
+import '../learning/main/learning_controller.dart';
 import 'signin_screen.dart';
 
 class AuthController extends GetxController {
@@ -19,11 +20,8 @@ class AuthController extends GetxController {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   Rxn<User> firebaseUser = Rxn<User>();
-  Rxn<UserModel> firestoreUser = Rxn<UserModel>();
-  final RxBool admin = false.obs;
+  Rxn<UserModel> rxFireStoreUser = Rxn<UserModel>();
   final obscurePassword = true.obs;
-
-  // final _googleLogin = GoogleSignIn();
   var googleUser = Rx<GoogleSignInAccount?>(null);
   var facebookUser = {};
 
@@ -46,14 +44,13 @@ class AuthController extends GetxController {
   handleAuthChanged(firebaseUser) async {
     //get user data from firestore
     if (firebaseUser?.uid != null) {
-      firestoreUser.bindStream(streamFirestoreUser());
-      await isAdmin();
+      rxFireStoreUser.bindStream(streamFireStoreUser());
+      update();
     }
     if (firebaseUser == null) {
       debugPrint('Send to signin');
       Get.offAll(SignInScreen());
     } else {
-      // Get.offAll(HomeUI());
       Get.offAll(const HomeUI());
     }
   }
@@ -65,17 +62,23 @@ class AuthController extends GetxController {
   Stream<User?> get user => _auth.authStateChanges();
 
   //Streams the firestore user from the firestore collection
-  Stream<UserModel> streamFirestoreUser() {
+  Stream<UserModel> streamFireStoreUser(){
     return _db
         .doc('/users/${firebaseUser.value!.uid}')
         .snapshots()
-        .map((snapshot) => UserModel.fromMap(snapshot.data()!));
+        .map((snapshot) => UserModel.fromMap(snapshot.data()));
   }
 
   //get the firestore user from the firestore collection
-  Future<UserModel> getFirestoreUser() {
+  Future<UserModel> getFireStoreUser() {
     return _db.doc('/users/${firebaseUser.value!.uid}').get().then(
         (documentSnapshot) => UserModel.fromMap(documentSnapshot.data()!));
+  }
+
+  //updates the firestore user in users collection
+  void updateUserFireStore() {
+    _db.doc('/users/${firebaseUser.value!.uid}').update(rxFireStoreUser.toJson());
+    update();
   }
 
   //Method to handle user sign in using email and password
@@ -104,6 +107,7 @@ class AuthController extends GetxController {
   // User registration using email and password
   registerWithEmailAndPassword(BuildContext context) async {
     showLoadingIndicator();
+    Get.put(LearningController());
     try {
       await _auth
           .createUserWithEmailAndPassword(
@@ -117,9 +121,11 @@ class AuthController extends GetxController {
             uid: result.user!.uid,
             email: result.user!.email!,
             name: nameController.text,
-            photoUrl: '');
+            photoUrl: '',
+            listLearnedLesson: LearningController.to.listLearnedLesson
+        );
         //create the user in firestore
-        _createUserFirestore(newUser, result.user!);
+        _createUserFireStore(newUser, result.user!);
         // delete after 3 seconds to avoid showing error of validator
         Timer(const Duration(seconds: 3), () {
           emailController.clear();
@@ -138,7 +144,7 @@ class AuthController extends GetxController {
   }
 
   //create the firestore user in users collection
-  void _createUserFirestore(UserModel user, User firebaseUser) {
+  void _createUserFireStore(UserModel user, User firebaseUser) {
     _db.doc('/users/${firebaseUser.uid}').set(user.toJson());
     update();
   }
@@ -151,19 +157,6 @@ class AuthController extends GetxController {
     return _auth.signOut();
   }
 
-  //check if user is an admin user
-  isAdmin() async {
-    await getUser.then((user) async {
-      DocumentSnapshot adminRef =
-          await _db.collection('admin').doc(user.uid).get();
-      if (adminRef.exists) {
-        admin.value = true;
-      } else {
-        admin.value = false;
-      }
-      update();
-    });
-  }
 
   void loginWithGoogle() async {
     try {
@@ -189,8 +182,10 @@ class AuthController extends GetxController {
           uid: googleUser.value?.id ?? '',
           email: googleUser.value?.email ?? '',
           name: googleUser.value?.displayName ?? '',
-          photoUrl: googleUser.value?.photoUrl ?? '');
-      _createUserFirestore(newUser, user!);
+          photoUrl: googleUser.value?.photoUrl ?? '',
+          listLearnedLesson: LearningController.to.listLearnedLesson,
+      );
+      _createUserFireStore(newUser, user!);
       hideLoadingIndicator();
     } on FirebaseAuthException catch (e) {
       Get.bottomSheet(
@@ -243,10 +238,12 @@ class AuthController extends GetxController {
           uid: jsonDecode(facebookUser["id"]).toString(),
           email: await jsonDecode(jsonEncode(facebookUser["email"])),
           name: jsonDecode(jsonEncode(facebookUser["name"])),
-          photoUrl: jsonDecode(jsonEncode(facebookUser["picture"]["data"]["url"])));
+          photoUrl: jsonDecode(jsonEncode(facebookUser["picture"]["data"]["url"])),
+          listLearnedLesson: LearningController.to.listLearnedLesson
+      );
 
 
-      _createUserFirestore(newUser, user!);
+      _createUserFireStore(newUser, user!);
       hideLoadingIndicator();
     } on FirebaseAuthException catch (e) {
       Get.bottomSheet(Wrap(
@@ -269,4 +266,18 @@ class AuthController extends GetxController {
   void logoutFacebook() async {
     await FacebookAuth.instance.logOut();
   }
+
+  Widget visiblePassword(){
+    return InkWell(
+      child: Icon(obscurePassword.value
+          ? Icons.visibility
+          : Icons.visibility_off),
+      onTap: () {
+        obscurePassword.value =
+        !obscurePassword.value;
+      },
+    );
+  }
+
+
 }

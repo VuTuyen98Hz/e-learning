@@ -128,10 +128,8 @@ class TypeWithHint extends GetView<TypeWithHintController> {
                             if (index + 1 >=
                                 learnController.rxListWordRoundTwo.length) {
                               index = 0;
-                              debugPrint('Hello hint $index');
                             } else {
                               index += 1;
-                              debugPrint('Hello hint $index');
                             }
                             // run round two
                             if (learnController.rxListWordRoundTwo.isNotEmpty) {
@@ -166,7 +164,7 @@ class TypeWithHint extends GetView<TypeWithHintController> {
           ),
           controller.rxIsCheckAnswerActive.value == true
               ? ShowAnswer(
-                  answer: controller.rxHintGameResult.value,
+                  result: controller.rxHintGameResult.value,
                   isVisibleMeaning: controller.rxIsVisibleMeaning.value,
                   word: controller.rxListWord[index].word,
                   phonetic: controller.rxListWord[index].phonetic,

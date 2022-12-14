@@ -1,12 +1,12 @@
 class WordModel {
   String word;
   String imageUrl;
-
   String audioAsset;
   String phonetic;
   String vietnameseMeaning;
   String example;
   String translateExample;
+  bool didUserRememberThisWord;
 
   WordModel(
       {this.word = '',
@@ -15,7 +15,8 @@ class WordModel {
       this.phonetic = '',
       this.vietnameseMeaning = '',
       this.example = '',
-      this.translateExample = ''});
+      this.translateExample = '',
+      this.didUserRememberThisWord = false});
 }
 
 final List<WordModel> schoolWords = [
@@ -26,9 +27,9 @@ final List<WordModel> schoolWords = [
       audioAsset: 'audio/lesson/school/student.mp3',
       phonetic: '/ˈskuːl.jɑːrd/',
       vietnameseMeaning: "Học sinh, sinh viên",
-      example:
-          'She is the best student in school and is loved by everyone',
-      translateExample: 'Cô là học sinh giỏi nhất trường và được mọi người yêu mến'),
+      example: 'She is the best student in school and is loved by everyone',
+      translateExample:
+          'Cô là học sinh giỏi nhất trường và được mọi người yêu mến'),
   WordModel(
       word: 'teacher',
       imageUrl:
@@ -38,17 +39,18 @@ final List<WordModel> schoolWords = [
       vietnameseMeaning: "Giáo viên",
       example:
           'Although the teacher seems strict, she really loves her students',
-      translateExample: 'Cô giáo tuy có vẻ nghiêm khắc nhưng lại rất yêu thương học sinh'),
+      translateExample:
+          'Cô giáo tuy có vẻ nghiêm khắc nhưng lại rất yêu thương học sinh'),
   WordModel(
       word: 'lesson',
       imageUrl:
-      'https://blog.planbook.com/wp-content/uploads/2017/04/high-school-1072x715.jpg',
+          'https://blog.planbook.com/wp-content/uploads/2017/04/high-school-1072x715.jpg',
       audioAsset: 'audio/lesson/school/lesson.mp3',
       phonetic: '/ˈles.ən/',
       vietnameseMeaning: "Tiết học, bài học",
-      example:
-          "Mr. Johnson's lessons always make us excited",
-      translateExample: 'Những bài học của thầy Johnson luôn khiến chúng tôi thích thú'),
+      example: "Mr. Johnson's lessons always make us excited",
+      translateExample:
+          'Những bài học của thầy Johnson luôn khiến chúng tôi thích thú'),
   WordModel(
       word: 'library',
       imageUrl:
@@ -56,9 +58,9 @@ final List<WordModel> schoolWords = [
       audioAsset: 'audio/lesson/school/library.mp3',
       phonetic: ' /ˈlaɪ.brer.i/',
       vietnameseMeaning: "Thư viện",
-      example:
-          'My school library is the largest library in the area',
-      translateExample: 'Thư viện trường tôi là thư viện lớn nhất trong khu vực'),
+      example: 'My school library is the largest library in the area',
+      translateExample:
+          'Thư viện trường tôi là thư viện lớn nhất trong khu vực'),
   WordModel(
       word: 'principal',
       imageUrl:
@@ -68,7 +70,8 @@ final List<WordModel> schoolWords = [
       vietnameseMeaning: "Thầy hiệu trưởng",
       example:
           'For Principal Michael, his educational journey has been a long but meaningful one',
-      translateExample: 'For Principal Michael, his educational journey has been a long but meaningful one'),
+      translateExample:
+          'For Principal Michael, his educational journey has been a long but meaningful one'),
   WordModel(
       word: 'exam',
       imageUrl:
@@ -78,7 +81,8 @@ final List<WordModel> schoolWords = [
       vietnameseMeaning: "Thi cử",
       example:
           'She always has to stay up late to prepare for the upcoming exam',
-      translateExample: 'Trước mỗi kỳ thi, cô thường thức rất khuya để học bài'),
+      translateExample:
+          'Trước mỗi kỳ thi, cô thường thức rất khuya để học bài'),
   WordModel(
       word: 'classroom',
       imageUrl:
@@ -86,8 +90,7 @@ final List<WordModel> schoolWords = [
       audioAsset: 'audio/lesson/school/classroom.mp3',
       phonetic: '/ˈklæs.rʊm/',
       vietnameseMeaning: "Lớp học",
-      example:
-          'Students are studying in the classroom.',
+      example: 'Students are studying in the classroom.',
       translateExample: 'Học sinh đang học trong lớp.'),
   WordModel(
       word: 'canteen',
@@ -96,8 +99,7 @@ final List<WordModel> schoolWords = [
       audioAsset: 'audio/lesson/school/canteen.mp3',
       phonetic: '/kænˈtiːn/',
       vietnameseMeaning: "Căng tin",
-      example:
-          'Her mother worked as an assistant in a school canteen.',
+      example: 'Her mother worked as an assistant in a school canteen.',
       translateExample: 'Mẹ cô làm trợ lý trong căng tin trường học.'),
   WordModel(
       word: 'gymnasium',
@@ -106,9 +108,9 @@ final List<WordModel> schoolWords = [
       audioAsset: 'audio/lesson/school/gymnasium.mp3',
       phonetic: '/dʒɪmˈneɪ.zi.əm/',
       vietnameseMeaning: "Phòng thể chất",
-      example:
-          'Dance classes are held in the high school gymnasium',
-      translateExample: 'Các lớp khiêu vũ được tổ chức trong phòng tập thể dục của trường trung học.'),
+      example: 'Dance classes are held in the high school gymnasium',
+      translateExample:
+          'Các lớp khiêu vũ được tổ chức trong phòng tập thể dục của trường trung học.'),
   WordModel(
       word: 'schoolyard',
       imageUrl:
@@ -120,7 +122,6 @@ final List<WordModel> schoolWords = [
           'As soon as the bell rang, the children rushed to the school yard',
       translateExample: 'Chuông vừa reo, lũ trẻ ùa ra sân trường'),
 ];
-
 final List<WordModel> examinationWords = [
   WordModel(
       word: 'computer',

@@ -14,6 +14,9 @@ class SignInScreen extends StatelessWidget {
   final AuthController authController = AuthController.to;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  SignInScreen({super.key});
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -36,7 +39,7 @@ class SignInScreen extends StatelessWidget {
                           hintText: 'Email',
                           validator: Validator().email,
                           keyboardType: TextInputType.emailAddress,
-                          onChanged: (value) => null,
+                          onChanged: (value) {},
                           onSaved: (value) =>
                               authController.emailController.text = value!,
                           obscureText: false,
@@ -45,18 +48,10 @@ class SignInScreen extends StatelessWidget {
                         FormInputFieldWithIcon(
                           controller: authController.passwordController,
                           iconPrefix: Icons.lock,
-                          iconSuffix: InkWell(
-                            child: Icon(authController.obscurePassword.value
-                                ? Icons.visibility
-                                : Icons.visibility_off),
-                            onTap: () {
-                              authController.obscurePassword.value =
-                                  !authController.obscurePassword.value;
-                            },
-                          ),
+                          iconSuffix: authController.visiblePassword(),
                           hintText: 'Password',
                           validator: Validator().password,
-                          onChanged: (value) => null,
+                          onChanged: (value) {},
                           onSaved: (value) =>
                               authController.passwordController.text = value!,
                           maxLines: 1,

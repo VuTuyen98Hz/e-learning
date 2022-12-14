@@ -52,7 +52,7 @@ class ProgressBarLearning extends GetView<LearningController> {
                                         ElevatedButton(
                                           onPressed: () {
                                             learnController.resetLearning();
-                                            Get.offAll(const HomeUI(),
+                                            Get.offAll(HomeUI(),
                                                 transition: Transition.fade);
                                           },
                                           style: ElevatedButton.styleFrom(
@@ -62,7 +62,7 @@ class ProgressBarLearning extends GetView<LearningController> {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           20))),
-                                          child: const Text('Chắc chắn rồi!',
+                                          child: const Text('THOÁT',
                                               style: TextStyle(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500,
@@ -78,7 +78,7 @@ class ProgressBarLearning extends GetView<LearningController> {
                                                   borderRadius:
                                                       BorderRadius.circular(
                                                           20))),
-                                          child: const Text('Ở lại học tiếp',
+                                          child: const Text('Ở LẠI HỌC TIẾP',
                                               style: TextStyle(
                                                   fontSize: 20,
                                                   fontWeight: FontWeight.w500)),

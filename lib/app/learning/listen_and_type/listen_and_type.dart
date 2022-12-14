@@ -132,14 +132,11 @@ class ListenAndType extends GetView<ListenAndTypeController> {
                                 Get.put(TypeWithHintController());
                               } else {
                                 //reset ListWordRoundTwo
-                                debugPrint('Hello listen before $index');
                                 if (index + 1 >=
                                     learnController.rxListWordRoundTwo.length) {
                                   index = 0;
-                                  debugPrint('Hello listen $index');
                                 } else {
                                   index += 1;
-                                  debugPrint('Hello listen $index');
                                 }
                                 // run round two
                                 if (learnController
@@ -176,7 +173,7 @@ class ListenAndType extends GetView<ListenAndTypeController> {
           ),
           controller.rxIsCheckAnswerActive.value == true
               ? ShowAnswer(
-                  answer: controller.rxListenResult.value,
+                  result: controller.rxListenResult.value,
                   isVisibleMeaning: controller.rxIsVisibleMeaning.value,
                   word: controller.rxListWord[index].word,
                   phonetic: controller.rxListWord[index].phonetic,

@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:learn_japanese/models/models.dart';
 
 class Avatar extends StatelessWidget {
-  Avatar(
-    this.user,
-  );
+  const Avatar(this.photoUrl, {super.key});
 
-  final UserModel user;
+  final String photoUrl;
 
   @override
   Widget build(BuildContext context) {
-    if (user.photoUrl == '') {
+    if (photoUrl == '') {
       return Hero(
         tag: 'App Logo',
         child: CircleAvatar(
@@ -37,7 +35,7 @@ class Avatar extends StatelessWidget {
           radius: 70.0,
           child: ClipOval(
             child: Image.network(
-              user.photoUrl,
+              photoUrl,
               fit: BoxFit.cover,
               width: 120.0,
               height: 120.0,

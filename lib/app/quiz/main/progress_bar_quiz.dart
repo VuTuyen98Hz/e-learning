@@ -15,7 +15,7 @@ class ProgressBarQuiz extends GetView<QuizController> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Obx(() => Scaffold(
-      resizeToAvoidBottomInset: false,
+      // resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -30,7 +30,7 @@ class ProgressBarQuiz extends GetView<QuizController> {
                         icon: Image.asset("assets/icons/exit_icon.png"),
                         onPressed: () {
                           quizController.resetToZero();
-                          Get.offAll(const HomeUI());
+                          Get.offAll(HomeUI());
                         }),
                     SizedBox(
                       width: size.width * 0.83,

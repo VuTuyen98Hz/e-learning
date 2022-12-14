@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_japanese/app/global_screen/select_word/select_word.dart';
+import '../../../models/word_model.dart';
+import '../../authentication/auth_controller.dart';
 import '../../home/home.dart';
 import 'ending_controller.dart';
 
-class SelectWord extends GetView<EndingController> {
+class Ending2 extends GetView<EndingController> {
+  const Ending2({this.indexTopic = 0, super.key});
+  final int indexTopic;
+
   @override
   Widget build(BuildContext context) {
+    Get.put(EndingController());
+    controller.rxListWord.value = listLesson[indexTopic].listWord;
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -17,45 +25,22 @@ class SelectWord extends GetView<EndingController> {
                       color: Colors.black,
                       fontSize: 20,
                       fontWeight: FontWeight.w500)),
-              Container(
-                padding: const EdgeInsets.all(35),
-                height: 300,
-                child: ListView.builder(
-                    itemCount: 6,
-                    itemBuilder: (context, index) {
-                      return Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text('Example',
-                                style: (TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black))),
-                            const Text('(n)',
-                                style: (TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black))),
-                            const Text('Ví dụ Ví dụ Ví dụ Ví dụ',
-                                style: (TextStyle(
-                                    fontWeight: FontWeight.w400,
-                                    color: Colors.black))),
-                          ]);
-                    }),
-              ),
+              SelectWord(indexTopic: indexTopic),
               ElevatedButton(
                 onPressed: () {
-                  Get.offAll(const HomeUI(),
-                      transition: Transition.fadeIn);
+                  Get.offAll(const HomeUI(), transition: Transition.fadeIn);
                 },
                 style: ElevatedButton.styleFrom(
                     fixedSize: const Size(300, 50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20))),
                 child:
-                    const Text('ÔN TẬP NGAY', style: TextStyle(fontSize: 20)),
+                const Text('ÔN TẬP NGAY', style: TextStyle(fontSize: 20)),
               ),
-              const SizedBox(height: 10),
+              const SizedBox(height: 20),
               ElevatedButton(
                   onPressed: () {
+                    AuthController.to.updateUserFireStore();
                     Get.offAll(const HomeUI());
                   },
                   style: ElevatedButton.styleFrom(

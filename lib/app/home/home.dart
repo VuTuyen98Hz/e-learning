@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:learn_japanese/app/quiz/main/quiz_screen.dart';
 import '../authentication/profile_screen.dart';
 import '../learning/topics/topics_screen.dart';
+import '../quiz/main/quiz_controller.dart';
 import 'home_controller.dart';
 
 class HomeUI extends StatelessWidget {
@@ -11,6 +12,7 @@ class HomeUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(QuizController());
     return GetBuilder<HomeController>(
       init: HomeController(),
       builder: (controller) {
@@ -19,9 +21,9 @@ class HomeUI extends StatelessWidget {
             child: IndexedStack(
               index: controller.tabIndex,
               children: [
-                TopicsScreen(),
+                const TopicsScreen(),
                 QuizScreen(),
-                ProfileScreen(),
+                const ProfileScreen(),
               ],
             ),
           ),

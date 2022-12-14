@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'app/authentication/auth_controller.dart';
+import 'app/home/home_controller.dart';
+import 'app/quiz/main/quiz_controller.dart';
 import 'components/loading.dart';
 
 void main() async {

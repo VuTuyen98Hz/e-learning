@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,7 +25,8 @@ class FlashCard extends GetView<FlashCardController> {
 
   @override
   Widget build(BuildContext context) {
-    final visibleTextButton = learnController.didLearnTopic(indexTopic);
+    Get.put(FlashCardController());
+    final visibleTextButton = learnController.didLearnLesson(indexTopic);
     final size = MediaQuery.of(context).size;
     Get.put(LearningController());
     controller.rxListWord.value = listLesson[indexTopic].listWord;
@@ -201,19 +204,20 @@ class FlashCard extends GetView<FlashCardController> {
                     const SizedBox(
                       height: 5,
                     ),
-                    visibleTextButton == true
+                    visibleTextButton == false
                         ? TextButton(
                             onPressed: () {
                               if (index < controller.rxListWord.length - 1 &&
                                   learnController.rxIsEndRoundOne.value ==
                                       false) {
                                 learnController.skipFlashCard();
-                                Get.offAll(
-                                    FlashCard(
-                                        index: index + 1,
-                                        indexTopic: indexTopic),
-                                    transition: Transition.fadeIn);
-                                Get.put(FlashCardController());
+                                Timer(const Duration(milliseconds: 400), () {
+                                  Get.offAll(
+                                      FlashCard(
+                                          index: index + 1,
+                                          indexTopic: indexTopic),
+                                      transition: Transition.fadeIn);
+                                });
                               } else {
                                 learnController.resetLearning();
                                 Get.put(EndingController());

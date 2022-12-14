@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import '../../../models/word_model.dart';
+import '../../../../models/word_model.dart';
 
-class EndingController extends GetxController {
+class SelectedController extends GetxController {
   RxList<bool> rxListCheckedWord = RxList.filled(10, false, growable: true);
   RxList<WordModel> rxListWord = RxList<WordModel>();
 

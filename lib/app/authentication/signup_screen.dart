@@ -13,6 +13,9 @@ class SignUpScreen extends StatelessWidget {
   final AuthController authController = AuthController.to;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  SignUpScreen({super.key});
+
+  @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
@@ -28,13 +31,13 @@ class SignUpScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: <Widget>[
-                      SizedBox(height: 60.0),
+                      const SizedBox(height: 60.0),
                       FormInputFieldWithIcon(
                         controller: authController.nameController,
                         iconPrefix: Icons.person,
                         hintText: 'Username',
                         validator: Validator().name,
-                        onChanged: (value) => null,
+                        onChanged: (value) {},
                         onSaved: (value) =>
                             authController.nameController.text = value!,
                         obscureText: false,
@@ -46,7 +49,7 @@ class SignUpScreen extends StatelessWidget {
                         hintText: 'Email',
                         validator: Validator().email,
                         keyboardType: TextInputType.emailAddress,
-                        onChanged: (value) => null,
+                        onChanged: (value){},
                         onSaved: (value) =>
                             authController.emailController.text = value!,
                         obscureText: false,
@@ -55,9 +58,10 @@ class SignUpScreen extends StatelessWidget {
                       FormInputFieldWithIcon(
                         controller: authController.passwordController,
                         iconPrefix: Icons.lock,
+                        iconSuffix: authController.visiblePassword(),
                         hintText: 'Password',
                         validator: Validator().password,
-                        onChanged: (value) => null,
+                        onChanged: (value) {},
                         onSaved: (value) =>
                             authController.passwordController.text = value!,
                         maxLines: 1,

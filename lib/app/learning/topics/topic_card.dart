@@ -6,7 +6,7 @@ import '../main/learning_controller.dart';
 Widget topicCard(TopicsModel topic, int indexTopic) {
   Get.put(LearningController());
   final learnController = LearningController.to;
-  final status = learnController.didLearnTopic(indexTopic);
+  final status = learnController.didLearnLesson(indexTopic);
   return Card(
     elevation: 2.0,
     color: status == true ? Colors.green : Colors.white,

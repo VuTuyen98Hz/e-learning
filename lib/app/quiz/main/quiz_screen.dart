@@ -1,19 +1,29 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../multiple_choice/multiple_choice.dart';
+import 'package:learn_japanese/app/quiz/vocabulary_notebook/vocabulary_notebook.dart';
+import '../../../models/word_model.dart';
+import '../../authentication/auth_controller.dart';
+import '../../authentication/signin_screen.dart';
+import '../../home/home.dart';
+import '../vocabulary_notebook/vocabulary_notebook_controller.dart';
 import 'quiz_controller.dart';
+import '../listen_and_type_quiz/listen_and_type_quiz_controller.dart';
+import '../multiple_choice/multiple_choice_controller.dart';
+import '../type_with_hint_quiz/type_with_hint_quiz_controller.dart';
 import 'package:collection/collection.dart';
-import 'dart:math';
 
 class QuizScreen extends GetView<QuizController> {
   QuizScreen({super.key});
-
   final List<PricePoint> points = pricePoints;
-  final int numberReviewWord = 8;
+  QuizController quizController = QuizController.to;
 
   @override
   Widget build(BuildContext context) {
+    Get.put(MultipleChoiceController());
+    Get.put(ListenAndTypeQuizController());
+    Get.put(TypeWithHintQuizController());
+    controller.rxListQuizWord.value = listLesson[0].listWord;
     return Scaffold(
       body: Center(
           child: Column(
@@ -42,18 +52,47 @@ class QuizScreen extends GetView<QuizController> {
               ),
             ),
           ),
-          Text("Chuẩn bị ôn tập: $numberReviewWord từ",
+          Text("Chuẩn bị ôn tập: ${controller.rxListQuizWord.length} từ",
               style: const TextStyle(fontSize: 18, color: Colors.black)),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {
-              Get.to(MultipleChoice());
-            },
+            onPressed: ()=> controller.rxListQuizWord.isEmpty? Get.to(const HomeUI())  : controller.startQuiz(),
             style: ElevatedButton.styleFrom(
                 fixedSize: const Size(220, 55),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25))),
-            child: const Text('ÔN TẬP NGAY', style: TextStyle(fontSize: 20)),
+            child: Text(controller.rxListQuizWord.isEmpty? 'ĐI TỚI HỌC TẬP' : 'ÔN TẬP NGAY', style: const TextStyle(fontSize: 20)),
+          ),
+          const SizedBox(height: 50),
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            IconButton(
+              iconSize: 40,
+              icon: Image.asset(
+                "assets/icons/book_icon.png",
+              ),
+              onPressed: () {
+                Get.to(const VocabularyNotebook(),transition: Transition.fadeIn);
+                Get.put(VocabularyNotebookController());
+              },
+            ),
+            const Text("Sổ tay từ vựng",
+                style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 18)),
+          ]),
+          ElevatedButton(
+            onPressed: () {
+              AuthController.to.logoutFacebook();
+              AuthController.to.logoutGoogle();
+              AuthController.to.signOut();
+              Get.offAll(SignInScreen());
+            },
+            style: ElevatedButton.styleFrom(
+                fixedSize: const Size(200, 45),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20))),
+            child: const Text('Thoát tài khoản'),
           ),
         ],
       )),
@@ -146,12 +185,11 @@ class PricePoint {
 }
 
 List<PricePoint> get pricePoints {
-  final Random random = Random();
+  // final Random random = Random();
   final randomNumbers = <double>[0, 5, 5, 5, 10];
   // for (var i = 0; i <= 11; i++) {
   //   randomNumbers.add(random.nextDouble());
   // }
-
   return randomNumbers
       .mapIndexed(
           (index, element) => PricePoint(x: index.toDouble(), y: element))
