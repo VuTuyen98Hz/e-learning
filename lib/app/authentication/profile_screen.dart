@@ -20,25 +20,21 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             children: <Widget>[
               const SizedBox(height: 120),
-              Avatar(controller.rxFireStoreUser.value?.photoUrl??''),
+              Avatar(controller.rxFireStoreUser.value!.photoUrl),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   const SizedBox(height: 20),
-                  Text(
-                      'User: ${controller.rxFireStoreUser.value?.name??'Test'}',
+                  Text('User: ${controller.rxFireStoreUser.value!.name}',
                       style: const TextStyle(fontSize: 16)),
                   const SizedBox(height: 10),
-                  Text(
-                      'Email: ${controller.rxFireStoreUser.value?.email??'Test'}',
+                  Text('Email: ${controller.rxFireStoreUser.value!.email}',
                       style: const TextStyle(fontSize: 16)),
                   const SizedBox(height: 40),
                   ElevatedButton(
                     onPressed: () {
-                      AuthController.to.logoutFacebook();
-                      AuthController.to.logoutGoogle();
                       AuthController.to.signOut();
-                      Get.offAll(SignInScreen());
+                      Get.offAll(SignInScreen(),transition: Transition.fadeIn);
                     },
                     style: ElevatedButton.styleFrom(
                         fixedSize: const Size(200, 45),

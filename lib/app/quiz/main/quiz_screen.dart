@@ -1,12 +1,11 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_japanese/app/quiz/vocabulary_notebook/vocabulary_notebook.dart';
-import '../../../models/word_model.dart';
+import '../../../models/word_data.dart';
 import '../../authentication/auth_controller.dart';
 import '../../authentication/signin_screen.dart';
 import '../../home/home.dart';
-import '../vocabulary_notebook/vocabulary_notebook_controller.dart';
+import '../notebook/notebook.dart';
 import 'quiz_controller.dart';
 import '../listen_and_type_quiz/listen_and_type_quiz_controller.dart';
 import '../multiple_choice/multiple_choice_controller.dart';
@@ -15,15 +14,12 @@ import 'package:collection/collection.dart';
 
 class QuizScreen extends GetView<QuizController> {
   QuizScreen({super.key});
-  final List<PricePoint> points = pricePoints;
-  QuizController quizController = QuizController.to;
+  final List<StatisticalPoint> points = pricePoints;
+  final quizController = QuizController.to;
 
   @override
   Widget build(BuildContext context) {
-    Get.put(MultipleChoiceController());
-    Get.put(ListenAndTypeQuizController());
-    Get.put(TypeWithHintQuizController());
-    controller.rxListQuizWord.value = listLesson[0].listWord;
+    controller.initQuiz();
     return Scaffold(
       body: Center(
           child: Column(
@@ -42,7 +38,7 @@ class QuizScreen extends GetView<QuizController> {
                     FlBorderData(border: const Border(bottom: BorderSide())),
                 gridData: FlGridData(show: false),
                 titlesData: FlTitlesData(
-                  topTitles: AxisTitles(sideTitles: _topTitles),
+                  topTitles: AxisTitles(sideTitles: topTitles),
                   bottomTitles: AxisTitles(sideTitles: _bottomTitles),
                   leftTitles:
                       AxisTitles(sideTitles: SideTitles(showTitles: false)),
@@ -71,8 +67,7 @@ class QuizScreen extends GetView<QuizController> {
                 "assets/icons/book_icon.png",
               ),
               onPressed: () {
-                Get.to(const VocabularyNotebook(),transition: Transition.fadeIn);
-                Get.put(VocabularyNotebookController());
+                Get.to(Notebook(),transition: Transition.fadeIn);
               },
             ),
             const Text("Sổ tay từ vựng",
@@ -83,8 +78,6 @@ class QuizScreen extends GetView<QuizController> {
           ]),
           ElevatedButton(
             onPressed: () {
-              AuthController.to.logoutFacebook();
-              AuthController.to.logoutGoogle();
               AuthController.to.signOut();
               Get.offAll(SignInScreen());
             },
@@ -127,19 +120,19 @@ class QuizScreen extends GetView<QuizController> {
           String text = '';
           switch (value.toInt()) {
             case 0:
-              text = '1';
+              text = 'Lần 1';
               break;
             case 1:
-              text = '2';
+              text = 'Lần 2';
               break;
             case 2:
-              text = '3';
+              text = 'Lần 3';
               break;
             case 3:
-              text = '4';
+              text = 'Lần 4';
               break;
             case 4:
-              text = '5';
+              text = 'Lần 5';
               break;
           }
           return Padding(
@@ -151,25 +144,25 @@ class QuizScreen extends GetView<QuizController> {
         },
       );
 
-  SideTitles get _topTitles => SideTitles(
+  SideTitles get topTitles => SideTitles(
         showTitles: true,
         getTitlesWidget: (value, meta) {
           String text = '';
           switch (value.toInt()) {
             case 0:
-              text = '0%';
+              text = '';
               break;
             case 1:
-              text = '50%';
+              text = '';
               break;
             case 2:
-              text = '50%';
+              text = '';
               break;
             case 3:
-              text = '50%';
+              text = '';
               break;
             case 4:
-              text = '100%';
+              text = '';
               break;
           }
           return Text(text, style: const TextStyle(color: Colors.black));
@@ -177,21 +170,17 @@ class QuizScreen extends GetView<QuizController> {
       );
 }
 
-class PricePoint {
+class StatisticalPoint {
   final double x;
   final double y;
 
-  PricePoint({required this.x, required this.y});
+  StatisticalPoint({required this.x, required this.y});
 }
 
-List<PricePoint> get pricePoints {
-  // final Random random = Random();
-  final randomNumbers = <double>[0, 5, 5, 5, 10];
-  // for (var i = 0; i <= 11; i++) {
-  //   randomNumbers.add(random.nextDouble());
-  // }
+List<StatisticalPoint> get pricePoints {
+  final randomNumbers = <double>[0, 5.8, 5, 5, 10];
   return randomNumbers
       .mapIndexed(
-          (index, element) => PricePoint(x: index.toDouble(), y: element))
+          (index, element) => StatisticalPoint(x: index.toDouble(), y: element))
       .toList();
 }

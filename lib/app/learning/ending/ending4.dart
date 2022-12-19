@@ -4,13 +4,12 @@ import '../../authentication/auth_controller.dart';
 import '../../quiz/notebook/selected_word.dart';
 import '../../home/home.dart';
 
-class Ending2 extends StatelessWidget{
-  const Ending2({this.indexTopic = 0, super.key});
+class Ending4 extends GetView<AuthController>{
+  Ending4({this.indexTopic = 0, super.key});
   final int indexTopic;
 
   @override
   Widget build(BuildContext context) {
-    // controller.rxListWord.value = listLessonModel[indexTopic].lesson;
     return Scaffold(
       body: SafeArea(
         child: Center(
@@ -21,11 +20,12 @@ class Ending2 extends StatelessWidget{
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 20,
-                      fontWeight: FontWeight.w500)),  
+                      fontWeight: FontWeight.w500)),
               SelectedWord(indexTopic: indexTopic),
               ElevatedButton(
                 onPressed: () {
-                  AuthController.to.updateUserData(indexTopic);
+                  // controller.updateFinishLesson(indexTopic);
+                  controller.updateUserFireStore();
                 },
                 style: ElevatedButton.styleFrom(
                     fixedSize: const Size(300, 50),

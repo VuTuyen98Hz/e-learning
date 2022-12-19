@@ -10,7 +10,7 @@ import '../type_with_hint_quiz/type_with_hint_quiz_controller.dart';
 import 'multiple_choice_controller.dart';
 
 class MultipleChoice extends GetView<MultipleChoiceController> {
-  MultipleChoice({super.key});
+  const MultipleChoice({super.key});
 
 
   @override

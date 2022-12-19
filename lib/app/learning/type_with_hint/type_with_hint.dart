@@ -7,8 +7,7 @@ import 'package:learn_japanese/app/learning/type_with_hint/text_form_field_fill_
 import 'package:learn_japanese/app/learning/type_with_hint/type_with_hint_controller.dart';
 import '../../../animation/slide_animation.dart';
 import '../../../components/show_answer.dart';
-import '../../../models/word_model.dart';
-import '../ending/ending_controller.dart';
+import '../../../models/lesson_model.dart';
 import '../flashcard/flashcard_controller.dart';
 import '../listen_and_type/listen_and_type_controller.dart';
 import '../main/learning_controller.dart';
@@ -29,7 +28,7 @@ class TypeWithHint extends GetView<TypeWithHintController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.rxListWord.value = listLesson[indexTopic].listWord;
+    controller.rxListWord.value = listLessonModel[indexTopic].lesson;
     return ProgressBarLearning(
       child: Obx(
         () => Stack(alignment: Alignment.center, children: [
@@ -142,7 +141,6 @@ class TypeWithHint extends GetView<TypeWithHintController> {
                               Get.put(ListenAndTypeController());
                             } else {
                               learnController.resetLearning();
-                              Get.put(EndingController());
                               Get.offAll(Ending(indexTopic: indexTopic),
                                   transition: Transition.fadeIn);
                             }

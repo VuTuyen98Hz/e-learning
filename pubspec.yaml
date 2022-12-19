@@ -44,6 +44,7 @@ dependencies:
   google_sign_in: ^5.4.2
   audioplayers: ^1.1.1
   fl_chart: ^0.55.2
+  collection: ^1.16.0
 
 
 dev_dependencies:

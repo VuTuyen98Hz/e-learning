@@ -15,11 +15,11 @@ class ListenAndTypeQuiz extends GetView<ListenAndTypeQuizController> {
   @override
   Widget build(BuildContext context) {
     WordModel quizWord = Get.arguments;
-    controller.audioPlayer.play(AssetSource(quizWord.audioAsset));
     Get.put(QuizController());
     Get.put(MultipleChoiceController());
     Get.put(ListenAndTypeQuizController());
     Get.put(TypeWithHintQuizController());
+    controller.audioPlayer.play(AssetSource(quizWord.audioAsset));
     return ProgressBarQuiz(
       child: Obx(
         () => Stack(alignment: Alignment.center, children: [
@@ -84,6 +84,7 @@ class ListenAndTypeQuiz extends GetView<ListenAndTypeQuizController> {
                             onPressed: controller.rxShowCheckButton.value ==
                                     true
                                 ? () {
+
                                     QuizController.to.plusProgressbarPoint(
                                         quizWord, controller.rxResult.value);
                                     controller.changeButton();

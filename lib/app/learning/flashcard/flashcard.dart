@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,8 +5,7 @@ import 'package:learn_japanese/app/learning/main/progress_bar_learning.dart';
 import '../../../animation/flip_animation.dart';
 import '../../../animation/slide_animation.dart';
 import '../../../helpers/show_example.dart';
-import '../../../models/word_model.dart';
-import '../ending/ending_controller.dart';
+import '../../../models/lesson_model.dart';
 import '../listen_and_type/listen_and_type.dart';
 import '../listen_and_type/listen_and_type_controller.dart';
 import '../main/learning_controller.dart';
@@ -26,10 +23,10 @@ class FlashCard extends GetView<FlashCardController> {
   @override
   Widget build(BuildContext context) {
     Get.put(FlashCardController());
-    final visibleTextButton = learnController.didLearnLesson(indexTopic);
+    final visibleTextButton = learnController.didFinishedLesson(indexTopic);
     final size = MediaQuery.of(context).size;
     Get.put(LearningController());
-    controller.rxListWord.value = listLesson[indexTopic].listWord;
+    controller.rxListWord.value = listLessonModel[indexTopic].lesson;
     controller.rxIndex.value = index;
     return Obx(
       () => ProgressBarLearning(
@@ -206,25 +203,26 @@ class FlashCard extends GetView<FlashCardController> {
                     ),
                     visibleTextButton == false
                         ? TextButton(
-                            onPressed: () {
-                              if (index < controller.rxListWord.length - 1 &&
-                                  learnController.rxIsEndRoundOne.value ==
-                                      false) {
-                                learnController.skipFlashCard();
-                                Timer(const Duration(milliseconds: 400), () {
-                                  Get.offAll(
-                                      FlashCard(
-                                          index: index + 1,
-                                          indexTopic: indexTopic),
-                                      transition: Transition.fadeIn);
-                                });
-                              } else {
-                                learnController.resetLearning();
-                                Get.put(EndingController());
-                                Get.off(Ending(indexTopic: indexTopic),
-                                    transition: Transition.fadeIn);
-                              }
-                            },
+                            onPressed: controller.rxIsDelay.value == true
+                                ? null
+                                : () {
+                                    if (index <
+                                            controller.rxListWord.length - 1 &&
+                                        learnController.rxIsEndRoundOne.value ==
+                                            false) {
+                                      learnController.skipFlashCard();
+                                      Get.offAll(
+                                          FlashCard(
+                                              index: index + 1,
+                                              indexTopic: indexTopic),
+                                          transition: Transition.fadeIn);
+                                    } else {
+                                      learnController.resetLearning();
+                                      Get.off(Ending(indexTopic: indexTopic),
+                                          transition: Transition.fadeIn);
+                                    }
+                                    //prevent spam button
+                                  },
                             child: const Text(
                               "Mình đã thuộc từ này!",
                               style: TextStyle(

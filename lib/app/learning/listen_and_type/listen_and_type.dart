@@ -5,9 +5,8 @@ import 'package:learn_japanese/app/learning/main/learning_controller.dart';
 import 'package:learn_japanese/app/learning/main/progress_bar_learning.dart';
 import 'package:learn_japanese/app/learning/type_with_hint/type_with_hint.dart';
 import 'package:learn_japanese/components/show_answer.dart';
-import '../../../models/word_model.dart';
+import '../../../models/word_data.dart';
 import '../ending/ending.dart';
-import '../ending/ending_controller.dart';
 import '../type_with_hint/type_with_hint_controller.dart';
 import 'listen_and_type_controller.dart';
 
@@ -20,7 +19,7 @@ class ListenAndType extends GetView<ListenAndTypeController> {
 
   @override
   Widget build(BuildContext context) {
-    controller.rxListWord.value = listLesson[indexTopic].listWord;
+    controller.rxListWord.value = listTestQuiz;
     controller.rxIndex.value = index;
     return ProgressBarLearning(
       child: Obx(
@@ -151,7 +150,6 @@ class ListenAndType extends GetView<ListenAndTypeController> {
                                   Get.put(TypeWithHintController());
                                 } else {
                                   learnController.resetLearning();
-                                  Get.put(EndingController());
                                   Get.offAll(Ending(indexTopic: indexTopic),
                                       transition: Transition.fadeIn);
                                 }
