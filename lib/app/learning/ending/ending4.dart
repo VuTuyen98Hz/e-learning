@@ -4,8 +4,9 @@ import '../../authentication/auth_controller.dart';
 import '../../quiz/notebook/selected_word.dart';
 import '../../home/home.dart';
 
-class Ending4 extends GetView<AuthController>{
-  Ending4({this.indexTopic = 0, super.key});
+class Ending4 extends GetView<AuthController> {
+  const Ending4({this.indexTopic = 0, super.key});
+
   final int indexTopic;
 
   @override
@@ -24,20 +25,21 @@ class Ending4 extends GetView<AuthController>{
               SelectedWord(indexTopic: indexTopic),
               ElevatedButton(
                 onPressed: () {
-                  // controller.updateFinishLesson(indexTopic);
-                  controller.updateUserFireStore();
+                  Get.offAll(const HomeUI(),arguments: 0, transition: Transition.fadeIn);
                 },
                 style: ElevatedButton.styleFrom(
                     fixedSize: const Size(300, 50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20))),
                 child:
-                const Text('Update FS', style: TextStyle(fontSize: 20)),
+                    const Text('ĐI TỚI ÔN TẬP', style: TextStyle(fontSize: 20)),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                   onPressed: () {
-                    Get.offAll(const HomeUI(),transition: Transition.fadeIn);
+                    controller.updateUserFireStore();
+                    Get.offAll(const HomeUI(),
+                        arguments: 0, transition: Transition.fadeIn);
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
@@ -45,7 +47,7 @@ class Ending4 extends GetView<AuthController>{
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20))),
                   child: const Text(
-                    'HỌC TỪ MỚI',
+                    'VỀ MÀN HÌNH CHÍNH',
                     style: TextStyle(fontSize: 20, color: Colors.black54),
                   )),
             ],

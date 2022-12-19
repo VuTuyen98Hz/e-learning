@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:learn_japanese/app/quiz/main/quiz_controller.dart';
 import 'package:learn_japanese/models/word_model.dart';
 
+import '../../authentication/auth_controller.dart';
 import '../../home/home.dart';
 
 class SummaryScreen extends GetView<QuizController> {
@@ -95,7 +96,10 @@ class SummaryScreen extends GetView<QuizController> {
             const SizedBox(height: 60),
             ElevatedButton(
               onPressed: () {
-                Get.offAll(const HomeUI());
+                controller.resultQuiz= totalCorrect(listTrueWord, listTotal);
+                Get.offAll(const HomeUI(),
+                    arguments: 1, transition: Transition.fadeIn);
+                controller.resetToZero();
               },
               style: ElevatedButton.styleFrom(
                   fixedSize: const Size(230, 60),
@@ -121,19 +125,20 @@ class SummaryScreen extends GetView<QuizController> {
     }
   }
 
-  Icon wordIcon(List<WordModel> listTrueWord, List<WordModel> listTotal, int index) {
-      if (listTrueWord.contains(listTotal[index]) == true) {
-        return const Icon(
-          Icons.check_rounded,
-          color: Colors.green,
-          size: 20,
-        );
-      }else{
-        return const Icon(
-          Icons.close_rounded,
-          color: Colors.red,
-          size: 20,
-        );
-      }
+  Icon wordIcon(
+      List<WordModel> listTrueWord, List<WordModel> listTotal, int index) {
+    if (listTrueWord.contains(listTotal[index]) == true) {
+      return const Icon(
+        Icons.check_rounded,
+        color: Colors.green,
+        size: 20,
+      );
+    } else {
+      return const Icon(
+        Icons.close_rounded,
+        color: Colors.red,
+        size: 20,
+      );
+    }
   }
 }

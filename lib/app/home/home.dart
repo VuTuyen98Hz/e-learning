@@ -6,53 +6,52 @@ import '../learning/topics/topics_screen.dart';
 import '../quiz/main/quiz_controller.dart';
 import 'home_controller.dart';
 
-class HomeUI extends StatelessWidget {
+class HomeUI extends GetView<HomeController> {
   const HomeUI({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeController());
     Get.put(QuizController());
-    return GetBuilder<HomeController>(
-      init: HomeController(),
-      builder: (controller) {
-        return Scaffold(
-          body: SafeArea(
-            child: IndexedStack(
-              index: controller.tabIndex,
-              children: [
-                const TopicsScreen(),
-                QuizScreen(),
-                const ProfileScreen(),
-              ],
-            ),
+    controller.rxTabIndex.value = Get.arguments;
+    return Obx(()=> Scaffold(
+      body: SafeArea(
+        child: IndexedStack(
+          index: controller.rxTabIndex.value,
+          children: [
+            const TopicsScreen(),
+            QuizScreen(),
+            const ProfileScreen(),
+          ],
+        ),
+      ),
+
+      bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.grey,
+        selectedItemColor: Colors.redAccent,
+        onTap: controller.changeTabIndex2,
+        currentIndex: controller.rxTabIndex.value,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        items: [
+          _bottomNavigationBarItem(
+            icon: Icons.newspaper,
+            label: 'Topics',
           ),
-          bottomNavigationBar: BottomNavigationBar(
-            unselectedItemColor: Colors.grey,
-            selectedItemColor: Colors.redAccent,
-            onTap: controller.changeTabIndex,
-            currentIndex: controller.tabIndex,
-            showSelectedLabels: true,
-            showUnselectedLabels: true,
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: Colors.white,
-            elevation: 0,
-            items: [
-              _bottomNavigationBarItem(
-                icon: Icons.newspaper,
-                label: 'Topics',
-              ),
-              _bottomNavigationBarItem(
-                icon: Icons.table_chart,
-                label: 'Quiz',
-              ),
-              _bottomNavigationBarItem(
-                icon: Icons.person,
-                label: 'Account',
-              ),
-            ],
+          _bottomNavigationBarItem(
+            icon: Icons.table_chart,
+            label: 'Quiz',
           ),
-        );
-      },
+          _bottomNavigationBarItem(
+            icon: Icons.person,
+            label: 'Account',
+          ),
+        ],
+      ),
+    ),
     );
   }
 

@@ -22,22 +22,21 @@ class Notebook extends GetView<QuizController> {
               icon: Image.asset("assets/icons/exit_icon.png"),
               onPressed: () {
                 AuthController.to.updateUserFireStore();
-                Get.offAll(const HomeUI());
+                Get.offAll(const HomeUI(),
+                    arguments: 1, transition: Transition.fadeIn);
               }),
           centerTitle: true,
           title: const Text('Sổ tay từ vựng'),
           bottom: TabBar(
             isScrollable: true,
             tabs: <Widget>[
-              for(int i=0;i<10;i++)
-                Tab(text: "Bài ${i+1}"),
+              for (int i = 0; i < 10; i++) Tab(text: "Bài ${i + 1}"),
             ],
           ),
         ),
         body: TabBarView(
           children: <Widget>[
-            for(int i=0;i<10;i++)
-              SelectedWord(indexTopic: i)
+            for (int i = 0; i < 10; i++) SelectedWord(indexTopic: i)
           ],
         ),
       ),

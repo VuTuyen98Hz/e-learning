@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_japanese/app/quiz/listen_and_type_quiz/listen_and_type_quiz.dart';
+import 'package:learn_japanese/app/quiz/main/quiz_screen.dart';
 import 'package:learn_japanese/app/quiz/multiple_choice/multiple_choice.dart';
 import '../../../helpers/random_index.dart';
 import '../../../models/word_data.dart';
@@ -15,9 +16,12 @@ import '../type_with_hint_quiz/type_with_hint_quiz_controller.dart';
 class QuizController extends GetxController {
   static QuizController to = Get.find();
   RxInt rxProgressBarPoint = RxInt(0);
+  List<StatisticalPoint> points = [];
   RxList<WordModel> rxListQuizWord = RxList();
   List<WordModel> listFalseWord = [];
   List<WordModel> listTrueWord = [];
+  List<double> listResultQuiz = [];
+  double resultQuiz = 0;
   int totalProgressBarPoint = 0;
   late List<Widget> listGameWidget;
 
@@ -61,6 +65,7 @@ class QuizController extends GetxController {
     }
     else{
       List<WordModel> listTotal = listFalseWord + listTrueWord;
+      AuthController.to.updateFinishQuiz();
       Get.offAll(const SummaryScreen(),
           arguments: [listTotal,listTrueWord],
           transition: Transition.fadeIn);
@@ -100,6 +105,9 @@ class QuizController extends GetxController {
   }
 
   void resetToZero() {
+    listFalseWord = [];
+    listTrueWord = [];
     rxProgressBarPoint = RxInt(0);
+    resultQuiz=0;
   }
 }

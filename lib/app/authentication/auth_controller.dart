@@ -11,7 +11,7 @@ import 'package:learn_japanese/models/models.dart';
 import 'package:learn_japanese/app/home/home.dart';
 import 'dart:convert';
 import '../../components/loading.dart';
-import '../../models/word_model.dart';
+import '../home/home_controller.dart';
 import 'signin_screen.dart';
 
 class AuthController extends GetxController {
@@ -27,8 +27,6 @@ class AuthController extends GetxController {
   var googleUser = Rx<GoogleSignInAccount?>(null);
   var facebookUser = {};
   List<LessonStatus> listLessonStatus = List.filled(10, LessonStatus());
-
-
 
   @override
   void onReady() {
@@ -57,7 +55,8 @@ class AuthController extends GetxController {
     } else {
       Get.to(const LoadingDataScreen(), transition: Transition.fadeIn);
       Timer(const Duration(milliseconds: 1700), () {
-        Get.offAll(const HomeUI(), transition: Transition.fadeIn);
+        Get.put(HomeController());
+        Get.offAll(const HomeUI(), arguments: 0,transition: Transition.fadeIn);
       });
     }
   }
@@ -120,7 +119,7 @@ class AuthController extends GetxController {
     try {
       await _auth
           .createUserWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text)
+              email: emailController.text, password: passwordController.text)
           .then((result) async {
         debugPrint('uID: ${result.user!.uid}');
         debugPrint('email: ${result.user!.email}');
@@ -176,7 +175,7 @@ class AuthController extends GetxController {
       googleUser.value = await (GoogleSignIn().signIn());
       // Obtain the auth details from the request
       final GoogleSignInAuthentication googleAuth =
-      await googleUser.value!.authentication;
+          await googleUser.value!.authentication;
       // Create a new credential
       final GoogleAuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
@@ -184,7 +183,7 @@ class AuthController extends GetxController {
       ) as GoogleAuthCredential;
       // Once signed in, return the UserCredential
       UserCredential userCredential =
-      await _auth.signInWithCredential(credential);
+          await _auth.signInWithCredential(credential);
       final User? user = userCredential.user;
       //check if document is exists to prevent new create
       _db
@@ -228,7 +227,7 @@ class AuthController extends GetxController {
             ],
           ),
           exitBottomSheetDuration: const Duration(seconds: 5));
-      Get.to(const HomeUI(), transition: Transition.fadeIn);
+      Get.to(const HomeUI(),arguments: 0, transition: Transition.fadeIn);
     }
   }
 
@@ -242,10 +241,10 @@ class AuthController extends GetxController {
           .login(permissions: ['email', 'public_profile']);
       // Create a credential from the access token
       final OAuthCredential facebookAuthCredential =
-      FacebookAuthProvider.credential(loginResult.accessToken!.token);
+          FacebookAuthProvider.credential(loginResult.accessToken!.token);
       // Once signed in, return the UserCredential
       UserCredential userCredential =
-      await _auth.signInWithCredential(facebookAuthCredential);
+          await _auth.signInWithCredential(facebookAuthCredential);
       final User? user = userCredential.user;
       // Get the user information
       if (loginResult.status == LoginStatus.success) {
@@ -264,7 +263,7 @@ class AuthController extends GetxController {
             email: await jsonDecode(jsonEncode(facebookUser["email"])),
             name: jsonDecode(jsonEncode(facebookUser["name"])),
             photoUrl:
-            jsonDecode(jsonEncode(facebookUser["picture"]["data"]["url"])),
+                jsonDecode(jsonEncode(facebookUser["picture"]["data"]["url"])),
             listFinishedLesson: [],
             listLessonStatus: listLessonStatus,
             listQuizWord: [],
@@ -298,22 +297,33 @@ class AuthController extends GetxController {
   Widget visiblePassword() {
     return InkWell(
       child:
-      Icon(obscurePassword.value ? Icons.visibility : Icons.visibility_off),
+          Icon(obscurePassword.value ? Icons.visibility : Icons.visibility_off),
       onTap: () {
         obscurePassword.value = !obscurePassword.value;
       },
     );
   }
 
-  void updateUserData(int indexTopic){
-    final fireStoreUser = rxFireStoreUser.value!;
-    fireStoreUser.listFinishedLesson.add(indexTopic);
-    fireStoreUser.listLessonStatus[indexTopic].isFinishLesson=true;
-    fireStoreUser.listLessonStatus[indexTopic].listWordStatus=List.filled(10, false);
+  void updateUserData(int indexTopic) {
+    final fsUser = rxFireStoreUser.value!;
+    fsUser.listFinishedLesson.add(indexTopic);
+    fsUser.listLessonStatus[indexTopic].isFinishLesson = true;
+    fsUser.listLessonStatus[indexTopic].listWordStatus = List.filled(10, false);
     updateUserFireStore();
   }
 
+  void updateFinishLesson(int indexTopic) {
+    final fsUser = rxFireStoreUser.value!;
+    fsUser.listFinishedLesson.add(indexTopic);
+    fsUser.listLessonStatus[indexTopic].isFinishLesson = true;
+    fsUser.listLessonStatus[indexTopic].listWordStatus = List.filled(10, false);
+    AuthController.to.updateUserFireStore();
+  }
 
-
+  void updateFinishQuiz() {
+    final fsUser = rxFireStoreUser.value!;
+    fsUser.listQuizWord=[];
+    AuthController.to.updateUserFireStore();
+  }
 
 }

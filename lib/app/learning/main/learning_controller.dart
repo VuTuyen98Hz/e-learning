@@ -35,13 +35,6 @@ class LearningController extends GetxController {
       }
     }
 
-  void updateFinishLesson(int indexTopic){
-    final fireStoreUser = AuthController.to.rxFireStoreUser.value!;
-    fireStoreUser.listFinishedLesson.add(indexTopic);
-    fireStoreUser.listLessonStatus[indexTopic].isFinishLesson=true;
-    fireStoreUser.listLessonStatus[indexTopic].listWordStatus=List.filled(10, false);
-    AuthController.to.updateUserFireStore();
-  }
 
   void skipFlashCard(){
     rxProgressBarPoint += 1;

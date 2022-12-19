@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../authentication/auth_controller.dart';
 import '../main/learning_controller.dart';
-import 'ending2.dart';
-import 'ending3.dart';
 import 'ending4.dart';
 
-class Ending extends GetView<LearningController> {
+class Ending extends GetView<AuthController> {
   const Ending({this.indexTopic = 0, super.key});
 
   final int indexTopic;
@@ -35,7 +33,7 @@ class Ending extends GetView<LearningController> {
         ),
         ElevatedButton(
           onPressed: () {
-            AuthController.to.updateUserFireStore();
+            controller.updateFinishLesson(indexTopic);
             Get.offAll(Ending4(indexTopic: indexTopic),
                 transition: Transition.fadeIn);
           },

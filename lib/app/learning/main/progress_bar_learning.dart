@@ -52,7 +52,7 @@ class ProgressBarLearning extends GetView<LearningController> {
                                         ElevatedButton(
                                           onPressed: () {
                                             learnController.resetLearning();
-                                            Get.offAll(HomeUI(),
+                                            Get.offAll(const HomeUI(),arguments: 0,
                                                 transition: Transition.fade);
                                           },
                                           style: ElevatedButton.styleFrom(
