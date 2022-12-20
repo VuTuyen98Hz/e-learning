@@ -6,7 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:learn_japanese/app/authentication/loading_data_screen.dart';
-import 'package:learn_japanese/models/lesson_model.dart';
+import 'package:learn_japanese/models/bar_chart_data.dart';
 import 'package:learn_japanese/models/models.dart';
 import 'package:learn_japanese/app/home/home.dart';
 import 'dart:convert';
@@ -56,7 +56,7 @@ class AuthController extends GetxController {
       Get.to(const LoadingDataScreen(), transition: Transition.fadeIn);
       Timer(const Duration(milliseconds: 1700), () {
         Get.put(HomeController());
-        Get.offAll(const HomeUI(), arguments: 0,transition: Transition.fadeIn);
+        Get.offAll(const HomeUI(), arguments: 0, transition: Transition.fadeIn);
       });
     }
   }
@@ -87,7 +87,6 @@ class AuthController extends GetxController {
         .doc('/users/${firebaseUser.value!.uid}')
         .update(rxFireStoreUser.toJson());
     update();
-    debugPrint("updateUserFireStore Working!");
   }
 
   //Method to handle user sign in using email and password
@@ -133,6 +132,7 @@ class AuthController extends GetxController {
           listFinishedLesson: [],
           listLessonStatus: listLessonStatus,
           listQuizWord: [],
+          barChartData: BarChartData(),
         );
         //create the user in firestore
         _createUserFireStore(newUser, result.user!);
@@ -200,6 +200,7 @@ class AuthController extends GetxController {
             listFinishedLesson: [],
             listLessonStatus: listLessonStatus,
             listQuizWord: [],
+            barChartData: BarChartData(),
           );
           _createUserFireStore(newUser, user!);
         }
@@ -227,7 +228,7 @@ class AuthController extends GetxController {
             ],
           ),
           exitBottomSheetDuration: const Duration(seconds: 5));
-      Get.to(const HomeUI(),arguments: 0, transition: Transition.fadeIn);
+      Get.to(const HomeUI(), arguments: 0, transition: Transition.fadeIn);
     }
   }
 
@@ -267,6 +268,7 @@ class AuthController extends GetxController {
             listFinishedLesson: [],
             listLessonStatus: listLessonStatus,
             listQuizWord: [],
+            barChartData: BarChartData(),
           );
           _createUserFireStore(newUser, user!);
         }
@@ -322,8 +324,7 @@ class AuthController extends GetxController {
 
   void updateFinishQuiz() {
     final fsUser = rxFireStoreUser.value!;
-    fsUser.listQuizWord=[];
+    fsUser.listQuizWord = [];
     AuthController.to.updateUserFireStore();
   }
-
 }

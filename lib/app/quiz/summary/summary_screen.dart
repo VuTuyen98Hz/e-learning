@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_japanese/app/quiz/main/quiz_controller.dart';
 import 'package:learn_japanese/models/word_model.dart';
-
-import '../../authentication/auth_controller.dart';
 import '../../home/home.dart';
 
 class SummaryScreen extends GetView<QuizController> {
@@ -36,14 +34,15 @@ class SummaryScreen extends GetView<QuizController> {
                   strokeWidth: 20,
                 ),
                 Center(
-                  child: Text("${totalCorrect(listTrueWord, listTotal)}%",
+                  child: Text(
+                      "${controller.totalCorrect(listTrueWord, listTotal).toInt()}%",
                       style: const TextStyle(
                           fontWeight: FontWeight.w600, fontSize: 20)),
                 ),
               ]),
             ),
             const SizedBox(height: 20),
-            const Text("Bạn đã trả lời đúng",
+            const Text("Số câu không sai lần nào: ",
                 style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20)),
             Text("${listTrueWord.length} / ${listTotal.length}",
                 style:
@@ -96,7 +95,12 @@ class SummaryScreen extends GetView<QuizController> {
             const SizedBox(height: 60),
             ElevatedButton(
               onPressed: () {
-                controller.resultQuiz= totalCorrect(listTrueWord, listTotal);
+                controller.resultQuiz = controller.totalCorrect(listTrueWord, listTotal);
+                // controller.setSummaryPoints(controller.resultQuiz);
+                controller
+                    .setBarChartPoints(controller.totalCorrect(listTrueWord, listTotal));
+                controller.totalResult =
+                    "${listTrueWord.length}/${listTotal.length}";
                 Get.offAll(const HomeUI(),
                     arguments: 1, transition: Transition.fadeIn);
                 controller.resetToZero();
@@ -116,14 +120,7 @@ class SummaryScreen extends GetView<QuizController> {
     );
   }
 
-  double totalCorrect(List<WordModel> listTrueWord, List<WordModel> listTotal) {
-    if (listTotal.isEmpty) {
-      return 0;
-    } else {
-      double total = (listTrueWord.length / listTotal.length) * 100;
-      return total;
-    }
-  }
+
 
   Icon wordIcon(
       List<WordModel> listTrueWord, List<WordModel> listTotal, int index) {
