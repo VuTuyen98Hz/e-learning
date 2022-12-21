@@ -177,7 +177,7 @@ class FlashCard extends GetView<FlashCardController> {
                           ? () {
                               if (index < controller.rxListWord.length) {
                                 Get.put(ListenAndTypeController());
-                                Get.to(
+                                Get.off(
                                     ListenAndType(
                                         index: index, indexTopic: indexTopic),
                                     transition: Transition.fadeIn);

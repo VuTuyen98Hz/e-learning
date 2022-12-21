@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_japanese/app/quiz/main/quiz_controller.dart';
 import 'package:learn_japanese/models/word_model.dart';
+import '../../authentication/auth_controller.dart';
 import '../../home/home.dart';
 
 class SummaryScreen extends GetView<QuizController> {
@@ -35,14 +36,14 @@ class SummaryScreen extends GetView<QuizController> {
                 ),
                 Center(
                   child: Text(
-                      "${controller.totalCorrect(listTrueWord, listTotal).toInt()}%",
+                      "${controller.calculatePercent(listTrueWord.length, listTotal.length).toInt()}%",
                       style: const TextStyle(
                           fontWeight: FontWeight.w600, fontSize: 20)),
                 ),
               ]),
             ),
             const SizedBox(height: 20),
-            const Text("Số câu không sai lần nào: ",
+            const Text("Bạn đã trả lời đúng: ",
                 style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20)),
             Text("${listTrueWord.length} / ${listTotal.length}",
                 style:
@@ -95,15 +96,12 @@ class SummaryScreen extends GetView<QuizController> {
             const SizedBox(height: 60),
             ElevatedButton(
               onPressed: () {
-                controller.resultQuiz = controller.totalCorrect(listTrueWord, listTotal);
-                // controller.setSummaryPoints(controller.resultQuiz);
-                controller
-                    .setBarChartPoints(controller.totalCorrect(listTrueWord, listTotal));
-                controller.totalResult =
-                    "${listTrueWord.length}/${listTotal.length}";
+                AuthController.to.updateBarChartData(listTrueWord.length,listTotal.length);
+                AuthController.to.updateSelectedWord();
+
                 Get.offAll(const HomeUI(),
                     arguments: 1, transition: Transition.fadeIn);
-                controller.resetToZero();
+                controller.resetQuiz();
               },
               style: ElevatedButton.styleFrom(
                   fixedSize: const Size(230, 60),
@@ -119,8 +117,6 @@ class SummaryScreen extends GetView<QuizController> {
       ),
     );
   }
-
-
 
   Icon wordIcon(
       List<WordModel> listTrueWord, List<WordModel> listTotal, int index) {

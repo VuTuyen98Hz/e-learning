@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../../models/lesson_model.dart';
 import '../../../models/word_model.dart';
 import '../../authentication/auth_controller.dart';
@@ -15,13 +16,21 @@ class SelectedWord extends StatefulWidget {
 class _SelectedWordState extends State<SelectedWord> {
   late List<bool> listCheckedWord;
   late List<WordModel> listWord;
+  late List<int> listFinishedLesson;
+
   @override
-  Widget build(BuildContext context) {
-    final user = AuthController.to.rxFireStoreUser.value!;
-    List<LessonStatus> listLessonStatus = user.listLessonStatus;
-    List<int> listFinishedLesson = user.listFinishedLesson;
+  void initState() {
+    super.initState();
+    final fsUser = AuthController.to.rxFireStoreUser.value!;
+    List<LessonStatus> listLessonStatus = fsUser.listLessonStatus;
+    listFinishedLesson = fsUser.listFinishedLesson;
     listWord = listLessonModel[widget.indexTopic].lesson;
     listCheckedWord = listLessonStatus[widget.indexTopic].listWordStatus;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
     // return listLessonStatus[widget.indexTopic].isFinishLesson == true
     return listFinishedLesson.contains(widget.indexTopic)
         ? Container(
@@ -32,7 +41,9 @@ class _SelectedWordState extends State<SelectedWord> {
                 itemBuilder: (context, index) {
                   return GestureDetector(
                     onTap: () {
-                      manageSelectedWord(index);
+                      setState(() {
+                        manageSelectedWord(index);
+                      });
                     },
                     child: SizedBox(
                       height: 45,
@@ -43,7 +54,9 @@ class _SelectedWordState extends State<SelectedWord> {
                             activeColor: Colors.green,
                             shape: const CircleBorder(),
                             onChanged: (_) {
-                              manageSelectedWord(index);
+                              setState(() {
+                                manageSelectedWord(index);
+                              });
                             }),
                         Expanded(
                           child: Text(listWord[index].word,
@@ -72,18 +85,18 @@ class _SelectedWordState extends State<SelectedWord> {
                 color: Colors.black, fontWeight: FontWeight.w500, fontSize: 20),
           ));
   }
+
   void manageSelectedWord(int index) {
-    setState(() {
-      listCheckedWord[index] = !listCheckedWord[index];
-    });
-    final fireStoreUser = AuthController.to.rxFireStoreUser.value!;
-    final list = fireStoreUser.listQuizWord;
+    listCheckedWord[index] = !listCheckedWord[index];
+
+    final fsUser = AuthController.to.rxFireStoreUser.value!;
+    final list = fsUser.listQuizWord;
     if (listCheckedWord[index] == true &&
         list.contains(listWord[index]) == false) {
-      fireStoreUser.listQuizWord.add(listWord[index]);
-
+      fsUser.listQuizWord.add(listWord[index]);
     } else {
-      fireStoreUser.listQuizWord.removeWhere((word) => word.word == listWord[index].word);
+      fsUser.listQuizWord
+          .removeWhere((word) => word.word == listWord[index].word);
     }
   }
 }

@@ -6,6 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:learn_japanese/app/authentication/loading_data_screen.dart';
+import 'package:learn_japanese/app/quiz/main/quiz_controller.dart';
 import 'package:learn_japanese/models/bar_chart_data.dart';
 import 'package:learn_japanese/models/models.dart';
 import 'package:learn_japanese/app/home/home.dart';
@@ -132,7 +133,8 @@ class AuthController extends GetxController {
           listFinishedLesson: [],
           listLessonStatus: listLessonStatus,
           listQuizWord: [],
-          barChartData: BarChartData(),
+          listTopTitleBarChart: [],
+          listValueBarChart: [],
         );
         //create the user in firestore
         _createUserFireStore(newUser, result.user!);
@@ -193,15 +195,15 @@ class AuthController extends GetxController {
         if (documentSnapshot.exists == false) {
           //create the user in firestore
           UserModel newUser = UserModel(
-            uid: googleUser.value?.id ?? '',
-            email: googleUser.value?.email ?? '',
-            name: googleUser.value?.displayName ?? '',
-            photoUrl: googleUser.value?.photoUrl ?? '',
-            listFinishedLesson: [],
-            listLessonStatus: listLessonStatus,
-            listQuizWord: [],
-            barChartData: BarChartData(),
-          );
+              uid: googleUser.value?.id ?? '',
+              email: googleUser.value?.email ?? '',
+              name: googleUser.value?.displayName ?? '',
+              photoUrl: googleUser.value?.photoUrl ?? '',
+              listFinishedLesson: [],
+              listLessonStatus: listLessonStatus,
+              listQuizWord: [],
+              listTopTitleBarChart: [],
+              listValueBarChart: []);
           _createUserFireStore(newUser, user!);
         }
       });
@@ -268,7 +270,8 @@ class AuthController extends GetxController {
             listFinishedLesson: [],
             listLessonStatus: listLessonStatus,
             listQuizWord: [],
-            barChartData: BarChartData(),
+            listTopTitleBarChart: [],
+            listValueBarChart: [],
           );
           _createUserFireStore(newUser, user!);
         }
@@ -306,11 +309,20 @@ class AuthController extends GetxController {
     );
   }
 
-  void updateUserData(int indexTopic) {
+  void updateBarChartData(int numberTrue, int numberTotal) {
+    double value = QuizController.to.calculatePercent(numberTrue, numberTotal);
+    String title = "${value.toInt()}%($numberTrue/$numberTotal)";
     final fsUser = rxFireStoreUser.value!;
-    fsUser.listFinishedLesson.add(indexTopic);
-    fsUser.listLessonStatus[indexTopic].isFinishLesson = true;
-    fsUser.listLessonStatus[indexTopic].listWordStatus = List.filled(10, false);
+    // keep only the last 5 resultQuiz
+    if (fsUser.listValueBarChart.length >= 5) {
+      fsUser.listValueBarChart.removeAt(0);
+      fsUser.listValueBarChart.add(value);
+      fsUser.listTopTitleBarChart.removeAt(0);
+      fsUser.listTopTitleBarChart.add(title);
+    } else {
+      fsUser.listValueBarChart.add(value);
+      fsUser.listTopTitleBarChart.add(title);
+    }
     updateUserFireStore();
   }
 
@@ -319,12 +331,14 @@ class AuthController extends GetxController {
     fsUser.listFinishedLesson.add(indexTopic);
     fsUser.listLessonStatus[indexTopic].isFinishLesson = true;
     fsUser.listLessonStatus[indexTopic].listWordStatus = List.filled(10, false);
-    AuthController.to.updateUserFireStore();
+    updateUserFireStore();
   }
 
-  void updateFinishQuiz() {
+  void updateSelectedWord(int indexTopic) {
     final fsUser = rxFireStoreUser.value!;
-    fsUser.listQuizWord = [];
-    AuthController.to.updateUserFireStore();
+    fsUser.listLessonStatus[indexTopic].listWordStatus = fsUser.listLessonStatus[indexTopic].listWordStatus;
+    updateUserFireStore();
   }
+
+
 }

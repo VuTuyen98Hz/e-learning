@@ -51,7 +51,7 @@ class ProgressBarQuiz extends GetView<QuizController> {
                                           ElevatedButton(
                                             onPressed: () {
                                               QuizController.to.endQuiz();
-                                              controller.resetToZero();
+                                              controller.resetQuiz();
                                             },
                                             style: ElevatedButton.styleFrom(
                                                 backgroundColor: Colors.white,

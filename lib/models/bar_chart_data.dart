@@ -1,25 +1,25 @@
 class BarChartData {
-  List<int> listNumberTrueResult;
-  List<int> listNumberTotalResult;
+  List<double> listValueBarChart;
+  List<String> listTopTitleBarChart;
 
   BarChartData(
-      {this.listNumberTrueResult = const [],
-      this.listNumberTotalResult = const []});
+      {this.listValueBarChart = const [],
+      this.listTopTitleBarChart = const []});
 
   factory BarChartData.fromMap(Map data) {
     return BarChartData(
-      listNumberTrueResult: ((data['listNumberTrueResult'] ??[]) as List)
-          .map((item) => item as int)
+      listValueBarChart: ((data['listValueBarChart'] ??[]) as List)
+          .map((item) => item as double)
           .toList(),
-      listNumberTotalResult: ((data['listNumberTotalResult'] ??[]) as List)
-          .map((item) => item as int)
+      listTopTitleBarChart: ((data['listTopTitleBarChart'] ??[]) as List)
+          .map((item) => item as String)
           .toList(),
     );
   }
 
   Map<String, dynamic> toJson() => {
-    'listNumberTrueResult': listNumberTrueResult,
-    'listNumberTotalResult': listNumberTotalResult,
+    'listValueBarChart': listValueBarChart,
+    'listTopTitleBarChart': listTopTitleBarChart,
 
   };
 

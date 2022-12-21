@@ -7,9 +7,7 @@ import '../../home/home.dart';
 import '../../../models/topics_model.dart';
 
 class Notebook extends GetView<QuizController> {
-  Notebook({super.key});
-
-  final user = AuthController.to.rxFireStoreUser.value!;
+  const Notebook({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +35,7 @@ class Notebook extends GetView<QuizController> {
         body: TabBarView(
           children: <Widget>[
             for (int i = 0; i < 10; i++) SelectedWord(indexTopic: i)
+
           ],
         ),
       ),

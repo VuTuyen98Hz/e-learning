@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_japanese/app/quiz/notebook/selected_word.dart';
 import '../../authentication/auth_controller.dart';
+
 import '../main/learning_controller.dart';
-import 'ending4.dart';
+import 'ending2.dart';
 
 class Ending extends GetView<AuthController> {
   const Ending({this.indexTopic = 0, super.key});
@@ -34,7 +36,7 @@ class Ending extends GetView<AuthController> {
         ElevatedButton(
           onPressed: () {
             controller.updateFinishLesson(indexTopic);
-            Get.offAll(Ending4(indexTopic: indexTopic),
+            Get.offAll(Ending2(indexTopic: indexTopic),
                 transition: Transition.fadeIn);
           },
           style: ElevatedButton.styleFrom(

@@ -30,9 +30,9 @@ class ListenAndTypeController extends GetxController {
     audioPlayer.play(AssetSource(rxListWord[rxIndex.value].audioAsset));
   }
 
-  @override
-  void onClose() {
-    inputController.dispose();
-    super.onClose();
-  }
+  // @override
+  // void onClose() {
+  //   inputController.dispose();
+  //   super.onClose();
+  // }
 }

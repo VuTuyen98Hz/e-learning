@@ -3,17 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../authentication/auth_controller.dart';
 import '../../authentication/signin_screen.dart';
-import '../../home/home.dart';
 import '../notebook/notebook.dart';
 import 'quiz_controller.dart';
 
-class QuizScreen extends GetView<QuizController> {
+class QuizScreen extends StatelessWidget {
   const QuizScreen({super.key});
-
   // final quizController = QuizController.to;
   @override
   Widget build(BuildContext context) {
-    controller.initQuiz();
+    Get.put(QuizController());
+    QuizController.to.initQuiz();
     return Scaffold(
       body: Center(
           child: Column(
@@ -29,7 +28,7 @@ class QuizScreen extends GetView<QuizController> {
               BarChartData(
                 // maxY: 10.0,
                 // baselineY: 10.0,
-                barGroups: controller.chartGroups(),
+                barGroups: QuizController.to.chartGroups(),
                 barTouchData: BarTouchData(enabled: false),
                 borderData:
                     FlBorderData(border: const Border(bottom: BorderSide())),
@@ -45,23 +44,18 @@ class QuizScreen extends GetView<QuizController> {
               ),
             ),
           ),
-          Text("Chuẩn bị ôn tập: ${controller.rxListQuizWord.length} từ",
+          Text("Chuẩn bị ôn tập: ${QuizController.to.rxListQuizWord.length} từ",
               style: const TextStyle(fontSize: 18, color: Colors.black)),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () => controller.rxListQuizWord.isEmpty
-                ? Get.to(const HomeUI(),
-                    arguments: 0, transition: Transition.fadeIn)
-                : controller.startQuiz(),
+            onPressed: QuizController.to.rxListQuizWord.isEmpty
+                ? null
+                : () => QuizController.to.startQuiz(),
             style: ElevatedButton.styleFrom(
                 fixedSize: const Size(220, 55),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(25))),
-            child: Text(
-                controller.rxListQuizWord.isEmpty
-                    ? 'ĐI TỚI HỌC TẬP'
-                    : 'ÔN TẬP NGAY',
-                style: const TextStyle(fontSize: 20)),
+            child: const Text('ÔN TẬP NGAY', style: TextStyle(fontSize: 20)),
           ),
           const SizedBox(height: 50),
           Row(mainAxisAlignment: MainAxisAlignment.center, children: [
@@ -71,7 +65,7 @@ class QuizScreen extends GetView<QuizController> {
                 "assets/icons/book_icon.png",
               ),
               onPressed: () {
-                Get.to(Notebook(), transition: Transition.fadeIn);
+                Get.off(Notebook(), transition: Transition.fadeIn);
               },
             ),
             const Text("Sổ tay từ vựng",
@@ -103,19 +97,19 @@ class QuizScreen extends GetView<QuizController> {
         String text = '';
         switch (value.toInt()) {
           case 0:
-            text = controller.getTopTitlesValue();
+            text = QuizController.to.getTopTitleBarChart(value.toInt());
             break;
           case 1:
-            text = controller.getTopTitlesValue();
+            text = QuizController.to.getTopTitleBarChart(value.toInt());
             break;
           case 2:
-            text = controller.getTopTitlesValue();
+            text = QuizController.to.getTopTitleBarChart(value.toInt());
             break;
           case 3:
-            text = controller.getTopTitlesValue();
+            text = QuizController.to.getTopTitleBarChart(value.toInt());
             break;
           case 4:
-            text = controller.getTopTitlesValue();
+            text = QuizController.to.getTopTitleBarChart(value.toInt());
             break;
         }
         return Text(text, style: const TextStyle(color: Colors.black));

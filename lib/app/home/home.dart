@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:learn_japanese/app/quiz/main/quiz_screen.dart';
 import '../authentication/profile_screen.dart';
 import '../learning/topics/topics_screen.dart';
-import '../quiz/main/quiz_controller.dart';
+
 import 'home_controller.dart';
 
 class HomeUI extends GetView<HomeController> {
@@ -12,16 +12,15 @@ class HomeUI extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     Get.put(HomeController());
-    Get.put(QuizController());
     controller.rxTabIndex.value = Get.arguments;
     return Obx(()=> Scaffold(
       body: SafeArea(
         child: IndexedStack(
           index: controller.rxTabIndex.value,
-          children: [
-            const TopicsScreen(),
+          children: const [
+            TopicsScreen(),
             QuizScreen(),
-            const ProfileScreen(),
+            ProfileScreen(),
           ],
         ),
       ),
