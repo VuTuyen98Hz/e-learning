@@ -96,8 +96,11 @@ class SummaryScreen extends GetView<QuizController> {
             const SizedBox(height: 60),
             ElevatedButton(
               onPressed: () {
-                AuthController.to.updateBarChartData(listTrueWord.length,listTotal.length);
-                AuthController.to.updateSelectedWord();
+                final user = AuthController.to;
+                user.rxFireStoreUser.value!.listQuizWord =
+                    controller.listQuizWordOriginal;
+                user.updateBarChartData(listTrueWord.length, listTotal.length);
+                // AuthController.to.updateSelectedWord();
 
                 Get.offAll(const HomeUI(),
                     arguments: 1, transition: Transition.fadeIn);

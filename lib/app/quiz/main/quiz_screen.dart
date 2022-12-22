@@ -1,14 +1,12 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../authentication/auth_controller.dart';
-import '../../authentication/signin_screen.dart';
 import '../notebook/notebook.dart';
+import '../notebook/notebook2.dart';
 import 'quiz_controller.dart';
 
 class QuizScreen extends StatelessWidget {
   const QuizScreen({super.key});
-  // final quizController = QuizController.to;
   @override
   Widget build(BuildContext context) {
     Get.put(QuizController());
@@ -21,13 +19,11 @@ class QuizScreen extends StatelessWidget {
           const Text("Thống kê ôn tập",
               style: TextStyle(fontSize: 20, color: Colors.black)),
           Container(
-            padding: const EdgeInsets.fromLTRB(50, 30, 50, 30),
+            padding: const EdgeInsets.fromLTRB(50, 20, 50, 30),
             height: 260,
             child: BarChart(
               swapAnimationDuration: const Duration(milliseconds: 1000),
               BarChartData(
-                // maxY: 10.0,
-                // baselineY: 10.0,
                 barGroups: QuizController.to.chartGroups(),
                 barTouchData: BarTouchData(enabled: false),
                 borderData:
@@ -65,7 +61,7 @@ class QuizScreen extends StatelessWidget {
                 "assets/icons/book_icon.png",
               ),
               onPressed: () {
-                Get.off(Notebook(), transition: Transition.fadeIn);
+                Get.off(const Notebook(), transition: Transition.fadeIn);
               },
             ),
             const Text("Sổ tay từ vựng",
@@ -74,17 +70,17 @@ class QuizScreen extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                     fontSize: 18)),
           ]),
-          ElevatedButton(
-            onPressed: () {
-              AuthController.to.signOut();
-              Get.offAll(SignInScreen());
-            },
-            style: ElevatedButton.styleFrom(
-                fixedSize: const Size(200, 45),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20))),
-            child: const Text('Thoát tài khoản'),
-          ),
+          // ElevatedButton(
+          //   onPressed: () {
+          //     AuthController.to.signOut();
+          //     Get.offAll(SignInScreen());
+          //   },
+          //   style: ElevatedButton.styleFrom(
+          //       fixedSize: const Size(200, 45),
+          //       shape: RoundedRectangleBorder(
+          //           borderRadius: BorderRadius.circular(20))),
+          //   child: const Text('Thoát tài khoản'),
+          // ),
         ],
       )),
     );

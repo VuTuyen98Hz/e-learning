@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_japanese/app/quiz/main/quiz_controller.dart';
 import '../../authentication/auth_controller.dart';
 import 'selected_word.dart';
 import '../../home/home.dart';
 import '../../../models/topics_model.dart';
+import 'selected_word2.dart';
 
-class Notebook extends GetView<QuizController> {
+class Notebook extends StatelessWidget {
   const Notebook({super.key});
 
   @override

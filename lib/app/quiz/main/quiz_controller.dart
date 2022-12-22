@@ -22,11 +22,10 @@ class QuizController extends GetxController {
   RxList<WordModel> rxListQuizWord = RxList();
   List<WordModel> listFalseWord = [];
   List<WordModel> listTrueWord = [];
-  RxList<bool> rxListCheckedWord = RxList();
-  List<WordModel> listWord = [];
-  List<int> listFinishedLesson = [];
+  List<WordModel>listQuizWordOriginal = [];
   int totalProgressBarPoint = 0;
   late List<Widget> listGameWidget;
+
 
   @override
   void onReady() {
@@ -45,6 +44,7 @@ class QuizController extends GetxController {
     final user = AuthController.to.rxFireStoreUser.value!;
     rxListQuizWord.value = user.listQuizWord;
     totalProgressBarPoint = user.listQuizWord.length;
+    listQuizWordOriginal = [...user.listQuizWord];
   }
 
   //Start Quiz with randomGame
@@ -154,8 +154,13 @@ class QuizController extends GetxController {
     }
   }
 
-  //control selected word
-  initSelectedWord(int indexTopic) {
+  // control selected word
+  RxList<bool> rxListCheckedWord = RxList();
+  RxInt rxCount = RxInt(10);
+  List<WordModel> listWord = [];
+  List<int> listFinishedLesson = [];
+
+  void initSelectedWord(int indexTopic) {
     final fsUser = AuthController.to.rxFireStoreUser.value!;
     List<LessonStatus> listLessonStatus = fsUser.listLessonStatus;
     listFinishedLesson = fsUser.listFinishedLesson;
@@ -164,18 +169,17 @@ class QuizController extends GetxController {
   }
 
   void manageSelectedWord(int index) {
+    // rxListCheckedWord[index] = !rxListCheckedWord[index];
     final fsUser = AuthController.to.rxFireStoreUser.value!;
-    List<LessonStatus> listLessonStatus = fsUser.listLessonStatus;
     final list = fsUser.listQuizWord;
-    rxListCheckedWord[index] = !rxListCheckedWord[index];
-    debugPrint("Hello list ${listLessonStatus[0].listWordStatus}");
-
     if (rxListCheckedWord[index] == true &&
         list.contains(listWord[index]) == false) {
       fsUser.listQuizWord.add(listWord[index]);
+      debugPrint("Hello ${fsUser.listQuizWord.length}");
     } else {
       fsUser.listQuizWord
           .removeWhere((word) => word.word == listWord[index].word);
     }
   }
+
 }

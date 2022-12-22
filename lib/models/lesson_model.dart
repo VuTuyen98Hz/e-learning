@@ -37,30 +37,30 @@ final List<LessonModel> listLessonModel = [
     lesson: schoolWords,
   ),
   LessonModel(
-    lesson: examinationWords,
+    lesson: natureLandscapeWords,
   ),
   LessonModel(
-    lesson: extraActivitiesWords,
+    lesson: animalWords,
   ),
   LessonModel(
-    lesson: schoolStationeryWords,
+    lesson: bodyPartWords,
   ),
   LessonModel(
-    lesson: schoolSubjectWords,
+    lesson: jobWords,
   ),
   LessonModel(
-    lesson: schoolWords,
+    lesson: vehicleWords,
   ),
   LessonModel(
-    lesson: examinationWords,
+    lesson: fashionWords,
   ),
   LessonModel(
-    lesson: extraActivitiesWords,
+    lesson: foodWords,
   ),
   LessonModel(
-    lesson: schoolStationeryWords,
+    lesson: houseWords,
   ),
   LessonModel(
-    lesson: schoolSubjectWords,
+    lesson: entertainmentVenuesWords,
   )
 ];

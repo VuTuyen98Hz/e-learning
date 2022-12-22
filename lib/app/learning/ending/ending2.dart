@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../../authentication/auth_controller.dart';
 import '../../quiz/notebook/selected_word.dart';
 import '../../home/home.dart';
+import '../../quiz/notebook/selected_word2.dart';
 
 class Ending2 extends StatelessWidget {
   const Ending2({this.indexTopic = 0, super.key});

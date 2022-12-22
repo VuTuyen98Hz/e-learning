@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:learn_japanese/app/authentication/loading_data_screen.dart';
 import 'package:learn_japanese/app/quiz/main/quiz_controller.dart';
-import 'package:learn_japanese/models/bar_chart_data.dart';
 import 'package:learn_japanese/models/models.dart';
 import 'package:learn_japanese/app/home/home.dart';
 import 'dart:convert';
@@ -27,7 +26,6 @@ class AuthController extends GetxController {
   final obscurePassword = true.obs;
   var googleUser = Rx<GoogleSignInAccount?>(null);
   var facebookUser = {};
-  List<LessonStatus> listLessonStatus = List.filled(10, LessonStatus());
 
   @override
   void onReady() {
@@ -131,7 +129,7 @@ class AuthController extends GetxController {
           name: nameController.text,
           photoUrl: '',
           listFinishedLesson: [],
-          listLessonStatus: listLessonStatus,
+          listLessonStatus: List.filled(10, LessonStatus()),
           listQuizWord: [],
           listTopTitleBarChart: [],
           listValueBarChart: [],
@@ -200,7 +198,7 @@ class AuthController extends GetxController {
               name: googleUser.value?.displayName ?? '',
               photoUrl: googleUser.value?.photoUrl ?? '',
               listFinishedLesson: [],
-              listLessonStatus: listLessonStatus,
+              listLessonStatus: List.filled(10, LessonStatus()),
               listQuizWord: [],
               listTopTitleBarChart: [],
               listValueBarChart: []);
@@ -268,7 +266,7 @@ class AuthController extends GetxController {
             photoUrl:
                 jsonDecode(jsonEncode(facebookUser["picture"]["data"]["url"])),
             listFinishedLesson: [],
-            listLessonStatus: listLessonStatus,
+            listLessonStatus: List.filled(10, LessonStatus()),
             listQuizWord: [],
             listTopTitleBarChart: [],
             listValueBarChart: [],
@@ -331,12 +329,6 @@ class AuthController extends GetxController {
     fsUser.listFinishedLesson.add(indexTopic);
     fsUser.listLessonStatus[indexTopic].isFinishLesson = true;
     fsUser.listLessonStatus[indexTopic].listWordStatus = List.filled(10, false);
-    updateUserFireStore();
-  }
-
-  void updateSelectedWord(int indexTopic) {
-    final fsUser = rxFireStoreUser.value!;
-    fsUser.listLessonStatus[indexTopic].listWordStatus = fsUser.listLessonStatus[indexTopic].listWordStatus;
     updateUserFireStore();
   }
 
