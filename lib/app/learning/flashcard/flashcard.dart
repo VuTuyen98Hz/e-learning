@@ -12,7 +12,6 @@ import '../main/learning_controller.dart';
 import '../ending/ending.dart';
 import 'flashcard_controller.dart';
 
-// Animation be stuck
 class FlashCard extends GetView<FlashCardController> {
   FlashCard({this.index = 0, this.indexTopic = 0, Key? key}) : super(key: key);
   final animationController = FlipAnimationController();

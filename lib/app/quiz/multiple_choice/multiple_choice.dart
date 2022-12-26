@@ -5,6 +5,7 @@ import 'package:learn_japanese/models/word_model.dart';
 import '../../../animation/slide_animation.dart';
 import '../../../helpers/show_example.dart';
 import '../listen_and_type_quiz/listen_and_type_quiz_controller.dart';
+import '../main/progress_bar_quiz2.dart';
 import '../main/quiz_controller.dart';
 import '../type_with_hint_quiz/type_with_hint_quiz_controller.dart';
 import 'multiple_choice_controller.dart';
@@ -22,7 +23,8 @@ class MultipleChoice extends GetView<MultipleChoiceController> {
     Get.put(TypeWithHintQuizController());
     controller.initListValueOption(quizWord);
     final size = MediaQuery.of(context).size;
-    return ProgressBarQuiz(
+    return ProgressBarQuiz2(
+      animationController: QuizController.to.animationController,
       child: Obx(
         () => SlideAnimation(
           child: SafeArea(

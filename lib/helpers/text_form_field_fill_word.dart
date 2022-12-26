@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -11,15 +10,16 @@ class CursorPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final p1 = Offset(0, 0);
+    const p1 = Offset.zero;
     final p2 = Offset(0, size.height);
     final paint = Paint()
       ..color = cursorColor
       ..strokeWidth = cursorWidth;
     canvas.drawLine(p1, p2, paint);
   }
+
   @override
-  bool shouldRepaint(CustomPainter old) {
+  bool shouldRepaint(CustomPainter oldDelegate) {
     return false;
   }
 }
@@ -43,9 +43,6 @@ class TextFormFieldFillWord extends StatefulWidget {
 
   /// the style of the pasted text, default is [fontWeight: FontWeight.bold] while
   /// [TextStyle.color] is [ThemeData.colorScheme.onSecondary]
-
-  /// background color for the whole row of pin code fields.
-  final Color? backgroundColor;
 
   /// This defines how the elements in the pin code field align. Default to [MainAxisAlignment.spaceBetween]
   final MainAxisAlignment mainAxisAlignment;
@@ -118,7 +115,7 @@ class TextFormFieldFillWord extends StatefulWidget {
   final int errorAnimationDuration;
 
   /// Whether to show cursor or not
-  bool showCursor;
+  final bool showCursor;
 
   /// The color of the cursor, default to Theme.of(context).accentColor
   final Color? cursorColor;
@@ -137,7 +134,6 @@ class TextFormFieldFillWord extends StatefulWidget {
 
   /// Displays a hint or placeholder in the field if it's value is empty.
   /// It only appears if it's not null. Single character is recommended.
-  final String? hintCharacter;
   final String? hintWord;
 
   /// the style of the [hintCharacter], default is [fontSize: 20, fontWeight: FontWeight.bold]
@@ -155,14 +151,13 @@ class TextFormFieldFillWord extends StatefulWidget {
   /// Enable auto unfocus
   final bool autoUnfocus;
 
-  TextFormFieldFillWord({
+  const TextFormFieldFillWord({
     Key? key,
     required this.appContext,
     required this.length,
     this.controller,
     required this.onChanged,
     this.onCompleted,
-    this.backgroundColor,
     this.mainAxisAlignment = MainAxisAlignment.spaceBetween,
     this.animationDuration = const Duration(milliseconds: 150),
     this.animationCurve = Curves.easeInOut,
@@ -191,7 +186,6 @@ class TextFormFieldFillWord extends StatefulWidget {
     this.cursorWidth = 1,
     this.cursorHeight,
     this.hintWord,
-    this.hintCharacter,
     this.hintStyle,
     this.autoUnfocus = true,
     this.readOnly = false,
@@ -205,10 +199,10 @@ class TextFormFieldFillWord extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _TypeWithHintState createState() => _TypeWithHintState();
+  TypeWithHintState createState() => TypeWithHintState();
 }
 
-class _TypeWithHintState extends State<TextFormFieldFillWord>
+class TypeWithHintState extends State<TextFormFieldFillWord>
     with TickerProviderStateMixin {
   TextEditingController? _textEditingController;
   FocusNode? _focusNode;
@@ -239,8 +233,6 @@ class _TypeWithHintState extends State<TextFormFieldFillWord>
       )
       .merge(widget.hintStyle);
 
-  bool get _hintAvailable => widget.hintCharacter != null;
-
   @override
   void initState() {
     _assignController();
@@ -252,7 +244,7 @@ class _TypeWithHintState extends State<TextFormFieldFillWord>
     _inputList = List<String>.filled(widget.length, "");
 
     _cursorController = AnimationController(
-        duration: Duration(milliseconds: 1000), vsync: this);
+        duration: const Duration(milliseconds: 1000), vsync: this);
     _cursorAnimation = Tween<double>(
       begin: 1,
       end: 0,
@@ -322,7 +314,7 @@ class _TypeWithHintState extends State<TextFormFieldFillWord>
               currentText = currentText.substring(0, widget.length);
             }
             //  delay the onComplete event handler to give the onChange event handler enough time to complete
-            Future.delayed(Duration(milliseconds: 300),
+            Future.delayed(const Duration(milliseconds: 300),
                 () => widget.onCompleted!(currentText));
           }
 
@@ -364,14 +356,6 @@ class _TypeWithHintState extends State<TextFormFieldFillWord>
         style: _hintStyle,
       );
     }
-
-    // if (_inputList[index!].isEmpty && _hintAvailable) {
-    //   return Text(
-    //     widget.hintCharacter!,
-    //     key: ValueKey(_inputList[index]),
-    //     style: _hintStyle,
-    //   );
-    // }
     return Text(
       _inputList[index],
       key: ValueKey(_inputList[index]),
@@ -381,16 +365,17 @@ class _TypeWithHintState extends State<TextFormFieldFillWord>
 
   /// Builds the widget to be shown
   Widget buildChild(int index) {
-    if (((_selectedIndex == index) || (_selectedIndex == index + 1 && index + 1 == widget.length)) &&
+    if (((_selectedIndex == index) ||
+            (_selectedIndex == index + 1 && index + 1 == widget.length)) &&
         _focusNode!.hasFocus &&
         widget.showCursor) {
       var cursorColor = widget.cursorColor ??
           Theme.of(widget.appContext).textSelectionTheme.cursorColor ??
           Theme.of(context).colorScheme.onSecondary;
-      final cursorHeight = widget.cursorHeight ?? _textStyle.fontSize!+1;
+      final cursorHeight = widget.cursorHeight ?? _textStyle.fontSize! + 1;
 
       return Align(
-        alignment:Alignment.centerLeft,
+        alignment: Alignment.centerLeft,
         child: FadeTransition(
           opacity: _cursorAnimation,
           child: CustomPaint(
@@ -414,23 +399,15 @@ class _TypeWithHintState extends State<TextFormFieldFillWord>
     String rawHint = widget.hintWord!;
     List<String> splitRawHint = rawHint.split('');
 
-
     List<Widget> result = <Widget>[];
     for (int i = 0; i < widget.length; i++) {
-      // // prevent cursor hide the last input latter
-      // if (i== widget.length) {
-      //   widget.showCursor=false;
-      // } else {
-      //   widget.showCursor=true;
-      // }
-
       result.add(
         Container(
             padding: EdgeInsets.zero,
             child: AnimatedContainer(
               curve: widget.animationCurve,
               duration: widget.animationDuration,
-              width: 11.0,
+              width: 15.0,
               // size of later underline
               height: 30.0,
               decoration: BoxDecoration(
@@ -438,7 +415,8 @@ class _TypeWithHintState extends State<TextFormFieldFillWord>
                   shape: BoxShape.rectangle,
                   border: Border(
                     bottom: BorderSide(
-                      color: splitRawHint[i] == ' ' ?Colors.white:Colors.black,
+                      color:
+                          splitRawHint[i] == ' ' ? Colors.white : Colors.black,
                       width: 2.0,
                     ),
                   )),
@@ -541,15 +519,14 @@ class _TypeWithHintState extends State<TextFormFieldFillWord>
           showCursor: false,
           // using same as background color so tha it can blend into the view
           cursorWidth: 0.01,
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(0),
+          decoration: const InputDecoration(
+            contentPadding: EdgeInsets.all(0),
             border: InputBorder.none,
-            fillColor: widget.backgroundColor,
             enabledBorder: InputBorder.none,
             focusedBorder: InputBorder.none,
             disabledBorder: InputBorder.none,
           ),
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.transparent,
             height: 1,
             fontSize:
@@ -564,18 +541,15 @@ class _TypeWithHintState extends State<TextFormFieldFillWord>
     return SlideTransition(
       position: _offsetAnimation,
       child: Container(
-        // adding the extra space at the bottom to show the error text from validator
-        // (widget.validator == null) ? 50.0 : 60,
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
-              color: Colors.black,
+              color: Colors.green,
               style: BorderStyle.solid,
               width: 0.5,
             )),
-        color: widget.backgroundColor,
         child: Stack(
           children: <Widget>[
             AbsorbPointer(

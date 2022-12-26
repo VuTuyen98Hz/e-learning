@@ -19,6 +19,7 @@ class AuthController extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController rePasswordController = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _db = FirebaseFirestore.instance;
   Rxn<User> firebaseUser = Rxn<User>();
@@ -40,10 +41,11 @@ class AuthController extends GetxController {
     nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
+    rePasswordController.dispose();
     super.onClose();
   }
 
-  handleAuthChanged(firebaseUser) {
+  handleAuthChanged(firebaseUser) async {
     //get user data from firestore
     if (firebaseUser?.uid != null) {
       rxFireStoreUser.bindStream(streamFireStoreUser());
@@ -55,7 +57,7 @@ class AuthController extends GetxController {
       Get.to(const LoadingDataScreen(), transition: Transition.fadeIn);
       Timer(const Duration(milliseconds: 1700), () {
         Get.put(HomeController());
-        Get.offAll(const HomeUI(), arguments: 0, transition: Transition.fadeIn);
+        Get.offAll(const HomeUI(), transition: Transition.fadeIn);
       });
     }
   }
@@ -96,11 +98,7 @@ class AuthController extends GetxController {
           email: emailController.text.trim(),
           password: passwordController.text.trim());
       hideLoadingIndicator();
-      // // delete after 3 seconds to avoid showing error of validator
-      Timer(const Duration(seconds: 3), () {
-        emailController.clear();
-        passwordController.clear();
-      });
+      clearTextFormField();
     } catch (error) {
       hideLoadingIndicator();
       Get.snackbar('Đăng nhập không thành công!', 'error.message!',
@@ -136,11 +134,7 @@ class AuthController extends GetxController {
         );
         //create the user in firestore
         _createUserFireStore(newUser, result.user!);
-        // delete after 3 seconds to avoid showing error of validator
-        Timer(const Duration(seconds: 3), () {
-          emailController.clear();
-          passwordController.clear();
-        });
+        clearTextFormField();
         hideLoadingIndicator();
       });
     } on FirebaseAuthException catch (error) {
@@ -307,6 +301,15 @@ class AuthController extends GetxController {
     );
   }
 
+  void clearTextFormField() {
+    // delete after 3 seconds to avoid showing error of validator
+    Timer(const Duration(seconds: 3), () {
+      emailController.clear();
+      passwordController.clear();
+      rePasswordController.clear();
+    });
+  }
+
   void updateBarChartData(int numberTrue, int numberTotal) {
     double value = QuizController.to.calculatePercent(numberTrue, numberTotal);
     String title = "${value.toInt()}%($numberTrue/$numberTotal)";
@@ -331,6 +334,4 @@ class AuthController extends GetxController {
     fsUser.listLessonStatus[indexTopic].listWordStatus = List.filled(10, false);
     updateUserFireStore();
   }
-
-
 }

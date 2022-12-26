@@ -1,16 +1,17 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_japanese/components/show_answer.dart';
+import 'package:learn_japanese/helpers/show_answer.dart';
 import '../../../models/word_model.dart';
 import '../main/progress_bar_quiz.dart';
+import '../main/progress_bar_quiz2.dart';
 import '../main/quiz_controller.dart';
 import '../multiple_choice/multiple_choice_controller.dart';
 import '../type_with_hint_quiz/type_with_hint_quiz_controller.dart';
 import 'listen_and_type_quiz_controller.dart';
 
 class ListenAndTypeQuiz extends GetView<ListenAndTypeQuizController> {
-  ListenAndTypeQuiz({Key? key}) : super(key: key);
+  const ListenAndTypeQuiz({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,8 @@ class ListenAndTypeQuiz extends GetView<ListenAndTypeQuizController> {
     Get.put(ListenAndTypeQuizController());
     Get.put(TypeWithHintQuizController());
     controller.audioPlayer.play(AssetSource(quizWord.audioAsset));
-    return ProgressBarQuiz(
+    return ProgressBarQuiz2(
+      animationController: QuizController.to.animationController,
       child: Obx(
         () => Stack(alignment: Alignment.center, children: [
           Column(

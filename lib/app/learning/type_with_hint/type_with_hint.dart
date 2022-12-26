@@ -3,10 +3,9 @@ import 'package:get/get.dart';
 import 'package:learn_japanese/app/learning/flashcard/flashcard.dart';
 import 'package:learn_japanese/app/learning/listen_and_type/listen_and_type.dart';
 import 'package:learn_japanese/app/learning/main/progress_bar_learning.dart';
-import 'package:learn_japanese/app/learning/type_with_hint/text_form_field_fill_word.dart';
 import 'package:learn_japanese/app/learning/type_with_hint/type_with_hint_controller.dart';
 import '../../../animation/slide_animation.dart';
-import '../../../components/show_answer.dart';
+import '../../../helpers/helpers.dart';
 import '../../../models/lesson_model.dart';
 import '../flashcard/flashcard_controller.dart';
 import '../listen_and_type/listen_and_type_controller.dart';
@@ -41,11 +40,11 @@ class TypeWithHint extends GetView<TypeWithHintController> {
                   child: Column(children: [
                     const Text("Điền Từ",
                         style: TextStyle(color: Colors.grey, fontSize: 30)),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(controller.rxListWord[index].vietnameseMeaning,
                         style:
                             const TextStyle(color: Colors.black, fontSize: 25)),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     TextFormFieldFillWord(
                       appContext: context,
                       length: controller.rxListWord[index].word.length,

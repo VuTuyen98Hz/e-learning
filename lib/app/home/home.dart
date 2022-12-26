@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_japanese/app/quiz/main/quiz_screen.dart';
-import '../authentication/profile_screen.dart';
-import '../learning/topics/topics_screen.dart';
+import '../learning/main/learning_screen.dart';
 
 import 'home_controller.dart';
 
@@ -12,22 +11,21 @@ class HomeUI extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     Get.put(HomeController());
-    controller.rxTabIndex.value = Get.arguments;
+    // controller.rxTabIndex.value = Get.arguments;
     return Obx(()=> Scaffold(
       body: SafeArea(
         child: IndexedStack(
           index: controller.rxTabIndex.value,
           children: const [
-            TopicsScreen(),
+            LearningScreen(),
             QuizScreen(),
-            ProfileScreen(),
           ],
         ),
       ),
 
       bottomNavigationBar: BottomNavigationBar(
         unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.redAccent,
+        selectedItemColor: Colors.blueAccent,
         onTap: controller.changeTabIndex2,
         currentIndex: controller.rxTabIndex.value,
         showSelectedLabels: true,
@@ -38,15 +36,11 @@ class HomeUI extends GetView<HomeController> {
         items: [
           _bottomNavigationBarItem(
             icon: Icons.newspaper,
-            label: 'Topics',
+            label: 'Học tập',
           ),
           _bottomNavigationBarItem(
             icon: Icons.table_chart,
-            label: 'Quiz',
-          ),
-          _bottomNavigationBarItem(
-            icon: Icons.person,
-            label: 'Account',
+            label: 'Ôn tập',
           ),
         ],
       ),

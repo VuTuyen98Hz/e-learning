@@ -1,4 +1,4 @@
-import 'package:learn_japanese/models/bar_chart_data.dart';
+import 'package:learn_japanese/models/bar_chart_model.dart';
 
 import 'models.dart';
 

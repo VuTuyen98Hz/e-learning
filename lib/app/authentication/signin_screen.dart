@@ -3,7 +3,6 @@ import 'dart:core';
 import 'package:get/get.dart';
 import 'package:learn_japanese/app/authentication/signup_screen.dart';
 import 'package:learn_japanese/helpers/helpers.dart';
-
 import '../../components/form_input_field_with_icon.dart';
 import '../../components/label_button.dart';
 import '../../components/sign_in_button.dart';
@@ -49,7 +48,7 @@ class SignInScreen extends StatelessWidget {
                           controller: authController.passwordController,
                           iconPrefix: Icons.lock,
                           iconSuffix: authController.visiblePassword(),
-                          hintText: 'Password',
+                          hintText: 'Mật khẩu',
                           validator: Validator().password,
                           onChanged: (value) {},
                           onSaved: (value) =>

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../models/topics_model.dart';
-import '../main/learning_controller.dart';
+import 'learning_controller.dart';
 
-Widget topicCard(TopicsModel topic, int indexTopic) {
+Widget lessonCard(TopicsModel topic, int indexTopic) {
   Get.put(LearningController());
   final learnController = LearningController.to;
   final status = learnController.didFinishedLesson(indexTopic);

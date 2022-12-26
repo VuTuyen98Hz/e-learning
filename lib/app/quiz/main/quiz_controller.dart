@@ -5,9 +5,8 @@ import 'package:get/get.dart';
 import 'package:learn_japanese/app/quiz/listen_and_type_quiz/listen_and_type_quiz.dart';
 import 'package:learn_japanese/app/quiz/main/quiz_screen.dart';
 import 'package:learn_japanese/app/quiz/multiple_choice/multiple_choice.dart';
+import 'package:learn_japanese/models/models.dart';
 import '../../../helpers/random_index.dart';
-import '../../../models/lesson_model.dart';
-import '../../../models/word_model.dart';
 import '../../authentication/auth_controller.dart';
 import '../listen_and_type_quiz/listen_and_type_quiz_controller.dart';
 import '../multiple_choice/multiple_choice_controller.dart';
@@ -15,25 +14,39 @@ import '../summary/summary_screen.dart';
 import '../type_with_hint_quiz/type_with_hint_quiz.dart';
 import '../type_with_hint_quiz/type_with_hint_quiz_controller.dart';
 
-class QuizController extends GetxController {
+class QuizController extends GetxController
+    with GetSingleTickerProviderStateMixin {
   static QuizController to = Get.find();
   RxInt rxProgressBarPoint = RxInt(0);
   List<StatisticalPoint> points = [];
   RxList<WordModel> rxListQuizWord = RxList();
   List<WordModel> listFalseWord = [];
   List<WordModel> listTrueWord = [];
-  List<WordModel>listQuizWordOriginal = [];
+  List<WordModel> listQuizWordOriginal = [];
   int totalProgressBarPoint = 0;
   late List<Widget> listGameWidget;
+  UserModel user = UserModel();
 
+  RxDouble rxAnimationValue = RxDouble(0);
+  late AnimationController animationController;
+  late Animation<Offset> offsetAnimation;
+
+  @override
+  void onInit() {
+    animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 3),
+    );
+    super.onInit();
+  }
 
   @override
   void onReady() {
     super.onReady();
     listGameWidget = [
       const MultipleChoice(),
-      TypeWithHintQuiz(),
-      ListenAndTypeQuiz()
+      const TypeWithHintQuiz(),
+      const ListenAndTypeQuiz()
     ];
   }
 
@@ -41,7 +54,7 @@ class QuizController extends GetxController {
     Get.put(MultipleChoiceController());
     Get.put(ListenAndTypeQuizController());
     Get.put(TypeWithHintQuizController());
-    final user = AuthController.to.rxFireStoreUser.value!;
+    user = AuthController.to.rxFireStoreUser.value!;
     rxListQuizWord.value = user.listQuizWord;
     totalProgressBarPoint = user.listQuizWord.length;
     listQuizWordOriginal = [...user.listQuizWord];
@@ -86,10 +99,12 @@ class QuizController extends GetxController {
       rxProgressBarPoint.value += 1;
       listTrueWord.add(quizWord);
       rxListQuizWord.removeWhere((word) => word == quizWord);
+      animationController.forward();
       // True after the 1st times appear
     } else if (result == true) {
       rxProgressBarPoint.value += 1;
       rxListQuizWord.removeWhere((word) => word == quizWord);
+      animationController.forward();
     } else {
       //Prevent duplicate word
       if (listFalseWord.contains(quizWord) == false) {
@@ -106,7 +121,7 @@ class QuizController extends GetxController {
     listFalseWord = [];
     listTrueWord = [];
     rxProgressBarPoint = RxInt(0);
-    // resultQuiz = 0;
+    animationController.reset();
   }
 
   // Control BarChart
@@ -117,7 +132,7 @@ class QuizController extends GetxController {
               BarChartRodData(
                 toY: point.y,
                 width: 40,
-                color: Colors.lightGreen,
+                color: Colors.greenAccent,
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(6),
                   topRight: Radius.circular(6),
@@ -131,18 +146,16 @@ class QuizController extends GetxController {
     final listResultQuiz = getBarChartValue();
     return listResultQuiz
         .mapIndexed((index, element) =>
-            StatisticalPoint(x: index.toDouble(), y: element))
+            StatisticalPoint(x: index.toDouble(), y: element * 0.1))
         .toList();
   }
 
   List<double> getBarChartValue() {
-    final chartData = AuthController.to.rxFireStoreUser.value!;
-    return chartData.listValueBarChart;
+    return user.listValueBarChart;
   }
 
   String getTopTitleBarChart(int index) {
-    final chartData = AuthController.to.rxFireStoreUser.value!;
-    return chartData.listTopTitleBarChart[index];
+    return user.listTopTitleBarChart[index];
   }
 
   double calculatePercent(int lengthListTrueWord, int lengthListTotal) {
@@ -153,33 +166,4 @@ class QuizController extends GetxController {
       return total;
     }
   }
-
-  // control selected word
-  RxList<bool> rxListCheckedWord = RxList();
-  RxInt rxCount = RxInt(10);
-  List<WordModel> listWord = [];
-  List<int> listFinishedLesson = [];
-
-  void initSelectedWord(int indexTopic) {
-    final fsUser = AuthController.to.rxFireStoreUser.value!;
-    List<LessonStatus> listLessonStatus = fsUser.listLessonStatus;
-    listFinishedLesson = fsUser.listFinishedLesson;
-    listWord = listLessonModel[indexTopic].lesson;
-    rxListCheckedWord.value = listLessonStatus[indexTopic].listWordStatus;
-  }
-
-  void manageSelectedWord(int index) {
-    // rxListCheckedWord[index] = !rxListCheckedWord[index];
-    final fsUser = AuthController.to.rxFireStoreUser.value!;
-    final list = fsUser.listQuizWord;
-    if (rxListCheckedWord[index] == true &&
-        list.contains(listWord[index]) == false) {
-      fsUser.listQuizWord.add(listWord[index]);
-      debugPrint("Hello ${fsUser.listQuizWord.length}");
-    } else {
-      fsUser.listQuizWord
-          .removeWhere((word) => word.word == listWord[index].word);
-    }
-  }
-
 }

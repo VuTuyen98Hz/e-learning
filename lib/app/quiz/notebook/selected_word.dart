@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../models/lesson_model.dart';
-import '../../../models/word_model.dart';
+import 'package:learn_japanese/models/models.dart';
 import '../../authentication/auth_controller.dart';
 
 class SelectedWord extends StatefulWidget {
@@ -13,57 +12,55 @@ class SelectedWord extends StatefulWidget {
 }
 
 class _SelectedWordState extends State<SelectedWord> {
-  List<bool> listCheckedWord = [];
+  List<bool> listCheckedWord = List.filled(10, false);
   List<WordModel> listWord = [];
   List<int> listFinishedLesson = [];
 
-
   @override
   Widget build(BuildContext context) {
-    initSelectedWord();
-    // return listLessonStatus[widget.indexTopic].isFinishLesson == true
+    final user = AuthController.to.rxFireStoreUser.value!;
+    initSelectedWord(user);
     return listFinishedLesson.contains(widget.indexTopic)
         ? Container(
             padding: const EdgeInsets.fromLTRB(15, 30, 20, 0),
             height: 550,
-            child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      manageSelectedWord(index);
-                    },
-                    child: SizedBox(
-                      height: 45,
-                      child: Row(children: [
-                        Checkbox(
-                            value: listCheckedWord[index],
-                            checkColor: Colors.white,
-                            activeColor: Colors.green,
-                            shape: const CircleBorder(),
-                            onChanged: (_) {
-                              manageSelectedWord(index);
-                            }),
-                        Expanded(
-                          child: Text(listWord[index].word,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 17)),
-                        ),
-                        const Expanded(
-                          child: Text(' (n)',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 17)),
-                        ),
-                        Expanded(
-                          child: Text(listWord[index].vietnameseMeaning,
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 17)),
-                        ),
-                      ]),
-                    ),
-                  );
-                }),
-          )
+            child: Wrap(
+              children: List.generate(10, (index) {
+                return InkWell(
+                  onTap: () {
+                    manageSelectedWord(user, index);
+                  },
+                  child: SizedBox(
+                    height: 45,
+                    child: Row(children: [
+                      listCheckedWord[index] == true
+                          ? const Icon(Icons.check_circle_rounded,
+                              color: Colors.green)
+                          : const Icon(
+                              Icons.circle_outlined,
+                              color: Colors.grey,
+                            ),
+                      const SizedBox(width: 15),
+                      Expanded(
+                        child: Text(listWord[index].word,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 17)),
+                      ),
+                      const Expanded(
+                        child: Text(' (n)',
+                            style: TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 17)),
+                      ),
+                      Expanded(
+                        child: Text(listWord[index].vietnameseMeaning,
+                            style: const TextStyle(
+                                fontWeight: FontWeight.w500, fontSize: 17)),
+                      ),
+                    ]),
+                  ),
+                );
+              }),
+            ))
         : const Center(
             child: Text(
             "Bạn chưa hoàn thành bài học này!",
@@ -72,26 +69,21 @@ class _SelectedWordState extends State<SelectedWord> {
           ));
   }
 
-  void initSelectedWord() {
-    final fsUser = AuthController.to.rxFireStoreUser.value!;
-    List<LessonStatus> listLessonStatus = fsUser.listLessonStatus;
-    listFinishedLesson = fsUser.listFinishedLesson;
+  void initSelectedWord(user) {
+    listFinishedLesson = user.listFinishedLesson;
     listWord = listLessonModel[widget.indexTopic].lesson;
-    listCheckedWord = listLessonStatus[widget.indexTopic].listWordStatus;
+    listCheckedWord = user.listLessonStatus[widget.indexTopic].listWordStatus;
   }
 
-  void manageSelectedWord(int index) {
+  void manageSelectedWord(user, int index) {
     setState(() {
       listCheckedWord[index] = !listCheckedWord[index];
     });
-    final fsUser = AuthController.to.rxFireStoreUser.value!;
-    final list = fsUser.listQuizWord;
     if (listCheckedWord[index] == true &&
-        list.contains(listWord[index]) == false) {
-      fsUser.listQuizWord.add(listWord[index]);
-      debugPrint("Hello ${fsUser.listQuizWord.length}");
+        user.listQuizWord.contains(listWord[index]) == false) {
+      user.listQuizWord.add(listWord[index]);
     } else {
-      fsUser.listQuizWord
+      user.listQuizWord
           .removeWhere((word) => word.word == listWord[index].word);
     }
   }

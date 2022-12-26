@@ -933,18 +933,18 @@ final List<WordModel> entertainmentVenuesWords = [
       imageUrl:
           'https://img.freepik.com/premium-photo/young-asian-woman-using-smartphone-street_296537-5304.jpg?w=740',
       audioAsset: 'audio/lesson/school/student.mp3',
-      phonetic: '/ˈskuːl.jɑːrd/',
-      vietnameseMeaning: "Học sinh, sinh viên",
-      example: 'She is the best student in school and is loved by everyone',
+      phonetic: ' /ˈɑːrt ˌɡæl.ɚ.i/',
+      vietnameseMeaning: "Phòng tranh nghệ thuật",
+      example: 'She works in a little art gallery in Brooklyn.',
       translateExample:
-          'Cô là học sinh giỏi nhất trường và được mọi người yêu mến'),
+          'Cô làm việc tại một phòng tranh nghệ thuật nhỏ ở Brooklyn.'),
   WordModel(
       word: 'cinema',
       imageUrl:
           'https://img.freepik.com/premium-photo/young-asian-teacher-woman-teaching-holding-book-video-conference-with-student-looking-camera-female-teacher-training-mathematics-classroom-blackboard-from-online-course_208349-1803.jpg?w=740',
       audioAsset: 'audio/lesson/school/teacher.mp3',
-      phonetic: '/ˈtiː.tʃɚ/',
-      vietnameseMeaning: "Giáo viên",
+      phonetic: '/ˈsɪn.ə.mə/',
+      vietnameseMeaning: "Rạp chiếu phim",
       example:
           'Although the teacher seems strict, she really loves her students',
       translateExample:
@@ -954,11 +954,10 @@ final List<WordModel> entertainmentVenuesWords = [
       imageUrl:
           'https://blog.planbook.com/wp-content/uploads/2017/04/high-school-1072x715.jpg',
       audioAsset: 'audio/lesson/school/lesson.mp3',
-      phonetic: '/ˈles.ən/',
-      vietnameseMeaning: "Tiết học, bài học",
-      example: "Mr. Johnson's lessons always make us excited",
-      translateExample:
-          'Những bài học của thầy Johnson luôn khiến chúng tôi thích thú'),
+      phonetic: '/mjuːˈziː.əm/',
+      vietnameseMeaning: "Viện bảo tàng",
+      example: "The museum is full of rare and precious treasures.",
+      translateExample: 'Viện bảo tàng chứa đầy những bảo vật quý hiếm.'),
   WordModel(
       word: 'stadium',
       imageUrl:

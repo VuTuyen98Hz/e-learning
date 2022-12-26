@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:learn_japanese/models/word_model.dart';
 import '../../../helpers/random_index.dart';
 import '../../../models/word_data.dart';
+import '../main/quiz_controller.dart';
 
 class MultipleChoiceController extends GetxController {
   RxBool rxChangeButton = RxBool(false);

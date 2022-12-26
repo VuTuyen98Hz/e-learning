@@ -4,12 +4,14 @@ import 'package:learn_japanese/app/quiz/main/quiz_controller.dart';
 import 'package:learn_japanese/models/word_model.dart';
 import '../../authentication/auth_controller.dart';
 import '../../home/home.dart';
+import 'circle_progress_bar.dart';
 
 class SummaryScreen extends GetView<QuizController> {
   const SummaryScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     Get.put(QuizController());
     dynamic listQuizResult = Get.arguments;
     final List<WordModel> listTotal = listQuizResult[0];
@@ -26,13 +28,16 @@ class SummaryScreen extends GetView<QuizController> {
               width: 100,
               height: 100,
               child: Stack(fit: StackFit.expand, children: [
-                CircularProgressIndicator(
-                  value: listTotal.isEmpty
-                      ? 0
-                      : (listTrueWord.length / listTotal.length),
-                  valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
-                  backgroundColor: const Color(0xffD6D6D6),
-                  strokeWidth: 20,
+                // CircularProgressIndicator(
+                //   value: listTotal.isEmpty
+                //       ? 0
+                //       : (listTrueWord.length / listTotal.length),
+                //   valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
+                //   backgroundColor: const Color(0xffD6D6D6),
+                //   strokeWidth: 20,
+                // ),
+                CircleProgressBar(
+                  stopValue: (listTrueWord.length / listTotal.length),
                 ),
                 Center(
                   child: Text(
@@ -66,23 +71,24 @@ class SummaryScreen extends GetView<QuizController> {
                       return SizedBox(
                         height: 30,
                         child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               wordIcon(listTrueWord, listTotal, index),
                               const SizedBox(width: 5),
-                              Expanded(
+                              SizedBox(
+                                width: size.width / 3,
                                 child: Text(listTotal[index].word,
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 17)),
                               ),
-                              const Expanded(
-                                child: Text('(n)',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 17)),
-                              ),
-                              Expanded(
+                              SizedBox(width: 20),
+                              const Text('(n)',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 17)),
+                              SizedBox(
+                                width: size.width/5,
                                 child: Text(listTotal[index].vietnameseMeaning,
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w500,

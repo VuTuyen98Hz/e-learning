@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../models/word_model.dart';
+import '../main/quiz_controller.dart';
 
 
 class ListenAndTypeQuizController extends GetxController {
@@ -36,15 +37,10 @@ class ListenAndTypeQuizController extends GetxController {
       }
   }
 
-
   void changeButton() {
     rxIsCheckButtonActive.value = true;
     rxIsChangeButton.value = true;
     FocusManager.instance.primaryFocus?.unfocus();
   }
-
-
-
-
 
 }

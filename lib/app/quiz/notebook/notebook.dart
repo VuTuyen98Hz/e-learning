@@ -4,7 +4,7 @@ import '../../authentication/auth_controller.dart';
 import 'selected_word.dart';
 import '../../home/home.dart';
 import '../../../models/topics_model.dart';
-import 'selected_word2.dart';
+
 
 class Notebook extends StatelessWidget {
   const Notebook({super.key});

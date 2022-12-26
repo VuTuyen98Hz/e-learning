@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:learn_japanese/constants/constants.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'app/authentication/auth_controller.dart';
@@ -8,6 +7,7 @@ import 'app/home/home_controller.dart';
 import 'app/learning/main/learning_controller.dart';
 import 'app/quiz/main/quiz_controller.dart';
 import 'components/loading.dart';
+import 'constants/app_routes.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

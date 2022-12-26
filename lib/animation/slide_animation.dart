@@ -23,13 +23,6 @@ class _SlideAnimationState extends State<SlideAnimation>
     super.initState();
   }
 
-  // @override
-  // void didUpdateWidget(oldWidget) {
-  //   super.didUpdateWidget(oldWidget);
-  //   _animationController.reset();
-  //   _animationController.forward();
-  // }
-
   @override
   dispose() {
     _animationController.dispose();

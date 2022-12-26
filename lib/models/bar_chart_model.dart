@@ -1,13 +1,13 @@
-class BarChartData {
+class BarChartModel {
   List<double> listValueBarChart;
   List<String> listTopTitleBarChart;
 
-  BarChartData(
+  BarChartModel(
       {this.listValueBarChart = const [],
       this.listTopTitleBarChart = const []});
 
-  factory BarChartData.fromMap(Map data) {
-    return BarChartData(
+  factory BarChartModel.fromMap(Map data) {
+    return BarChartModel(
       listValueBarChart: ((data['listValueBarChart'] ??[]) as List)
           .map((item) => item as double)
           .toList(),

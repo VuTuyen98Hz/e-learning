@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:learn_japanese/app/learning/main/learning_controller.dart';
 import 'package:learn_japanese/app/learning/main/progress_bar_learning.dart';
 import 'package:learn_japanese/app/learning/type_with_hint/type_with_hint.dart';
-import 'package:learn_japanese/components/show_answer.dart';
+import 'package:learn_japanese/helpers/show_answer.dart';
 import '../../../models/lesson_model.dart';
 import '../ending/ending.dart';
 import '../type_with_hint/type_with_hint_controller.dart';

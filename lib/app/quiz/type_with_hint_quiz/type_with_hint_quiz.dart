@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_japanese/app/learning/type_with_hint/text_form_field_fill_word.dart';
+import 'package:learn_japanese/helpers/text_form_field_fill_word.dart';
 import 'package:learn_japanese/app/quiz/type_with_hint_quiz/type_with_hint_quiz_controller.dart';
 import '../../../animation/slide_animation.dart';
-import '../../../components/show_answer.dart';
+import '../../../helpers/show_answer.dart';
 import '../../../models/word_model.dart';
 import '../listen_and_type_quiz/listen_and_type_quiz_controller.dart';
 import '../main/progress_bar_quiz.dart';
+import '../main/progress_bar_quiz2.dart';
 import '../main/quiz_controller.dart';
 import '../multiple_choice/multiple_choice_controller.dart';
 
 class TypeWithHintQuiz extends GetView<TypeWithHintQuizController> {
-  TypeWithHintQuiz({Key? key}) : super(key: key);
+  const TypeWithHintQuiz({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,8 @@ class TypeWithHintQuiz extends GetView<TypeWithHintQuizController> {
     Get.put(MultipleChoiceController());
     Get.put(ListenAndTypeQuizController());
     Get.put(TypeWithHintQuizController());
-    return ProgressBarQuiz(
+    return ProgressBarQuiz2(
+      animationController: QuizController.to.animationController,
       child: Obx(
         () => Stack(alignment: Alignment.center, children: [
           Column(
@@ -32,7 +34,7 @@ class TypeWithHintQuiz extends GetView<TypeWithHintQuizController> {
                   child: Column(children: [
                     const Text("Điền Từ",
                         style: TextStyle(color: Colors.grey, fontSize: 30)),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(quizWord.vietnameseMeaning,
                         style:
                             const TextStyle(color: Colors.black, fontSize: 25)),
