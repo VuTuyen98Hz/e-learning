@@ -1,7 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_japanese/app/learning/main/progress_bar_learning.dart';
 import '../../../animation/flip_animation.dart';
 import '../../../animation/slide_animation.dart';
 import '../../../helpers/show_example.dart';
@@ -10,6 +9,7 @@ import '../listen_and_type/listen_and_type.dart';
 import '../listen_and_type/listen_and_type_controller.dart';
 import '../main/learning_controller.dart';
 import '../ending/ending.dart';
+import '../main/progress_bar_learning2.dart';
 import 'flashcard_controller.dart';
 
 class FlashCard extends GetView<FlashCardController> {
@@ -28,7 +28,8 @@ class FlashCard extends GetView<FlashCardController> {
     controller.rxListWord.value = listLessonModel[indexTopic].lesson;
     controller.rxIndex.value = index;
     return Obx(
-      () => ProgressBarLearning(
+      () => ProgressBarLearning2(
+        animationController: LearningController.to.animationController,
         child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
             SlideAnimation(

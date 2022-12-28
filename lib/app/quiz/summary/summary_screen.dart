@@ -11,9 +11,9 @@ class SummaryScreen extends GetView<QuizController> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     Get.put(QuizController());
     dynamic listQuizResult = Get.arguments;
+    final size = MediaQuery.of(context).size;
     final List<WordModel> listTotal = listQuizResult[0];
     final List<WordModel> listTrueWord = listQuizResult[1];
     return Scaffold(
@@ -21,23 +21,17 @@ class SummaryScreen extends GetView<QuizController> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text("Hoàn Thành Ôn Tập!",
+            const Text("Kết thúc Ôn Tập!",
                 style: TextStyle(fontWeight: FontWeight.w400, fontSize: 20)),
             const SizedBox(height: 40),
             SizedBox(
               width: 100,
               height: 100,
               child: Stack(fit: StackFit.expand, children: [
-                // CircularProgressIndicator(
-                //   value: listTotal.isEmpty
-                //       ? 0
-                //       : (listTrueWord.length / listTotal.length),
-                //   valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
-                //   backgroundColor: const Color(0xffD6D6D6),
-                //   strokeWidth: 20,
-                // ),
                 CircleProgressBar(
-                  stopValue: (listTrueWord.length / listTotal.length),
+                  stopValue: listTotal.isEmpty
+                      ? 0.0
+                      : listTrueWord.length / listTotal.length,
                 ),
                 Center(
                   child: Text(
@@ -56,8 +50,8 @@ class SummaryScreen extends GetView<QuizController> {
             const SizedBox(height: 20),
             Container(
               padding: const EdgeInsets.all(10),
-              width: 350,
-              height: 280,
+              width: size.width * 0.9,
+              height: size.height * 0.35,
               decoration: BoxDecoration(
                 color: Colors.white70,
                 border: Border.all(color: Colors.yellow),
@@ -65,30 +59,31 @@ class SummaryScreen extends GetView<QuizController> {
               ),
               child: Scrollbar(
                 child: ListView.builder(
+                    padding: const EdgeInsetsDirectional.only(top: 5),
                     shrinkWrap: true,
                     itemCount: listTotal.length,
                     itemBuilder: (context, index) {
-                      return SizedBox(
-                        height: 30,
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 8),
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               wordIcon(listTrueWord, listTotal, index),
                               const SizedBox(width: 5),
                               SizedBox(
-                                width: size.width / 3,
+                                width: size.width/3.8,
                                 child: Text(listTotal[index].word,
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w500,
                                         fontSize: 17)),
                               ),
-                              SizedBox(width: 20),
                               const Text('(n)',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w500,
                                       fontSize: 17)),
+                              SizedBox(width: size.width * 0.18),
                               SizedBox(
-                                width: size.width/5,
+                                width: size.width/3.8,
                                 child: Text(listTotal[index].vietnameseMeaning,
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w500,
@@ -106,8 +101,6 @@ class SummaryScreen extends GetView<QuizController> {
                 user.rxFireStoreUser.value!.listQuizWord =
                     controller.listQuizWordOriginal;
                 user.updateBarChartData(listTrueWord.length, listTotal.length);
-                // AuthController.to.updateSelectedWord();
-
                 Get.offAll(const HomeUI(),
                     arguments: 1, transition: Transition.fadeIn);
                 controller.resetQuiz();

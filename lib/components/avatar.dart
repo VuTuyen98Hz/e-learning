@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:learn_japanese/models/models.dart';
 
 class Avatar extends StatelessWidget {
   const Avatar(this.photoUrl, {super.key});

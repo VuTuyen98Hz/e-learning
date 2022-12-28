@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_japanese/app/quiz/main/quiz_controller.dart';
 import '../../../models/word_model.dart';
 
 class TypeWithHintQuizController extends GetxController {

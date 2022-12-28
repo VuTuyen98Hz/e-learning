@@ -1,5 +1,3 @@
-import 'package:learn_japanese/models/bar_chart_model.dart';
-
 import 'models.dart';
 
 class UserModel {

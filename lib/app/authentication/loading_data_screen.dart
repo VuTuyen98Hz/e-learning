@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../authentication/auth_controller.dart';
 
-
 class LoadingDataScreen extends GetView<AuthController> {
   const LoadingDataScreen({super.key});
 

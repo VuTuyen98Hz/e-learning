@@ -15,11 +15,10 @@ class _CircleProgressBarState extends State<CircleProgressBar>
   @override
   void initState() {
     animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 2000))
+        vsync: this, duration: const Duration(milliseconds: 1000))
       ..addListener(() {
-        // if (!mounted) return;
+        if (!mounted || widget.stopValue == 0.0) return;
         setState(() {
-
           double currentValue = animationController.value;
           if (currentValue > widget.stopValue) {
             animationController.stop();

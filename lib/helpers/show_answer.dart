@@ -91,7 +91,7 @@ class _ShowAnswerState extends State<ShowAnswer> {
                   style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w400,
-                      fontSize: 20),
+                      fontSize: 16.5),
                 ),
                 const SizedBox(
                   height: 10,
@@ -102,7 +102,7 @@ class _ShowAnswerState extends State<ShowAnswer> {
                       style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w400,
-                          fontSize: 20)),
+                          fontSize: 16.5)),
                 ),
               ],
             ),
@@ -119,13 +119,20 @@ class _ShowAnswerState extends State<ShowAnswer> {
                   });
                 },
                 style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.orangeAccent,
                   shape: const CircleBorder(),
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(7),
                 ),
-                child: const Icon(
-                  Icons.volume_down_alt,
-                  color: Colors.yellow,
-                  size: 20.0,
+                child: Container(
+                  height: 45.0,
+                  width: 45.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: const DecorationImage(
+                      alignment: FractionalOffset.topCenter,
+                      image: AssetImage("assets/icons/speaking.png"),
+                    ),
+                  ),
                 ),
               ),
               const SizedBox(
@@ -138,13 +145,20 @@ class _ShowAnswerState extends State<ShowAnswer> {
                   });
                 },
                 style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.greenAccent,
                   shape: const CircleBorder(),
-                  padding: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(7),
                 ),
-                child: const Icon(
-                  Icons.visibility,
-                  color: Colors.yellow,
-                  size: 20.0,
+                child: Container(
+                  height: 45.0,
+                  width: 45.0,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: const DecorationImage(
+                      alignment: FractionalOffset.topCenter,
+                      image: AssetImage("assets/icons/translation.png"),
+                    ),
+                  ),
                 ),
               ),
             ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_japanese/app/quiz/main/progress_bar_quiz.dart';
 import 'package:learn_japanese/models/word_model.dart';
 import '../../../animation/slide_animation.dart';
 import '../../../helpers/show_example.dart';
@@ -54,15 +53,15 @@ class MultipleChoice extends GetView<MultipleChoiceController> {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Option(
+                  option(
                       thisOption: 1,
                       text: controller.listValueOption[0],
                       word: quizWord.vietnameseMeaning),
-                  Option(
+                  option(
                       thisOption: 2,
                       text: controller.listValueOption[1],
                       word: quizWord.vietnameseMeaning),
-                  Option(
+                  option(
                       thisOption: 3,
                       text: controller.listValueOption[2],
                       word: quizWord.vietnameseMeaning),
@@ -110,7 +109,7 @@ class MultipleChoice extends GetView<MultipleChoiceController> {
     );
   }
 
-  Widget Option({required thisOption, required String text, String word = ''}) {
+  Widget option({required thisOption, required String text, String word = ''}) {
     if (text == word) {
       controller.rxRightOption.value = thisOption;
     }

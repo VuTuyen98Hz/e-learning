@@ -2,11 +2,11 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_japanese/app/learning/main/learning_controller.dart';
-import 'package:learn_japanese/app/learning/main/progress_bar_learning.dart';
 import 'package:learn_japanese/app/learning/type_with_hint/type_with_hint.dart';
 import 'package:learn_japanese/helpers/show_answer.dart';
 import '../../../models/lesson_model.dart';
 import '../ending/ending.dart';
+import '../main/progress_bar_learning2.dart';
 import '../type_with_hint/type_with_hint_controller.dart';
 import 'listen_and_type_controller.dart';
 
@@ -22,7 +22,8 @@ class ListenAndType extends GetView<ListenAndTypeController> {
     Get.put(ListenAndTypeController());
     controller.rxListWord.value = listLessonModel[indexTopic].lesson;
     controller.rxIndex.value = index;
-    return ProgressBarLearning(
+    return ProgressBarLearning2(
+      animationController: LearningController.to.animationController,
       child: Obx(
         () => Stack(alignment: Alignment.center, children: [
           Column(

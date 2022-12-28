@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../components/avatar.dart';
+import '../home/home_controller.dart';
 import 'auth_controller.dart';
 import 'signin_screen.dart';
 
@@ -9,6 +10,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeController = Get.put(HomeController());
     return GetBuilder<AuthController>(
       init: AuthController(),
       builder: (controller) => Scaffold(
@@ -20,15 +22,19 @@ class ProfileScreen extends StatelessWidget {
           child: Column(
             children: <Widget>[
               const SizedBox(height: 120),
-              Avatar(controller.rxFireStoreUser.value!.photoUrl),
+              homeController.rxConnectionType.value != 0 ?
+              Avatar(controller.rxFireStoreUser.value!.photoUrl):
+              const Avatar(""),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   const SizedBox(height: 20),
-                  Text('User: ${controller.rxFireStoreUser.value!.name}',
+                  Text(
+                      'User: ${controller.rxFireStoreUser.value!.name}',
                       style: const TextStyle(fontSize: 16)),
                   const SizedBox(height: 10),
-                  Text('Email: ${controller.rxFireStoreUser.value!.email}',
+                  Text(
+                      'Email: ${controller.rxFireStoreUser.value!.email}',
                       style: const TextStyle(fontSize: 16)),
                   const SizedBox(height: 40),
                   ElevatedButton(

@@ -45,6 +45,7 @@ dependencies:
   audioplayers: ^1.1.1
   fl_chart: ^0.55.2
   collection: ^1.16.0
+  connectivity_plus: ^3.0.2
 
 
 dev_dependencies:

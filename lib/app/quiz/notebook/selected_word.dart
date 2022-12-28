@@ -19,48 +19,51 @@ class _SelectedWordState extends State<SelectedWord> {
   @override
   Widget build(BuildContext context) {
     final user = AuthController.to.rxFireStoreUser.value!;
+    final size = MediaQuery.of(context).size;
     initSelectedWord(user);
     return listFinishedLesson.contains(widget.indexTopic)
         ? Container(
             padding: const EdgeInsets.fromLTRB(15, 30, 20, 0),
-            height: 550,
-            child: Wrap(
-              children: List.generate(10, (index) {
-                return InkWell(
-                  onTap: () {
-                    manageSelectedWord(user, index);
-                  },
-                  child: SizedBox(
-                    height: 45,
-                    child: Row(children: [
-                      listCheckedWord[index] == true
-                          ? const Icon(Icons.check_circle_rounded,
-                              color: Colors.green)
-                          : const Icon(
-                              Icons.circle_outlined,
-                              color: Colors.grey,
-                            ),
-                      const SizedBox(width: 15),
-                      Expanded(
-                        child: Text(listWord[index].word,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 17)),
-                      ),
-                      const Expanded(
-                        child: Text(' (n)',
-                            style: TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 17)),
-                      ),
-                      Expanded(
-                        child: Text(listWord[index].vietnameseMeaning,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w500, fontSize: 17)),
-                      ),
-                    ]),
-                  ),
-                );
-              }),
-            ))
+            height: size.height*0.65,
+            child: Column(children: [
+              Wrap(
+                children: List.generate(10, (index) {
+                  return InkWell(
+                    onTap: () {
+                      manageSelectedWord(user, index);
+                    },
+                    child: SizedBox(
+                      height: 45,
+                      child: Row(children: [
+                        listCheckedWord[index] == true
+                            ? const Icon(Icons.check_circle_rounded,
+                                color: Colors.green)
+                            : const Icon(
+                                Icons.circle_outlined,
+                                color: Colors.grey,
+                              ),
+                        const SizedBox(width: 15),
+                        Expanded(
+                          child: Text(listWord[index].word,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w500, fontSize: 17)),
+                        ),
+                        const Expanded(
+                          child: Text(' (n)',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w500, fontSize: 17)),
+                        ),
+                        Expanded(
+                          child: Text(listWord[index].vietnameseMeaning,
+                              style: const TextStyle(
+                                  fontWeight: FontWeight.w500, fontSize: 17)),
+                        ),
+                      ]),
+                    ),
+                  );
+                }),
+              ),
+            ]))
         : const Center(
             child: Text(
             "Bạn chưa hoàn thành bài học này!",

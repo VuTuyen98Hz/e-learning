@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_japanese/helpers/show_answer.dart';
 import '../../../models/word_model.dart';
-import '../main/progress_bar_quiz.dart';
 import '../main/progress_bar_quiz2.dart';
 import '../main/quiz_controller.dart';
 import '../multiple_choice/multiple_choice_controller.dart';
@@ -86,7 +85,6 @@ class ListenAndTypeQuiz extends GetView<ListenAndTypeQuizController> {
                             onPressed: controller.rxShowCheckButton.value ==
                                     true
                                 ? () {
-
                                     QuizController.to.plusProgressbarPoint(
                                         quizWord, controller.rxResult.value);
                                     controller.changeButton();

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_japanese/app/learning/flashcard/flashcard.dart';
 import 'package:learn_japanese/app/learning/listen_and_type/listen_and_type.dart';
-import 'package:learn_japanese/app/learning/main/progress_bar_learning.dart';
 import 'package:learn_japanese/app/learning/type_with_hint/type_with_hint_controller.dart';
 import '../../../animation/slide_animation.dart';
 import '../../../helpers/helpers.dart';
@@ -11,6 +10,7 @@ import '../flashcard/flashcard_controller.dart';
 import '../listen_and_type/listen_and_type_controller.dart';
 import '../main/learning_controller.dart';
 import '../ending/ending.dart';
+import '../main/progress_bar_learning2.dart';
 
 class TypeWithHint extends GetView<TypeWithHintController> {
   TypeWithHint(
@@ -28,7 +28,8 @@ class TypeWithHint extends GetView<TypeWithHintController> {
   @override
   Widget build(BuildContext context) {
     controller.rxListWord.value = listLessonModel[indexTopic].lesson;
-    return ProgressBarLearning(
+    return ProgressBarLearning2(
+      animationController: LearningController.to.animationController,
       child: Obx(
         () => Stack(alignment: Alignment.center, children: [
           Column(

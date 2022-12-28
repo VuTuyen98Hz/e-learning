@@ -19,10 +19,12 @@ class _BouncingAnimationState extends State<BouncingAnimation>
       duration: const Duration(milliseconds: 300),
       vsync: this,
       lowerBound: 0.0,
-      upperBound: 0.1,
-    );
+      upperBound: 0.2,
+    )..addListener(() {
+        setState(() {});
+      });
     scale = 1 - _animationController.value;
-
+    _animationController.forward();
     super.initState();
   }
 
