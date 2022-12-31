@@ -4,9 +4,9 @@ import '../../authentication/auth_controller.dart';
 import 'ending2.dart';
 
 class Ending extends GetView<AuthController> {
-  const Ending({this.indexTopic = 0, super.key});
+  const Ending({this.indexLesson = 0, super.key});
 
-  final int indexTopic;
+  final int indexLesson;
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +32,8 @@ class Ending extends GetView<AuthController> {
         ),
         ElevatedButton(
           onPressed: () {
-            controller.updateFinishLesson(indexTopic);
-            Get.offAll(Ending2(indexTopic: indexTopic),
+            controller.updateFinishLesson(indexLesson);
+            Get.offAll(Ending2(indexLesson: indexLesson),
                 transition: Transition.fadeIn);
           },
           style: ElevatedButton.styleFrom(

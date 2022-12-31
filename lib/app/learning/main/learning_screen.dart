@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_japanese/app/home/no_internet.dart';
 import 'package:learn_japanese/app/learning/flashcard/flashcard.dart';
+import '../../../animation/bouncing_animation.dart';
 import '../../authentication/profile_screen.dart';
-import '../../../models/topics_model.dart';
+import '../../../models/lesson_topic_model.dart';
 import '../../home/home_controller.dart';
 import '../flashcard/flashcard_controller.dart';
 import 'lesson_card.dart';
@@ -29,15 +30,15 @@ class LearningScreen extends StatelessWidget {
           ),
           body: homeController.rxConnectionType.value != 0
               ? ListView.builder(
-                  itemCount: listTopics.length,
+                  itemCount: listLessonTopics.length,
                   itemBuilder: (context, index) {
                     return GestureDetector(
                       onTap: () {
                         Get.put(FlashCardController());
-                        Get.to(() => FlashCard(indexTopic: index),
+                        Get.to(() => FlashCard(indexLesson: index),
                             transition: Transition.fadeIn);
                       },
-                      child: lessonCard(listTopics[index], index),
+                      child: lessonCard(listLessonTopics[index], index),
                     );
                   })
               : noInternet()),

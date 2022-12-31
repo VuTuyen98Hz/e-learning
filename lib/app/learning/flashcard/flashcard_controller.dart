@@ -19,7 +19,7 @@ class FlashCardController extends GetxController {
     audioPlayer.onPlayerStateChanged.listen((state) {
       state == PlayerState.playing;
     });
-    }
+  }
 
   @override
   void onReady() {

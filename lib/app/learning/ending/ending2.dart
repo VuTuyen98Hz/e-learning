@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../authentication/auth_controller.dart';
-import '../../quiz/notebook/selected_word.dart';
 import '../../home/home.dart';
-class Ending2 extends StatelessWidget {
-  const Ending2({this.indexTopic = 0, super.key});
+import '../../quiz/notebook/selected_word2.dart';
 
-  final int indexTopic;
+class Ending2 extends StatefulWidget {
+  const Ending2({this.indexLesson = 0, super.key});
 
+  final int indexLesson;
+
+  @override
+  State<Ending2> createState() => _Ending2State();
+}
+
+class _Ending2State extends State<Ending2> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +28,7 @@ class Ending2 extends StatelessWidget {
                       color: Colors.black,
                       fontSize: 20,
                       fontWeight: FontWeight.w500)),
-              SelectedWord(indexTopic: indexTopic),
+              SelectedWord2(indexLesson: widget.indexLesson),
               const SizedBox(height: 20),
               ElevatedButton(
                   onPressed: () {

@@ -16,8 +16,8 @@ class HomeUI extends GetView<HomeController> {
       body: SafeArea(
         child: IndexedStack(
           index: controller.rxTabIndex.value,
-          children: const [
-            LearningScreen(),
+          children: [
+            const LearningScreen(),
             QuizScreen(),
           ],
         ),

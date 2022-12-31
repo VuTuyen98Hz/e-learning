@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../../models/topics_model.dart';
+import '../../../models/lesson_topic_model.dart';
 import 'learning_controller.dart';
 
-Widget lessonCard(TopicsModel topic, int indexTopic) {
-  Get.put(LearningController());
-  final learnController = LearningController.to;
-  final status = learnController.didFinishedLesson(indexTopic);
+Widget lessonCard(LessonTopicModel topic, int indexLesson) {
+  final learnController = Get.put(LearningController());
+  final status = learnController.didFinishedLesson(indexLesson);
   return Card(
     elevation: 2.0,
     color: status == true ? Colors.green : Colors.white,
@@ -17,7 +16,7 @@ Widget lessonCard(TopicsModel topic, int indexTopic) {
       child: Row(
         children: [
           Container(
-            width: 100.0,
+            width: 100,
             height: 100.0,
             decoration: BoxDecoration(
                 image: DecorationImage(

@@ -6,7 +6,7 @@ import '../../../animation/slide_animation.dart';
 import '../../../helpers/show_answer.dart';
 import '../../../models/word_model.dart';
 import '../listen_and_type_quiz/listen_and_type_quiz_controller.dart';
-import '../main/progress_bar_quiz2.dart';
+import '../main/progress_bar_quiz.dart';
 import '../main/quiz_controller.dart';
 import '../multiple_choice/multiple_choice_controller.dart';
 
@@ -20,7 +20,7 @@ class TypeWithHintQuiz extends GetView<TypeWithHintQuizController> {
     Get.put(MultipleChoiceController());
     Get.put(ListenAndTypeQuizController());
     Get.put(TypeWithHintQuizController());
-    return ProgressBarQuiz2(
+    return ProgressBarQuiz(
       animationController: QuizController.to.animationController,
       child: Obx(
         () => Stack(alignment: Alignment.center, children: [

@@ -9,26 +9,26 @@ import '../listen_and_type/listen_and_type.dart';
 import '../listen_and_type/listen_and_type_controller.dart';
 import '../main/learning_controller.dart';
 import '../ending/ending.dart';
-import '../main/progress_bar_learning2.dart';
+import '../main/progress_bar_learning.dart';
 import 'flashcard_controller.dart';
 
 class FlashCard extends GetView<FlashCardController> {
-  FlashCard({this.index = 0, this.indexTopic = 0, Key? key}) : super(key: key);
+  FlashCard({this.index = 0, this.indexLesson = 0, Key? key}) : super(key: key);
   final animationController = FlipAnimationController();
   int index;
-  final int indexTopic;
+  final int indexLesson;
   final learnController = LearningController.to;
 
   @override
   Widget build(BuildContext context) {
     Get.put(FlashCardController());
-    final visibleTextButton = learnController.didFinishedLesson(indexTopic);
+    final visibleTextButton = learnController.didFinishedLesson(indexLesson);
     final size = MediaQuery.of(context).size;
     Get.put(LearningController());
-    controller.rxListWord.value = listLessonModel[indexTopic].lesson;
+    controller.rxListWord.value = listLessonModel[indexLesson].lesson;
     controller.rxIndex.value = index;
     return Obx(
-      () => ProgressBarLearning2(
+          () => ProgressBarLearning(
         animationController: LearningController.to.animationController,
         child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
@@ -90,11 +90,11 @@ class FlashCard extends GetView<FlashCardController> {
                           Flexible(
                             child: Container(
                               padding:
-                                  const EdgeInsets.fromLTRB(20, 10, 20, 40),
+                              const EdgeInsets.fromLTRB(20, 10, 20, 40),
                               child: showExample(
                                   example: controller.rxListWord[index].example,
                                   highlightWord:
-                                      controller.rxListWord[index].word),
+                                  controller.rxListWord[index].word),
                             ),
                           ),
                           Container(
@@ -104,7 +104,7 @@ class FlashCard extends GetView<FlashCardController> {
                               image: DecorationImage(
                                   fit: BoxFit.contain,
                                   image:
-                                      AssetImage("assets/icons/tap_icon.png")),
+                                  AssetImage("assets/icons/tap_icon.png")),
                             ),
                           ),
                         ],
@@ -175,19 +175,19 @@ class FlashCard extends GetView<FlashCardController> {
                     ElevatedButton(
                       onPressed: controller.rxFirstTap.value == true
                           ? () {
-                              if (index < controller.rxListWord.length) {
-                                Get.put(ListenAndTypeController());
-                                Get.off(
-                                    ListenAndType(
-                                        index: index, indexTopic: indexTopic),
-                                    transition: Transition.fadeIn);
-                                controller.rxFirstTap.value = false;
-                              } else {
-                                Get.off(ListenAndType(index: index),
-                                    transition: Transition.fadeIn);
-                                Get.put(ListenAndTypeController());
-                              }
-                            }
+                        if (index < controller.rxListWord.length) {
+                          Get.put(ListenAndTypeController());
+                          Get.off(
+                              ListenAndType(
+                                  index: index, indexLesson: indexLesson),
+                              transition: Transition.fadeIn);
+                          controller.rxFirstTap.value = false;
+                        } else {
+                          Get.off(ListenAndType(index: index),
+                              transition: Transition.fadeIn);
+                          Get.put(ListenAndTypeController());
+                        }
+                      }
                           : null,
                       style: ElevatedButton.styleFrom(
                           fixedSize: const Size(300, 50),
@@ -201,34 +201,34 @@ class FlashCard extends GetView<FlashCardController> {
                     const SizedBox(
                       height: 5,
                     ),
-                    visibleTextButton == false
+                    visibleTextButton == true
                         ? TextButton(
-                            onPressed: controller.rxIsDelay.value == true
-                                ? null
-                                : () {
-                                    if (index <
-                                            controller.rxListWord.length - 1 &&
-                                        learnController.rxIsEndRoundOne.value ==
-                                            false) {
-                                      learnController.skipFlashCard();
-                                      Get.offAll(
-                                          FlashCard(
-                                              index: index + 1,
-                                              indexTopic: indexTopic),
-                                          transition: Transition.fadeIn);
-                                    } else {
-                                      learnController.resetLearning();
-                                      Get.off(Ending(indexTopic: indexTopic),
-                                          transition: Transition.fadeIn);
-                                    }
-                                    //prevent spam button
-                                  },
-                            child: const Text(
-                              "Mình đã thuộc từ này!",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  decoration: TextDecoration.underline),
-                            ))
+                        onPressed: controller.rxIsDelay.value == true
+                            ? null
+                            : () {
+                          if (index <
+                              controller.rxListWord.length - 1 &&
+                              learnController.rxIsEndRoundOne.value ==
+                                  false) {
+                            learnController.skipFlashCard();
+                            Get.offAll(
+                                FlashCard(
+                                    index: index + 1,
+                                    indexLesson: indexLesson),
+                                transition: Transition.fadeIn);
+                          } else {
+                            learnController.resetLearning();
+                            Get.off(Ending(indexLesson: indexLesson),
+                                transition: Transition.fadeIn);
+                          }
+                          //prevent spam button
+                        },
+                        child: const Text(
+                          "Mình đã thuộc từ này!",
+                          style: TextStyle(
+                              fontSize: 15,
+                              decoration: TextDecoration.underline),
+                        ))
                         : const SizedBox(height: 40),
                   ],
                 ))

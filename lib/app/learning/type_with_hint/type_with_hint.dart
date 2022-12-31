@@ -10,25 +10,25 @@ import '../flashcard/flashcard_controller.dart';
 import '../listen_and_type/listen_and_type_controller.dart';
 import '../main/learning_controller.dart';
 import '../ending/ending.dart';
-import '../main/progress_bar_learning2.dart';
+import '../main/progress_bar_learning.dart';
 
 class TypeWithHint extends GetView<TypeWithHintController> {
   TypeWithHint(
       {this.listenGameResult = false,
       this.index = 0,
-      this.indexTopic = 0,
+      this.indexLesson = 0,
       Key? key})
       : super(key: key);
 
   final LearningController learnController = LearningController.to;
   final bool listenGameResult;
-  final int indexTopic;
+  final int indexLesson;
   int index;
 
   @override
   Widget build(BuildContext context) {
-    controller.rxListWord.value = listLessonModel[indexTopic].lesson;
-    return ProgressBarLearning2(
+    controller.rxListWord.value = listLessonModel[indexLesson].lesson;
+    return ProgressBarLearning(
       animationController: LearningController.to.animationController,
       child: Obx(
         () => Stack(alignment: Alignment.center, children: [
@@ -119,29 +119,25 @@ class TypeWithHint extends GetView<TypeWithHintController> {
                               learnController.rxIsEndRoundOne.value == false) {
                             Get.offAll(
                                 FlashCard(
-                                    index: index + 1, indexTopic: indexTopic),
+                                    index: index + 1, indexLesson: indexLesson),
                                 transition: Transition.fadeIn);
                             Get.put(FlashCardController());
                           } else {
-                            //reset ListWordRoundTwo
-                            if (index + 1 >=
-                                learnController.rxListWordRoundTwo.length) {
-                              index = 0;
-                            } else {
-                              index += 1;
-                            }
                             // run round two
                             if (learnController.rxListWordRoundTwo.isNotEmpty) {
+                              int index = randomIndex(
+                                  max: learnController
+                                      .rxListWordRoundTwo.length);
                               Get.offAll(
                                   ListenAndType(
                                       index: learnController
                                           .rxListWordRoundTwo[index],
-                                      indexTopic: indexTopic),
+                                      indexLesson: indexLesson),
                                   transition: Transition.fadeIn);
                               Get.put(ListenAndTypeController());
                             } else {
                               learnController.resetLearning();
-                              Get.offAll(Ending(indexTopic: indexTopic),
+                              Get.offAll(Ending(indexLesson: indexLesson),
                                   transition: Transition.fadeIn);
                             }
                           }

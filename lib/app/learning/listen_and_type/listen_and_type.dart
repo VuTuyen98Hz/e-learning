@@ -2,27 +2,24 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_japanese/app/learning/main/learning_controller.dart';
-import 'package:learn_japanese/app/learning/type_with_hint/type_with_hint.dart';
 import 'package:learn_japanese/helpers/show_answer.dart';
 import '../../../models/lesson_model.dart';
-import '../ending/ending.dart';
-import '../main/progress_bar_learning2.dart';
-import '../type_with_hint/type_with_hint_controller.dart';
+import '../main/progress_bar_learning.dart';
 import 'listen_and_type_controller.dart';
 
 class ListenAndType extends GetView<ListenAndTypeController> {
-  ListenAndType({this.index = 0, this.indexTopic = 0, Key? key})
+  ListenAndType({this.index = 0, this.indexLesson = 0, Key? key})
       : super(key: key);
-  final LearningController learnController = LearningController.to;
-  final int indexTopic;
+
+  final int indexLesson;
   int index;
 
   @override
   Widget build(BuildContext context) {
     Get.put(ListenAndTypeController());
-    controller.rxListWord.value = listLessonModel[indexTopic].lesson;
+    controller.rxListWord.value = listLessonModel[indexLesson].lesson;
     controller.rxIndex.value = index;
-    return ProgressBarLearning2(
+    return ProgressBarLearning(
       animationController: LearningController.to.animationController,
       child: Obx(
         () => Stack(alignment: Alignment.center, children: [
@@ -55,18 +52,7 @@ class ListenAndType extends GetView<ListenAndTypeController> {
                     enabled:
                         controller.rxChangeButton.value == false ? true : false,
                     onChanged: (value) {
-                      if (value.isNotEmpty) {
-                        controller.rxCheckButton.value = true;
-                        // delete trim()
-                        if (value.toLowerCase().trim() ==
-                            controller.rxListWord[index].word) {
-                          controller.rxListenResult.value = true;
-                        } else {
-                          controller.rxListenResult.value = false;
-                        }
-                      } else {
-                        controller.rxCheckButton.value = false;
-                      }
+                      controller.onChangedTextFormField(value, index);
                     },
                     controller: controller.inputController,
                     decoration: const InputDecoration(
@@ -96,20 +82,7 @@ class ListenAndType extends GetView<ListenAndTypeController> {
                     controller.rxChangeButton.value == false
                         ? ElevatedButton(
                             onPressed: controller.rxCheckButton.value == true
-                                ? () {
-                                    controller.rxIsCheckAnswerActive.value =
-                                        true;
-                                    controller.rxChangeButton.value = true;
-                                    FocusManager.instance.primaryFocus
-                                        ?.unfocus();
-                                    // run round two
-                                    if (learnController.rxIsEndRoundOne.value ==
-                                        true) {
-                                      learnController.checkResulRoundTwo(
-                                          controller.rxListenResult.value,
-                                          index);
-                                    }
-                                  }
+                                ? () => controller.onCheck(index)
                                 : null,
                             style: ElevatedButton.styleFrom(
                                 fixedSize: const Size(300, 50),
@@ -122,41 +95,7 @@ class ListenAndType extends GetView<ListenAndTypeController> {
                           )
                         : ElevatedButton(
                             onPressed: () {
-                              //run round one
-                              if (index < controller.rxListWord.length &&
-                                  learnController.rxIsEndRoundOne.value ==
-                                      false) {
-                                Get.offAll(TypeWithHint(
-                                    listenGameResult:
-                                        controller.rxListenResult.value,
-                                    index: index,
-                                    indexTopic: indexTopic));
-                                Get.put(TypeWithHintController());
-                              } else {
-                                //reset ListWordRoundTwo
-                                if (index + 1 >=
-                                    learnController.rxListWordRoundTwo.length) {
-                                  index = 0;
-                                } else {
-                                  index += 1;
-                                }
-                                // run round two
-                                if (learnController
-                                    .rxListWordRoundTwo.isNotEmpty) {
-                                  Get.offAll(
-                                      TypeWithHint(
-                                        index: learnController
-                                            .rxListWordRoundTwo[index],
-                                        indexTopic: indexTopic,
-                                      ),
-                                      transition: Transition.fadeIn);
-                                  Get.put(TypeWithHintController());
-                                } else {
-                                  learnController.resetLearning();
-                                  Get.offAll(Ending(indexTopic: indexTopic),
-                                      transition: Transition.fadeIn);
-                                }
-                              }
+                              controller.onContinue(index, indexLesson);
                             },
                             style: ElevatedButton.styleFrom(
                                 fixedSize: const Size(300, 50),

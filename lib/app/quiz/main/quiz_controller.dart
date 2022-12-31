@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:collection/collection.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -92,6 +94,13 @@ class QuizController extends GetxController
     }
   }
 
+  void resetQuiz() {
+    listFalseWord = [];
+    listTrueWord = [];
+    rxProgressBarPoint = RxInt(0);
+    animationController.reset();
+  }
+
   //Control Progressbar
   void plusProgressbarPoint(WordModel quizWord, bool result) {
     // True at the 1st times appear
@@ -115,13 +124,6 @@ class QuizController extends GetxController
 
   double calculateProgressbar() {
     return (rxProgressBarPoint.value / totalProgressBarPoint);
-  }
-
-  void resetQuiz() {
-    listFalseWord = [];
-    listTrueWord = [];
-    rxProgressBarPoint = RxInt(0);
-    animationController.reset();
   }
 
   // Control BarChart

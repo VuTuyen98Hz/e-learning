@@ -9,14 +9,14 @@ class LessonModel {
 }
 
 class LessonStatus {
-  bool isFinishLesson;
+  bool isAllChecked;
   List<bool> listWordStatus;
 
-  LessonStatus({this.isFinishLesson = false, this.listWordStatus=const []});
+  LessonStatus({this.isAllChecked = false, this.listWordStatus=const []});
 
   factory LessonStatus.fromMap(Map<String, dynamic> data) {
     return LessonStatus(
-      isFinishLesson: (data['isFinishLesson']as bool),
+      isAllChecked: (data['isAllChecked']as bool),
       listWordStatus: ((data['listWordStatus'] ??[]) as List)
               .map((item) => item as bool)
               .toList(),
@@ -25,7 +25,7 @@ class LessonStatus {
 
   Map<String, dynamic> toJson() {
     return {
-      'isFinishLesson': isFinishLesson,
+      'isAllChecked': isAllChecked,
       'listWordStatus': listWordStatus,
     };
   }

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_japanese/app/quiz/notebook/selected_word2.dart';
 import '../../authentication/auth_controller.dart';
 import 'selected_word.dart';
 import '../../home/home.dart';
-import '../../../models/topics_model.dart';
+import '../../../models/lesson_topic_model.dart';
 
 
 class Notebook extends StatelessWidget {
@@ -12,7 +13,7 @@ class Notebook extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: listTopics.length,
+      length: listLessonTopics.length,
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
@@ -34,7 +35,7 @@ class Notebook extends StatelessWidget {
         ),
         body: TabBarView(
           children: <Widget>[
-            for (int i = 0; i < 10; i++) SelectedWord(indexTopic: i)
+            for (int i = 0; i < 10; i++) SelectedWord2(indexLesson: i)
 
           ],
         ),

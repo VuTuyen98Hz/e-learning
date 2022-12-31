@@ -2,7 +2,6 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_japanese/app/home/no_internet.dart';
-import '../../../animation/bouncing_animation.dart';
 import '../../authentication/profile_screen.dart';
 import '../../home/home_controller.dart';
 import '../../home/test_screen.dart';
@@ -16,6 +15,7 @@ class QuizScreen extends GetView<QuizController> {
   Widget build(BuildContext context) {
     Get.put(QuizController());
     final homeController = Get.put(HomeController());
+    final size = MediaQuery.of(context).size;
     controller.initQuiz();
     return Obx(
       () => Scaffold(
@@ -39,15 +39,13 @@ class QuizScreen extends GetView<QuizController> {
                     const SizedBox(height: 20),
                     Container(
                         padding: const EdgeInsets.fromLTRB(10, 15, 20, 20),
-                        width: 350,
-                        height: 260,
+                        width: size.width * 0.85,
+                        height: size.height * 0.35,
                         decoration: BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10)),
                         child: controller.user.listValueBarChart.isNotEmpty
                             ? BarChart(
-                                swapAnimationDuration:
-                                    const Duration(milliseconds: 5000),
                                 BarChartData(
                                   alignment: BarChartAlignment.spaceAround,
                                   maxY: 10,
@@ -60,7 +58,7 @@ class QuizScreen extends GetView<QuizController> {
                                   gridData: FlGridData(show: false),
                                   titlesData: FlTitlesData(
                                     topTitles:
-                                        AxisTitles(sideTitles: topTitles()),
+                                        AxisTitles(sideTitles: _topTitles()),
                                     bottomTitles:
                                         AxisTitles(sideTitles: _bottomTitles),
                                     leftTitles: AxisTitles(
@@ -111,25 +109,25 @@ class QuizScreen extends GetView<QuizController> {
                               fontWeight: FontWeight.w500,
                               fontSize: 18)),
                     ]),
-                    const SizedBox(height: 24),
                     ElevatedButton(
                       onPressed: () {
-                        Get.to(const TestScreen());
+                        // Get.to(TestScreen());
                       },
                       style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(200, 50),
+                          fixedSize: const Size(220, 55),
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20))),
+                              borderRadius: BorderRadius.circular(25))),
                       child: const Text('Test Screen',
                           style: TextStyle(fontSize: 20)),
                     ),
+                    const SizedBox(height: 24),
                   ],
                 )
               : noInternet()),
     );
   }
 
-  SideTitles topTitles() {
+  SideTitles _topTitles() {
     return SideTitles(
       showTitles: true,
       getTitlesWidget: (value, meta) {

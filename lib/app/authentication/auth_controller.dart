@@ -327,11 +327,11 @@ class AuthController extends GetxController {
     updateUserFireStore();
   }
 
-  void updateFinishLesson(int indexTopic) {
+  void updateFinishLesson(int indexLesson) {
     final fsUser = rxFireStoreUser.value!;
-    fsUser.listFinishedLesson.add(indexTopic);
-    fsUser.listLessonStatus[indexTopic].isFinishLesson = true;
-    fsUser.listLessonStatus[indexTopic].listWordStatus = List.filled(10, false);
+    fsUser.listFinishedLesson.add(indexLesson);
+    fsUser.listLessonStatus[indexLesson].isAllChecked = false;
+    fsUser.listLessonStatus[indexLesson].listWordStatus = List.filled(10, false);
     updateUserFireStore();
   }
 }

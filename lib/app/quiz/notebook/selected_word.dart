@@ -3,9 +3,9 @@ import 'package:learn_japanese/models/models.dart';
 import '../../authentication/auth_controller.dart';
 
 class SelectedWord extends StatefulWidget {
-  const SelectedWord({this.indexTopic = 0, super.key});
+  const SelectedWord({this.indexLesson = 0, super.key});
 
-  final int indexTopic;
+  final int indexLesson;
 
   @override
   State<SelectedWord> createState() => _SelectedWordState();
@@ -21,7 +21,7 @@ class _SelectedWordState extends State<SelectedWord> {
     final user = AuthController.to.rxFireStoreUser.value!;
     final size = MediaQuery.of(context).size;
     initSelectedWord(user);
-    return listFinishedLesson.contains(widget.indexTopic)
+    return listFinishedLesson.contains(widget.indexLesson)
         ? Container(
             padding: const EdgeInsets.fromLTRB(15, 30, 20, 0),
             height: size.height*0.65,
@@ -74,8 +74,8 @@ class _SelectedWordState extends State<SelectedWord> {
 
   void initSelectedWord(user) {
     listFinishedLesson = user.listFinishedLesson;
-    listWord = listLessonModel[widget.indexTopic].lesson;
-    listCheckedWord = user.listLessonStatus[widget.indexTopic].listWordStatus;
+    listWord = listLessonModel[widget.indexLesson].lesson;
+    listCheckedWord = user.listLessonStatus[widget.indexLesson].listWordStatus;
   }
 
   void manageSelectedWord(user, int index) {

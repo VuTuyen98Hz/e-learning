@@ -49,9 +49,9 @@ class LearningController extends GetxController
 
 
 
-  bool didFinishedLesson(int indexTopic) {
+  bool didFinishedLesson(int indexLesson) {
     final fireStoreUser = AuthController.to.rxFireStoreUser.value!;
-    if (fireStoreUser.listFinishedLesson.contains(indexTopic)) {
+    if (fireStoreUser.listFinishedLesson.contains(indexLesson)) {
       return true;
     } else {
       return false;
