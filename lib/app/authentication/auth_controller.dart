@@ -55,6 +55,10 @@ class AuthController extends GetxController {
       Get.offAll(SignInScreen());
     } else {
       Get.to(const LoadingDataScreen(), transition: Transition.fadeIn);
+      if(rxFireStoreUser.value==null)
+      {
+        Get.to(const LoadingDataScreen(), transition: Transition.fadeIn);
+      }
       Timer(const Duration(milliseconds: 1700), () {
         Get.put(HomeController());
         Get.offAll(const HomeUI(), transition: Transition.fadeIn);

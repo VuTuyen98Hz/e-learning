@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../animation/flip_animation.dart';
 import '../../../animation/slide_animation.dart';
+import '../../../helpers/random_index.dart';
 import '../../../helpers/show_example.dart';
 import '../../../models/lesson_model.dart';
 import '../listen_and_type/listen_and_type.dart';
@@ -28,7 +29,7 @@ class FlashCard extends GetView<FlashCardController> {
     controller.rxListWord.value = listLessonModel[indexLesson].lesson;
     controller.rxIndex.value = index;
     return Obx(
-          () => ProgressBarLearning(
+      () => ProgressBarLearning(
         animationController: LearningController.to.animationController,
         child: Center(
           child: Column(mainAxisAlignment: MainAxisAlignment.end, children: [
@@ -90,11 +91,11 @@ class FlashCard extends GetView<FlashCardController> {
                           Flexible(
                             child: Container(
                               padding:
-                              const EdgeInsets.fromLTRB(20, 10, 20, 40),
+                                  const EdgeInsets.fromLTRB(20, 10, 20, 40),
                               child: showExample(
                                   example: controller.rxListWord[index].example,
                                   highlightWord:
-                                  controller.rxListWord[index].word),
+                                      controller.rxListWord[index].word),
                             ),
                           ),
                           Container(
@@ -104,7 +105,7 @@ class FlashCard extends GetView<FlashCardController> {
                               image: DecorationImage(
                                   fit: BoxFit.contain,
                                   image:
-                                  AssetImage("assets/icons/tap_icon.png")),
+                                      AssetImage("assets/icons/tap_icon.png")),
                             ),
                           ),
                         ],
@@ -175,19 +176,19 @@ class FlashCard extends GetView<FlashCardController> {
                     ElevatedButton(
                       onPressed: controller.rxFirstTap.value == true
                           ? () {
-                        if (index < controller.rxListWord.length) {
-                          Get.put(ListenAndTypeController());
-                          Get.off(
-                              ListenAndType(
-                                  index: index, indexLesson: indexLesson),
-                              transition: Transition.fadeIn);
-                          controller.rxFirstTap.value = false;
-                        } else {
-                          Get.off(ListenAndType(index: index),
-                              transition: Transition.fadeIn);
-                          Get.put(ListenAndTypeController());
-                        }
-                      }
+                              if (index < controller.rxListWord.length) {
+                                Get.put(ListenAndTypeController());
+                                Get.off(
+                                    ListenAndType(
+                                        index: index, indexLesson: indexLesson),
+                                    transition: Transition.fadeIn);
+                                controller.rxFirstTap.value = false;
+                              } else {
+                                Get.off(ListenAndType(index: index),
+                                    transition: Transition.fadeIn);
+                                Get.put(ListenAndTypeController());
+                              }
+                            }
                           : null,
                       style: ElevatedButton.styleFrom(
                           fixedSize: const Size(300, 50),
@@ -203,32 +204,46 @@ class FlashCard extends GetView<FlashCardController> {
                     ),
                     visibleTextButton == true
                         ? TextButton(
-                        onPressed: controller.rxIsDelay.value == true
-                            ? null
-                            : () {
-                          if (index <
-                              controller.rxListWord.length - 1 &&
-                              learnController.rxIsEndRoundOne.value ==
-                                  false) {
-                            learnController.skipFlashCard();
-                            Get.offAll(
-                                FlashCard(
-                                    index: index + 1,
-                                    indexLesson: indexLesson),
-                                transition: Transition.fadeIn);
-                          } else {
-                            learnController.resetLearning();
-                            Get.off(Ending(indexLesson: indexLesson),
-                                transition: Transition.fadeIn);
-                          }
-                          //prevent spam button
-                        },
-                        child: const Text(
-                          "Mình đã thuộc từ này!",
-                          style: TextStyle(
-                              fontSize: 15,
-                              decoration: TextDecoration.underline),
-                        ))
+                            onPressed: controller.rxIsDelay.value == true
+                                ? null
+                                : () {
+                                    if (index <
+                                            controller.rxListWord.length - 1 &&
+                                        learnController.rxIsEndRoundOne.value ==
+                                            false) {
+                                      learnController.skipFlashCard();
+                                      Get.offAll(
+                                          FlashCard(
+                                              index: index + 1,
+                                              indexLesson: indexLesson),
+                                          transition: Transition.fadeIn);
+                                    } else {
+                                      if (learnController
+                                          .rxListWordRoundTwo.isNotEmpty) {
+                                        int index = randomIndex(
+                                            max: learnController
+                                                .rxListWordRoundTwo.length);
+                                        Get.offAll(
+                                            ListenAndType(
+                                                index: learnController
+                                                    .rxListWordRoundTwo[index],
+                                                indexLesson: indexLesson),
+                                            transition: Transition.fadeIn);
+                                        Get.put(ListenAndTypeController());
+                                      } else {
+                                        learnController.resetLearning();
+                                        Get.off(
+                                            Ending(indexLesson: indexLesson),
+                                            transition: Transition.fadeIn);
+                                      }
+                                    }
+                                  },
+                            child: const Text(
+                              "Mình đã thuộc từ này!",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  decoration: TextDecoration.underline),
+                            ))
                         : const SizedBox(height: 40),
                   ],
                 ))

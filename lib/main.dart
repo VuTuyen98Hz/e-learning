@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
     return Loading(
         child: GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          // initialRoute: "/",
+          initialRoute: "/",
           getPages: AppRoutes.routes,
         ),
       );

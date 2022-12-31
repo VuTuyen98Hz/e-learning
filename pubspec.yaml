@@ -73,8 +73,27 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - assets/images/lesson/animal/
+    - assets/images/lesson/body_part/
+    - assets/images/lesson/entertainment_venues/
+    - assets/images/lesson/fashion/
+    - assets/images/lesson/food/
+    - assets/images/lesson/house/
+    - assets/images/lesson/jobs/
+    - assets/images/lesson/nature_landscape/
+    - assets/images/lesson/school/
+    - assets/images/lesson/vehicle/
     - assets/icons/
+    - assets/audio/lesson/animal/
+    - assets/audio/lesson/body_part/
+    - assets/audio/lesson/entertainment_venues/
+    - assets/audio/lesson/fashion/
+    - assets/audio/lesson/food/
+    - assets/audio/lesson/house/
+    - assets/audio/lesson/jobs/
+    - assets/audio/lesson/nature_landscape/
     - assets/audio/lesson/school/
+    - assets/audio/lesson/vehicle/
     - assets/audio/sound_effect/
 
 
