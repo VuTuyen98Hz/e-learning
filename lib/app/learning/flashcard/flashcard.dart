@@ -81,9 +81,9 @@ class FlashCard extends GetView<FlashCardController> {
                                     borderRadius: BorderRadius.circular(30),
                                     image: DecorationImage(
                                       fit: BoxFit.fitHeight,
-                                      alignment: FractionalOffset.topCenter,
-                                      image: NetworkImage(controller
-                                          .rxListWord[index].imageUrl),
+                                      alignment: FractionalOffset.center,
+                                      image: AssetImage(
+                                          'assets/${controller.rxListWord[index].imageAsset}'),
                                     ),
                                   ),
                                 )),
@@ -202,7 +202,7 @@ class FlashCard extends GetView<FlashCardController> {
                     const SizedBox(
                       height: 5,
                     ),
-                    visibleTextButton == true
+                    visibleTextButton == false
                         ? TextButton(
                             onPressed: controller.rxIsDelay.value == true
                                 ? null

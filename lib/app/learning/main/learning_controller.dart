@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_japanese/app/authentication/auth_controller.dart';
-
-import '../../../models/word_model.dart';
+import 'package:learn_japanese/models/models.dart';
 
 class LearningController extends GetxController
     with GetSingleTickerProviderStateMixin {

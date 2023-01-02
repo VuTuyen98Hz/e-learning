@@ -20,34 +20,34 @@ class ProfileScreen extends StatelessWidget {
         ),
         body: Center(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              const SizedBox(height: 120),
-              homeController.rxConnectionType.value != 0 ?
-              Avatar(controller.rxFireStoreUser.value!.photoUrl):
-              const Avatar(""),
+              homeController.rxConnectionType.value != 0
+                  ? Avatar(controller.rxFireStoreUser.value!.photoUrl)
+                  : const Avatar(""),
+              const SizedBox(width: 5),
               Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  const SizedBox(height: 20),
-                  Text(
-                      'User: ${controller.rxFireStoreUser.value!.name}',
-                      style: const TextStyle(fontSize: 16)),
                   const SizedBox(height: 10),
-                  Text(
-                      'Email: ${controller.rxFireStoreUser.value!.email}',
-                      style: const TextStyle(fontSize: 16)),
-                  const SizedBox(height: 40),
-                  ElevatedButton(
-                    onPressed: () {
-                      dialogSignOut(context);
-                    },
-                    style: ElevatedButton.styleFrom(
-                        fixedSize: const Size(200, 45),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20))),
-                    child: const Text('Thoát tài khoản'),
-                  ),
+                  Text(controller.rxFireStoreUser.value!.name,
+                      style: const TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.w600)),
+                  const SizedBox(height: 10),
+                  Text('Email: ${controller.rxFireStoreUser.value!.email}',
+                      style: const TextStyle(
+                          fontSize: 14, fontWeight: FontWeight.w600)),
                 ],
+              ),
+              const SizedBox(height: 40),
+              ElevatedButton(
+                onPressed: () {
+                  dialogSignOut(context);
+                },
+                style: ElevatedButton.styleFrom(
+                    fixedSize: const Size(200, 45),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20))),
+                child: const Text('Thoát tài khoản'),
               ),
             ],
           ),

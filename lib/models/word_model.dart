@@ -1,6 +1,6 @@
 class WordModel {
   String word;
-  String imageUrl;
+  String imageAsset;
   String audioAsset;
   String phonetic;
   String vietnameseMeaning;
@@ -9,7 +9,7 @@ class WordModel {
 
   WordModel(
       {this.word = '',
-      this.imageUrl = '',
+      this.imageAsset = '',
       this.audioAsset = '',
       this.phonetic = '',
       this.vietnameseMeaning = '',
@@ -19,7 +19,7 @@ class WordModel {
   factory WordModel.fromMap(Map data) {
     return WordModel(
       word: data['word'] ?? '',
-      imageUrl: data['imageUrl'] ?? '',
+      imageAsset: data['imageAsset'] ?? '',
       audioAsset: data['audioAsset'] ?? '',
       phonetic: data['phonetic'] ?? '',
       vietnameseMeaning: data['vietnameseMeaning'] ?? '',
@@ -30,7 +30,7 @@ class WordModel {
 
   Map<String, dynamic> toJson() => {
         'word': word,
-        'imageUrl': imageUrl,
+        'imageUrl': imageAsset,
         'audioAsset': audioAsset,
         'phonetic': phonetic,
         'vietnameseMeaning': vietnameseMeaning,

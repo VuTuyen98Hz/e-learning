@@ -3,8 +3,7 @@ import 'package:learn_japanese/models/word_model.dart';
 final List<WordModel> schoolWords = [
   WordModel(
       word: 'student',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-woman-using-smartphone-street_296537-5304.jpg?w=740',
+      imageAsset: 'images/lesson/school/student.jpg',
       audioAsset: 'audio/lesson/school/student.mp3',
       phonetic: '/ˈskuːl.jɑːrd/',
       vietnameseMeaning: "Học sinh, sinh viên",
@@ -13,8 +12,7 @@ final List<WordModel> schoolWords = [
           'Cô là học sinh giỏi nhất trường và được mọi người yêu mến'),
   WordModel(
       word: 'teacher',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-teacher-woman-teaching-holding-book-video-conference-with-student-looking-camera-female-teacher-training-mathematics-classroom-blackboard-from-online-course_208349-1803.jpg?w=740',
+      imageAsset: 'images/lesson/school/teacher.jpg',
       audioAsset: 'audio/lesson/school/teacher.mp3',
       phonetic: '/ˈtiː.tʃɚ/',
       vietnameseMeaning: "Giáo viên",
@@ -24,8 +22,7 @@ final List<WordModel> schoolWords = [
           'Cô giáo tuy có vẻ nghiêm khắc nhưng lại rất yêu thương học sinh'),
   WordModel(
       word: 'lesson',
-      imageUrl:
-          'https://blog.planbook.com/wp-content/uploads/2017/04/high-school-1072x715.jpg',
+      imageAsset: 'images/lesson/school/lesson.jpg',
       audioAsset: 'audio/lesson/school/lesson.mp3',
       phonetic: '/ˈles.ən/',
       vietnameseMeaning: "Tiết học, bài học",
@@ -34,8 +31,7 @@ final List<WordModel> schoolWords = [
           'Những bài học của thầy Johnson luôn khiến chúng tôi thích thú'),
   WordModel(
       word: 'library',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/stack-books-library-desk_23-2147845946.jpg?w=740',
+      imageAsset: 'images/lesson/school/library.jpg',
       audioAsset: 'audio/lesson/school/library.mp3',
       phonetic: ' /ˈlaɪ.brer.i/',
       vietnameseMeaning: "Thư viện",
@@ -44,21 +40,19 @@ final List<WordModel> schoolWords = [
           'Thư viện trường tôi là thư viện lớn nhất trong khu vực'),
   WordModel(
       word: 'principal',
-      imageUrl:
-          'https://www.thoughtco.com/thmb/2AcTcEVKWfinOU7JhOfBcmkhK8k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/480811293-56a939853df78cf772a4ecb8.jpg',
+      imageAsset: 'images/lesson/school/principal.jpg',
       audioAsset: 'audio/lesson/school/principal.mp3',
       phonetic: '/ˈprɪn.sə.pəl/',
       vietnameseMeaning: "Thầy hiệu trưởng",
       example:
-          'for principal Michael, his educational journey has been a long but meaningful one',
+          'for principal Michael, educational journey has been a long but meaningful one',
       translateExample:
-          'Đối với thầy hiệu trưởng Michael, hành trình giáo dục của anh ấy là một chặng đường dài nhưng đầy ý nghĩa'),
+          'Đối với thầy hiệu trưởng Michael, hành trình giáo dục là một chặng đường dài nhưng đầy ý nghĩa'),
   WordModel(
       word: 'exam',
-      imageUrl:
-          'https://img.freepik.com/free-photo/asian-student-woman-reads-books-library-university_7861-3535.jpg?w=900&t=st=1670744252~exp=1670744852~hmac=633e580976d158e1acabec693777702df788b99e13796e15618514eadeeacdf5',
+      imageAsset: 'images/lesson/school/exam.jpg',
       audioAsset: 'audio/lesson/school/exam.mp3',
-      phonetic: '/ɪɡˌzæm.əˈneɪ.ʃən/',
+      phonetic: '/ɪɡˈzæm/',
       vietnameseMeaning: "Thi cử",
       example:
           'She always has to stay up late to prepare for the upcoming exam',
@@ -66,8 +60,7 @@ final List<WordModel> schoolWords = [
           'Trước mỗi kỳ thi, cô thường thức rất khuya để học bài'),
   WordModel(
       word: 'classroom',
-      imageUrl:
-          'https://img.freepik.com/free-photo/students-knowing-right-answer_329181-14271.jpg?w=740&t=st=1670745383~exp=1670745983~hmac=88f33329e258a7f6bb2a1cf1ed22cce01b914626828182864e5d5e20dfcb2036',
+      imageAsset: 'images/lesson/school/classroom.jpg',
       audioAsset: 'audio/lesson/school/classroom.mp3',
       phonetic: '/ˈklæs.rʊm/',
       vietnameseMeaning: "Lớp học",
@@ -75,8 +68,7 @@ final List<WordModel> schoolWords = [
       translateExample: 'Học sinh đang học trong lớp.'),
   WordModel(
       word: 'canteen',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/school-canteen-with-different-races-pupils-protective-masks-flat-illustration_318844-70.jpg?w=740',
+      imageAsset: 'images/lesson/school/canteen.jpg',
       audioAsset: 'audio/lesson/school/canteen.mp3',
       phonetic: '/kænˈtiːn/',
       vietnameseMeaning: "Căng tin",
@@ -84,8 +76,7 @@ final List<WordModel> schoolWords = [
       translateExample: 'Mẹ cô làm trợ lý trong căng tin trường học.'),
   WordModel(
       word: 'gymnasium',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/cartoon-school-court-gym-with-basketball-basket-football-goal-gymnastic-equipment-comfortable-playground-playing-games-training-vector-gymnasium-sport-hall-workout_176516-3686.jpg?w=900',
+      imageAsset: 'images/lesson/school/gymnasium.jpg',
       audioAsset: 'audio/lesson/school/gymnasium.mp3',
       phonetic: '/dʒɪmˈneɪ.zi.əm/',
       vietnameseMeaning: "Phòng thể chất",
@@ -94,8 +85,7 @@ final List<WordModel> schoolWords = [
           'Các lớp khiêu vũ được tổ chức trong phòng tập thể dục của trường trung học.'),
   WordModel(
       word: 'schoolyard',
-      imageUrl:
-          'https://img.freepik.com/free-vector/active-kids-playing-outdoor-scene_1308-69487.jpg?w=900&t=st=1672150666~exp=1672151266~hmac=6833b2294eb6629cfe3de40dcf332871b95dcc63c8b69c3972e5062f5c17e26f',
+      imageAsset: 'images/lesson/school/schoolyard.jpg',
       audioAsset: 'audio/lesson/school/schoolyard.mp3',
       phonetic: '/ˈskuːl.jɑːrd/',
       vietnameseMeaning: "Sân Trường",
@@ -106,8 +96,7 @@ final List<WordModel> schoolWords = [
 final List<WordModel> natureLandscapeWords = [
   WordModel(
       word: 'lake',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-woman-using-smartphone-street_296537-5304.jpg?w=740',
+      imageAsset: 'images/lesson/nature_landscape/lake.jpg',
       audioAsset: 'audio/lesson/nature_landscape/lake.mp3',
       phonetic: '/leɪk/',
       vietnameseMeaning: "Hồ nước",
@@ -116,8 +105,7 @@ final List<WordModel> natureLandscapeWords = [
           'Chúng tôi thường chèo thuyền trên hồ trong kỳ nghỉ hè'),
   WordModel(
       word: 'beach',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-teacher-woman-teaching-holding-book-video-conference-with-student-looking-camera-female-teacher-training-mathematics-classroom-blackboard-from-online-course_208349-1803.jpg?w=740',
+      imageAsset: 'images/lesson/nature_landscape/beach.jpg',
       audioAsset: 'audio/lesson/nature_landscape/beach.mp3',
       phonetic: '/biːtʃ/',
       vietnameseMeaning: "Bãi biển",
@@ -125,8 +113,7 @@ final List<WordModel> natureLandscapeWords = [
       translateExample: 'Khu cắm trại ở một vị trí đẹp bên cạnh bãi biển.'),
   WordModel(
       word: 'savanna',
-      imageUrl:
-          'https://blog.planbook.com/wp-content/uploads/2017/04/high-school-1072x715.jpg',
+      imageAsset: 'images/lesson/nature_landscape/savanna.jpg',
       audioAsset: 'audio/lesson/nature_landscape/savanna.mp3',
       phonetic: '/səˈvæn.ə/',
       vietnameseMeaning: "Xavan",
@@ -135,8 +122,7 @@ final List<WordModel> natureLandscapeWords = [
           'Vào ngày đầu tiên của chuyến đi, chúng tôi đã đến thăm thảo nguyên xavan'),
   WordModel(
       word: 'cliff',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/stack-books-library-desk_23-2147845946.jpg?w=740',
+      imageAsset: 'images/lesson/nature_landscape/cliff.jpg',
       audioAsset: 'audio/lesson/nature_landscape/cliff.mp3',
       phonetic: '/klɪf/',
       vietnameseMeaning: "Vách đá",
@@ -145,8 +131,7 @@ final List<WordModel> natureLandscapeWords = [
       translateExample: 'Cát mang theo gió đã làm rỗng chân vách đá.'),
   WordModel(
       word: 'river',
-      imageUrl:
-          'https://www.thoughtco.com/thmb/2AcTcEVKWfinOU7JhOfBcmkhK8k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/480811293-56a939853df78cf772a4ecb8.jpg',
+      imageAsset: 'images/lesson/nature_landscape/river.jpg',
       audioAsset: 'audio/lesson/nature_landscape/river.mp3',
       phonetic: '/ˈrɪv.ɚ/',
       vietnameseMeaning: "Dòng sông",
@@ -155,8 +140,7 @@ final List<WordModel> natureLandscapeWords = [
           'Chúng tôi chèo chầm chậm xuôi dòng sông trong khi ngắm cảnh'),
   WordModel(
       word: 'desert',
-      imageUrl:
-          'https://img.freepik.com/free-photo/asian-student-woman-reads-books-library-university_7861-3535.jpg?w=900&t=st=1670744252~exp=1670744852~hmac=633e580976d158e1acabec693777702df788b99e13796e15618514eadeeacdf5',
+      imageAsset: 'images/lesson/nature_landscape/desert.jpg',
       audioAsset: 'audio/lesson/nature_landscape/desert.mp3',
       phonetic: '/ˈdez.ɚt/',
       vietnameseMeaning: "Sa mạc",
@@ -165,8 +149,7 @@ final List<WordModel> natureLandscapeWords = [
           'Chúng tôi phải băng qua một vùng rộng lớn là sa mạc khô cằn, không có gì đặc sắc.'),
   WordModel(
       word: 'highland',
-      imageUrl:
-          'https://img.freepik.com/free-photo/students-knowing-right-answer_329181-14271.jpg?w=740&t=st=1670745383~exp=1670745983~hmac=88f33329e258a7f6bb2a1cf1ed22cce01b914626828182864e5d5e20dfcb2036',
+      imageAsset: 'images/lesson/nature_landscape/highland.jpg',
       audioAsset: 'audio/lesson/nature_landscape/highland.mp3',
       phonetic: ' /ˈhaɪ.lənd/',
       vietnameseMeaning: "Cao nguyên",
@@ -175,8 +158,7 @@ final List<WordModel> natureLandscapeWords = [
           'Phần lớn miền trung và miền đông Brazil là cao nguyên cao nguyên.'),
   WordModel(
       word: 'cave',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/school-canteen-with-different-races-pupils-protective-masks-flat-illustration_318844-70.jpg?w=740',
+      imageAsset: 'images/lesson/nature_landscape/cave.jpg',
       audioAsset: 'audio/lesson/nature_landscape/cave.mp3',
       phonetic: '/keɪv/',
       vietnameseMeaning: "Hang động",
@@ -184,8 +166,7 @@ final List<WordModel> natureLandscapeWords = [
       translateExample: 'Cô ấy nắm tay tôi và dẫn tôi vào trong hang.'),
   WordModel(
       word: 'mountain',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/cartoon-school-court-gym-with-basketball-basket-football-goal-gymnastic-equipment-comfortable-playground-playing-games-training-vector-gymnasium-sport-hall-workout_176516-3686.jpg?w=900',
+      imageAsset: 'images/lesson/nature_landscape/mountain.jpg',
       audioAsset: 'audio/lesson/nature_landscape/mountain.mp3',
       phonetic: '/ˈmaʊn.tən/',
       vietnameseMeaning: "Ngọn núi",
@@ -193,8 +174,7 @@ final List<WordModel> natureLandscapeWords = [
       translateExample: 'Chúng tôi sẽ đi tới ngọn núi cho kỳ nghỉ của mình'),
   WordModel(
       word: 'peninsula',
-      imageUrl:
-          'https://dictionary.cambridge.org/images/full/school_noun_002_32386.jpg?version=5.0.285',
+      imageAsset: 'images/lesson/nature_landscape/peninsula.jpg',
       audioAsset: 'audio/lesson/nature_landscape/peninsula.mp3',
       phonetic: '/pəˈnɪn.sə.lə/',
       vietnameseMeaning: "Bán đảo",
@@ -206,17 +186,15 @@ final List<WordModel> natureLandscapeWords = [
 final List<WordModel> animalWords = [
   WordModel(
       word: 'blackbird',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-woman-using-smartphone-street_296537-5304.jpg?w=740',
+      imageAsset: 'images/lesson/animal/blackbird.jpg',
       audioAsset: 'audio/lesson/animal/blackbird.mp3',
       phonetic: '/ˈblæk.bɝːd/',
       vietnameseMeaning: "Chim sáo",
       example: 'The blackbird flew back and forth to its brood.',
-      translateExample: 'Con chim sáo bay đi bay lại về tổ của nó.'),
+      translateExample: 'Chim sáo bay đi bay lại về tổ của nó.'),
   WordModel(
       word: 'cat',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-teacher-woman-teaching-holding-book-video-conference-with-student-looking-camera-female-teacher-training-mathematics-classroom-blackboard-from-online-course_208349-1803.jpg?w=740',
+      imageAsset: 'images/lesson/animal/cat.jpg',
       audioAsset: 'audio/lesson/animal/cat.mp3',
       phonetic: '/kæt/',
       vietnameseMeaning: "Con mèo",
@@ -224,18 +202,16 @@ final List<WordModel> animalWords = [
       translateExample: 'Con mèo của tôi thích ngủ gật trước ngọn lửa.'),
   WordModel(
       word: 'chicken',
-      imageUrl:
-          'https://blog.planbook.com/wp-content/uploads/2017/04/high-school-1072x715.jpg',
+      imageAsset: 'images/lesson/animal/chicken.jpg',
       audioAsset: 'audio/lesson/animal/chicken.mp3',
       phonetic: '/ˈtʃɪk.ɪn/',
       vietnameseMeaning: "Con gà",
-      example: "Mr. Johnson's lessons always make us excited",
-      translateExample:
-          'Những bài học của thầy Johnson luôn khiến chúng tôi thích thú'),
+      example:
+          "A male chicken is called a cock and a female chicken is called a hen.",
+      translateExample: 'Gà trống gọi là gà trống, gà mái gọi là gà mái.'),
   WordModel(
       word: 'cow',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/stack-books-library-desk_23-2147845946.jpg?w=740',
+      imageAsset: 'images/lesson/animal/cow.jpg',
       audioAsset: 'audio/lesson/animal/cow.mp3',
       phonetic: '/kaʊ/',
       vietnameseMeaning: "Con bò",
@@ -245,8 +221,7 @@ final List<WordModel> animalWords = [
           'Hầu hết những chủ trang trại này chỉ sở hữu một con bò đực và khoảng hai mươi con bò cái.'),
   WordModel(
       word: 'coyote',
-      imageUrl:
-          'https://www.thoughtco.com/thmb/2AcTcEVKWfinOU7JhOfBcmkhK8k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/480811293-56a939853df78cf772a4ecb8.jpg',
+      imageAsset: 'images/lesson/animal/coyote.jpg',
       audioAsset: 'audio/lesson/animal/coyote.mp3',
       phonetic: '/kaɪˈoʊ.t̬i/',
       vietnameseMeaning: "Chó sói đồng cỏ",
@@ -255,8 +230,7 @@ final List<WordModel> animalWords = [
           'Một số loài chim bị giết bởi đại bàng vàng hoặc sói đồng cỏ.'),
   WordModel(
       word: 'sheep',
-      imageUrl:
-          'https: //img.freepik.com/free-photo/asian-student-woman-reads-books-library-university_7861-3535.jpg?w=900&t=st=1670744252~exp=1670744852~hmac=633e580976d158e1acabec693777702df788b99e13796e15618514eadeeacdf5',
+      imageAsset: 'images/lesson/animal/sheep.jpg',
       audioAsset: 'audio/lesson/animal/sheep.mp3',
       phonetic: '/ʃiːp/',
       vietnameseMeaning: "Con cừu",
@@ -265,17 +239,15 @@ final List<WordModel> animalWords = [
           'Cô ấy là một trong những nhà chăn nuôi cừu hàng đầu của đất nước.'),
   WordModel(
       word: 'dog',
-      imageUrl:
-          'https://img.freepik.com/free-photo/students-knowing-right-answer_329181-14271.jpg?w=740&t=st=1670745383~exp=1670745983~hmac=88f33329e258a7f6bb2a1cf1ed22cce01b914626828182864e5d5e20dfcb2036',
+      imageAsset: 'images/lesson/animal/dog.jpg',
       audioAsset: 'audio/lesson/animal/dog.mp3',
       phonetic: '/dɑːɡ/',
       vietnameseMeaning: "Chim hồng hạc",
-      example: 'Students are studying in the classroom.',
-      translateExample: 'Học sinh đang học trong lớp.'),
+      example: 'We could hear dogs barking in the distance.',
+      translateExample: 'Chúng tôi có thể nghe thấy tiếng chó sủa từ xa.'),
   WordModel(
       word: 'duck',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/school-canteen-with-different-races-pupils-protective-masks-flat-illustration_318844-70.jpg?w=740',
+      imageAsset: 'images/lesson/animal/duck.jpg',
       audioAsset: 'audio/lesson/animal/duck.mp3',
       phonetic: '/dʌk/',
       vietnameseMeaning: "Con vịt",
@@ -284,8 +256,7 @@ final List<WordModel> animalWords = [
           'Con mèo ngồi trên cây sẵn sàng vồ lấy đàn vịt bên dưới.'),
   WordModel(
       word: 'eagle',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/cartoon-school-court-gym-with-basketball-basket-football-goal-gymnastic-equipment-comfortable-playground-playing-games-training-vector-gymnasium-sport-hall-workout_176516-3686.jpg?w=900',
+      imageAsset: 'images/lesson/animal/eagle.jpg',
       audioAsset: 'audio/lesson/animal/eagle.mp3',
       phonetic: '/ˈiː.ɡəl/',
       vietnameseMeaning: "Chim ưng",
@@ -294,8 +265,7 @@ final List<WordModel> animalWords = [
           'Chúng tôi đã thấy con đại bàng sà xuống từ bầu trời để bắt con mồi của nó.'),
   WordModel(
       word: 'leopard',
-      imageUrl:
-          'https://dictionary.cambridge.org/images/full/school_noun_002_32386.jpg?version=5.0.285',
+      imageAsset: 'images/lesson/animal/leopard.jpg',
       audioAsset: 'audio/lesson/animal/leopard.mp3',
       phonetic: '/ˈlep.ɚd/',
       vietnameseMeaning: "Con báo",
@@ -305,8 +275,7 @@ final List<WordModel> animalWords = [
 final List<WordModel> bodyPartWords = [
   WordModel(
       word: 'eye',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-woman-using-smartphone-street_296537-5304.jpg?w=740',
+      imageAsset: 'images/lesson/body_part/eye.jpg',
       audioAsset: 'audio/lesson/body_part/eye.mp3',
       phonetic: '/aɪ/',
       vietnameseMeaning: "Bàn tay",
@@ -314,8 +283,7 @@ final List<WordModel> bodyPartWords = [
       translateExample: 'Khi cô nhìn anh, mắt cô rưng rưng.'),
   WordModel(
       word: 'finger',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-teacher-woman-teaching-holding-book-video-conference-with-student-looking-camera-female-teacher-training-mathematics-classroom-blackboard-from-online-course_208349-1803.jpg?w=740',
+      imageAsset: 'images/lesson/body_part/finger.jpg',
       audioAsset: 'audio/lesson/body_part/finger.mp3',
       phonetic: '/ˈfɪŋ.ɡɚ/',
       vietnameseMeaning: "Ngón tay",
@@ -323,8 +291,7 @@ final List<WordModel> bodyPartWords = [
       translateExample: 'Tôi bị đứt tay khi thái hành đêm qua.'),
   WordModel(
       word: 'ear',
-      imageUrl:
-          'https://blog.planbook.com/wp-content/uploads/2017/04/high-school-1072x715.jpg',
+      imageAsset: 'images/lesson/body_part/ear.jpg',
       audioAsset: 'audio/lesson/body_part/ear.mp3',
       phonetic: '/ɪr/',
       vietnameseMeaning: "Cánh tay",
@@ -332,8 +299,7 @@ final List<WordModel> bodyPartWords = [
       translateExample: 'Cô cúi xuống và thì thầm điều gì đó vào tai anh.'),
   WordModel(
       word: 'mouth',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/stack-books-library-desk_23-2147845946.jpg?w=740',
+      imageAsset: 'images/lesson/body_part/mouth.jpg',
       audioAsset: 'audio/lesson/body_part/mouth.mp3',
       phonetic: '/maʊθ/',
       vietnameseMeaning: "Miệng",
@@ -341,8 +307,7 @@ final List<WordModel> bodyPartWords = [
       translateExample: 'Anh ta cho một quả nho vào miệng và nuốt trọn.'),
   WordModel(
       word: 'nose',
-      imageUrl:
-          'https://www.thoughtco.com/thmb/2AcTcEVKWfinOU7JhOfBcmkhK8k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/480811293-56a939853df78cf772a4ecb8.jpg',
+      imageAsset: 'images/lesson/body_part/nose.jpg',
       audioAsset: 'audio/lesson/body_part/nose.mp3',
       phonetic: '/noʊz/',
       vietnameseMeaning: "Mũi",
@@ -350,8 +315,7 @@ final List<WordModel> bodyPartWords = [
       translateExample: 'Tôi bị đau họng và sổ mũi'),
   WordModel(
       word: 'elbow',
-      imageUrl:
-          'https://img.freepik.com/free-photo/asian-student-woman-reads-books-library-university_7861-3535.jpg?w=900&t=st=1670744252~exp=1670744852~hmac=633e580976d158e1acabec693777702df788b99e13796e15618514eadeeacdf5',
+      imageAsset: 'images/lesson/body_part/elbow.jpg',
       audioAsset: 'audio/lesson/body_part/elbow.mp3',
       phonetic: '/ˈel.boʊ/',
       vietnameseMeaning: "Khuỷu tay",
@@ -360,8 +324,7 @@ final List<WordModel> bodyPartWords = [
           'Cánh tay của cô được băng bó từ khuỷu tay đến các ngón tay.'),
   WordModel(
       word: 'face',
-      imageUrl:
-          'https://img.freepik.com/free-photo/students-knowing-right-answer_329181-14271.jpg?w=740&t=st=1670745383~exp=1670745983~hmac=88f33329e258a7f6bb2a1cf1ed22cce01b914626828182864e5d5e20dfcb2036',
+      imageAsset: 'images/lesson/body_part/face.jpg',
       audioAsset: 'audio/lesson/body_part/face.mp3',
       phonetic: '/feɪs/',
       vietnameseMeaning: "Khuân mặt",
@@ -370,8 +333,7 @@ final List<WordModel> bodyPartWords = [
           'Cô ấy có một biểu hiện bối rối trên khuôn mặt của mình.'),
   WordModel(
       word: 'knee',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/school-canteen-with-different-races-pupils-protective-masks-flat-illustration_318844-70.jpg?w=740',
+      imageAsset: 'images/lesson/body_part/knee.jpg',
       audioAsset: 'audio/lesson/body_part/knee.mp3',
       phonetic: '/niː/',
       vietnameseMeaning: "Đầu gối",
@@ -379,8 +341,7 @@ final List<WordModel> bodyPartWords = [
       translateExample: 'Anh quỳ xuống trước bàn thờ.'),
   WordModel(
       word: 'leg',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/cartoon-school-court-gym-with-basketball-basket-football-goal-gymnastic-equipment-comfortable-playground-playing-games-training-vector-gymnasium-sport-hall-workout_176516-3686.jpg?w=900',
+      imageAsset: 'images/lesson/body_part/leg.jpg',
       audioAsset: 'audio/lesson/body_part/leg.mp3',
       phonetic: '/leɡ/',
       vietnameseMeaning: "Chân",
@@ -388,8 +349,7 @@ final List<WordModel> bodyPartWords = [
       translateExample: 'Chân tôi mỏi nhừ sau khi đi bộ quá nhiều.'),
   WordModel(
       word: 'belly',
-      imageUrl:
-          'https://dictionary.cambridge.org/images/full/school_noun_002_32386.jpg?version=5.0.285',
+      imageAsset: 'images/lesson/body_part/belly.jpg',
       audioAsset: 'audio/lesson/body_part/belly.mp3',
       phonetic: '/ˈbel.i/',
       vietnameseMeaning: "Bụng",
@@ -400,9 +360,8 @@ final List<WordModel> bodyPartWords = [
 final List<WordModel> jobWords = [
   WordModel(
       word: 'firefighter',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-woman-using-smartphone-street_296537-5304.jpg?w=740',
-      audioAsset: 'audio/lesson/jobs/eye.mp3',
+      imageAsset: 'images/lesson/jobs/firefighter.jpg',
+      audioAsset: 'audio/lesson/jobs/firefighter.mp3',
       phonetic: '/ˈfaɪrˌfaɪ.t̬ɚ/',
       vietnameseMeaning: "Lính cứu hỏa",
       example:
@@ -411,8 +370,7 @@ final List<WordModel> jobWords = [
           'Lực lượng cứu hỏa phải mất vài giờ mới dập tắt được ngọn lửa.'),
   WordModel(
       word: 'artist',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-teacher-woman-teaching-holding-book-video-conference-with-student-looking-camera-female-teacher-training-mathematics-classroom-blackboard-from-online-course_208349-1803.jpg?w=740',
+      imageAsset: 'images/lesson/jobs/artist.jpg',
       audioAsset: 'audio/lesson/jobs/artist.mp3',
       phonetic: '/ˈɑːr.t̬ɪst/',
       vietnameseMeaning: "Họa sĩ",
@@ -421,8 +379,7 @@ final List<WordModel> jobWords = [
           'Người họa sĩ đã vẽ bức tranh này bằng những nét vẽ nhỏ.'),
   WordModel(
       word: 'baker',
-      imageUrl:
-          'https://blog.planbook.com/wp-content/uploads/2017/04/high-school-1072x715.jpg',
+      imageAsset: 'images/lesson/jobs/baker.jpg',
       audioAsset: 'audio/lesson/jobs/baker.mp3',
       phonetic: '/ˈbeɪ.kɚ/',
       vietnameseMeaning: "Thợ làm bánh",
@@ -431,8 +388,7 @@ final List<WordModel> jobWords = [
           'Anh ấy phải thức dậy lúc 4 giờ sáng để làm công việc làm bánh.'),
   WordModel(
       word: 'nurse',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/stack-books-library-desk_23-2147845946.jpg?w=740',
+      imageAsset: 'images/lesson/jobs/nurse.jpg',
       audioAsset: 'audio/lesson/jobs/nurse.mp3',
       phonetic: '/nɝːs/',
       vietnameseMeaning: "Y tá",
@@ -440,19 +396,15 @@ final List<WordModel> jobWords = [
       translateExample: 'Cánh cửa mở ra và một y tá bước vào phòng.'),
   WordModel(
       word: 'comedian',
-      imageUrl:
-          'https://www.thoughtco.com/thmb/2AcTcEVKWfinOU7JhOfBcmkhK8k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/480811293-56a939853df78cf772a4ecb8.jpg',
+      imageAsset: 'images/lesson/jobs/comedian.jpg',
       audioAsset: 'audio/lesson/jobs/comedian.mp3',
       phonetic: '/kəˈmiː.di.ən/',
       vietnameseMeaning: "Diễn viên hài",
-      example:
-          'In the early years, opera and concert singers were the largest category, followed by actors and comedians.',
-      translateExample:
-          'Trong những năm đầu, ca sĩ opera và hòa nhạc là hạng mục lớn nhất, tiếp theo là diễn viên và diễn viên hài.'),
+      example: 'The comedian will host a new game on TV.',
+      translateExample: 'Diễn viên hài sẽ tổ chức một trò chơi mới trên TV.'),
   WordModel(
       word: 'pilot',
-      imageUrl:
-          'https://img.freepik.com/free-photo/asian-student-woman-reads-books-library-university_7861-3535.jpg?w=900&t=st=1670744252~exp=1670744852~hmac=633e580976d158e1acabec693777702df788b99e13796e15618514eadeeacdf5',
+      imageAsset: 'images/lesson/jobs/pilot.jpg',
       audioAsset: 'audio/lesson/jobs/pilot.mp3',
       phonetic: '/ˈpaɪ.lət/',
       vietnameseMeaning: "Phi công",
@@ -462,8 +414,7 @@ final List<WordModel> jobWords = [
           'Viên phi công không nhớ gì về các sự kiện dẫn đến vụ tai nạn.'),
   WordModel(
       word: 'florist',
-      imageUrl:
-          'https://img.freepik.com/free-photo/students-knowing-right-answer_329181-14271.jpg?w=740&t=st=1670745383~exp=1670745983~hmac=88f33329e258a7f6bb2a1cf1ed22cce01b914626828182864e5d5e20dfcb2036',
+      imageAsset: 'images/lesson/jobs/florist.jpg',
       audioAsset: 'audio/lesson/jobs/florist.mp3',
       phonetic: '/ˈflɔːr.ɪst/',
       vietnameseMeaning: "Người bán hoa",
@@ -472,8 +423,7 @@ final List<WordModel> jobWords = [
           'Tôi có những người chú điều hành những cửa hàng bán hoa quả, bán hoa và bán thịt.'),
   WordModel(
       word: 'lawyer',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/school-canteen-with-different-races-pupils-protective-masks-flat-illustration_318844-70.jpg?w=740',
+      imageAsset: 'images/lesson/jobs/lawyer.jpg',
       audioAsset: 'audio/lesson/jobs/lawyer.mp3',
       phonetic: '/ˈlɑː.jɚ/',
       vietnameseMeaning: "Luật sư",
@@ -482,8 +432,7 @@ final List<WordModel> jobWords = [
           'Tôi muốn gặp luật sư của mình trước khi nói bất cứ điều gì.'),
   WordModel(
       word: 'musician',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/cartoon-school-court-gym-with-basketball-basket-football-goal-gymnastic-equipment-comfortable-playground-playing-games-training-vector-gymnasium-sport-hall-workout_176516-3686.jpg?w=900',
+      imageAsset: 'images/lesson/jobs/musician.jpg',
       audioAsset: 'audio/lesson/jobs/musician.mp3',
       phonetic: '/mjuːˈzɪʃ.ən/',
       vietnameseMeaning: "Nhạc sĩ",
@@ -493,8 +442,7 @@ final List<WordModel> jobWords = [
           'Nhạc sĩ nhạc jazz nổi tiếng, Duke Ellington, là một nhà soạn nhạc, dàn dựng và nghệ sĩ dương cầm.'),
   WordModel(
       word: 'politician',
-      imageUrl:
-          'https://dictionary.cambridge.org/images/full/school_noun_002_32386.jpg?version=5.0.285',
+      imageAsset: 'images/lesson/jobs/politician.jpg',
       audioAsset: 'audio/lesson/jobs/politician.mp3',
       phonetic: '/ˌpɑː.ləˈtɪʃ.ən/',
       vietnameseMeaning: "Chính trị gia",
@@ -506,8 +454,7 @@ final List<WordModel> jobWords = [
 final List<WordModel> vehicleWords = [
   WordModel(
       word: 'ambulance',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-woman-using-smartphone-street_296537-5304.jpg?w=740',
+      imageAsset: 'images/lesson/vehicle/ambulance.jpg',
       audioAsset: 'audio/lesson/vehicle/ambulance.mp3',
       phonetic: '/ˈæm.bjə.ləns/',
       vietnameseMeaning: "Xe cứu thương",
@@ -516,8 +463,7 @@ final List<WordModel> vehicleWords = [
           'Chúng tôi bị đánh thức trong đêm bởi tiếng còi xe cứu thương.'),
   WordModel(
       word: 'subway',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-teacher-woman-teaching-holding-book-video-conference-with-student-looking-camera-female-teacher-training-mathematics-classroom-blackboard-from-online-course_208349-1803.jpg?w=740',
+      imageAsset: 'images/lesson/vehicle/subway.jpg',
       audioAsset: 'audio/lesson/vehicle/subway.mp3',
       phonetic: '/ˈsʌb.weɪ/',
       vietnameseMeaning: "Tàu điện ngầm",
@@ -525,8 +471,7 @@ final List<WordModel> vehicleWords = [
       translateExample: 'Chúng tôi đi tàu điện ngầm đến sân vận động Yankee'),
   WordModel(
       word: 'bicycle',
-      imageUrl:
-          'https://blog.planbook.com/wp-content/uploads/2017/04/high-school-1072x715.jpg',
+      imageAsset: 'images/lesson/vehicle/bicycle.jpg',
       audioAsset: 'audio/lesson/vehicle/bicycle.mp3',
       phonetic: '/ˈbaɪ.sə.kəl/',
       vietnameseMeaning: "Xe đạp",
@@ -535,8 +480,7 @@ final List<WordModel> vehicleWords = [
           'Bạn không bao giờ nên đi xe đạp mà không có đèn vào ban đêm.'),
   WordModel(
       word: 'boat',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/stack-books-library-desk_23-2147845946.jpg?w=740',
+      imageAsset: 'images/lesson/vehicle/boat.jpg',
       audioAsset: 'audio/lesson/vehicle/boat.mp3',
       phonetic: '/boʊt/',
       vietnameseMeaning: "Cái thuyền",
@@ -544,8 +488,7 @@ final List<WordModel> vehicleWords = [
       translateExample: 'Chúng tôi thay phiên nhau chèo thuyền ngược sông.'),
   WordModel(
       word: 'bus',
-      imageUrl:
-          'https://www.thoughtco.com/thmb/2AcTcEVKWfinOU7JhOfBcmkhK8k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/480811293-56a939853df78cf772a4ecb8.jpg',
+      imageAsset: 'images/lesson/vehicle/bus.jpg',
       audioAsset: 'audio/lesson/vehicle/bus.mp3',
       phonetic: '/bʌs/',
       vietnameseMeaning: "Xe buýt",
@@ -553,8 +496,7 @@ final List<WordModel> vehicleWords = [
       translateExample: 'Bạn nên đi xe buýt nếu muốn ngắm cảnh.'),
   WordModel(
       word: 'helicopter',
-      imageUrl:
-          'https://img.freepik.com/free-photo/asian-student-woman-reads-books-library-university_7861-3535.jpg?w=900&t=st=1670744252~exp=1670744852~hmac=633e580976d158e1acabec693777702df788b99e13796e15618514eadeeacdf5',
+      imageAsset: 'images/lesson/vehicle/helicopter.jpg',
       audioAsset: 'audio/lesson/vehicle/helicopter.mp3',
       phonetic: '/ˈhel.əˌkɑːp.tɚ/',
       vietnameseMeaning: "Máy bay trực thăng",
@@ -563,8 +505,7 @@ final List<WordModel> vehicleWords = [
           'Những người bị thương đã được đưa tới bệnh viện bằng trực thăng.'),
   WordModel(
       word: 'seaplane',
-      imageUrl:
-          'https://img.freepik.com/free-photo/students-knowing-right-answer_329181-14271.jpg?w=740&t=st=1670745383~exp=1670745983~hmac=88f33329e258a7f6bb2a1cf1ed22cce01b914626828182864e5d5e20dfcb2036',
+      imageAsset: 'images/lesson/vehicle/seaplane.jpg',
       audioAsset: 'audio/lesson/vehicle/seaplane.mp3',
       phonetic: '/ˈsiˌpleɪn/',
       vietnameseMeaning: "Thủy phi cơ",
@@ -573,8 +514,7 @@ final List<WordModel> vehicleWords = [
           'Khinh khí cầu không phải là đối thủ của máy bay hay thủy phi cơ.'),
   WordModel(
       word: 'scooter',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/school-canteen-with-different-races-pupils-protective-masks-flat-illustration_318844-70.jpg?w=740',
+      imageAsset: 'images/lesson/vehicle/scooter.jpg',
       audioAsset: 'audio/lesson/vehicle/scooter.mp3',
       phonetic: '/ˈskuː.t̬ɚ/',
       vietnameseMeaning: "Xe tay ga",
@@ -583,8 +523,7 @@ final List<WordModel> vehicleWords = [
           'Anh ấy lái chiếc xe tay ga 50 cc của mình đi làm hàng ngày.'),
   WordModel(
       word: 'taxi',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/cartoon-school-court-gym-with-basketball-basket-football-goal-gymnastic-equipment-comfortable-playground-playing-games-training-vector-gymnasium-sport-hall-workout_176516-3686.jpg?w=900',
+      imageAsset: 'images/lesson/vehicle/taxi.jpg',
       audioAsset: 'audio/lesson/vehicle/taxi.mp3',
       phonetic: '/ˈtæk.si/',
       vietnameseMeaning: "Xe taxi",
@@ -592,8 +531,7 @@ final List<WordModel> vehicleWords = [
       translateExample: 'Tôi bắt taxi từ nhà ga đến khách sạn.'),
   WordModel(
       word: 'truck',
-      imageUrl:
-          'https://dictionary.cambridge.org/images/full/school_noun_002_32386.jpg?version=5.0.285',
+      imageAsset: 'images/lesson/vehicle/truck.jpg',
       audioAsset: 'audio/lesson/vehicle/truck.mp3',
       phonetic: '/trʌk/',
       vietnameseMeaning: "Xe tải",
@@ -604,8 +542,7 @@ final List<WordModel> vehicleWords = [
 final List<WordModel> fashionWords = [
   WordModel(
       word: 'belt',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-woman-using-smartphone-street_296537-5304.jpg?w=740',
+      imageAsset: 'images/lesson/fashion/belt.jpg',
       audioAsset: 'audio/lesson/fashion/belt.mp3',
       phonetic: '/belt/',
       vietnameseMeaning: "Thắt lưng",
@@ -615,8 +552,7 @@ final List<WordModel> fashionWords = [
           'Anh ta đã ăn quá nhiều đến nỗi anh ta phải nới lỏng thắt lưng vài bậc.'),
   WordModel(
       word: 'jeans',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-teacher-woman-teaching-holding-book-video-conference-with-student-looking-camera-female-teacher-training-mathematics-classroom-blackboard-from-online-course_208349-1803.jpg?w=740',
+      imageAsset: 'images/lesson/fashion/jeans.jpg',
       audioAsset: 'audio/lesson/fashion/jeans.mp3',
       phonetic: '/dʒiːnz/',
       vietnameseMeaning: "Quần bò",
@@ -624,8 +560,7 @@ final List<WordModel> fashionWords = [
       translateExample: 'Cô ăn mặc giản dị với quần jean và áo len.'),
   WordModel(
       word: 'necklace',
-      imageUrl:
-          'https://blog.planbook.com/wp-content/uploads/2017/04/high-school-1072x715.jpg',
+      imageAsset: 'images/lesson/fashion/necklace.jpg',
       audioAsset: 'audio/lesson/fashion/necklace.mp3',
       phonetic: '/ˈnek.ləs/',
       vietnameseMeaning: "Vòng cổ",
@@ -635,8 +570,7 @@ final List<WordModel> fashionWords = [
           'Chiếc vòng cổ kim cương của cô lấp lánh rực rỡ dưới ánh đèn sân khấu.'),
   WordModel(
       word: 'bracelet',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/stack-books-library-desk_23-2147845946.jpg?w=740',
+      imageAsset: 'images/lesson/fashion/bracelet.jpg',
       audioAsset: 'audio/lesson/fashion/bracelet.mp3',
       phonetic: '/ˈbreɪ.slət/',
       vietnameseMeaning: "Vòng tay",
@@ -646,29 +580,25 @@ final List<WordModel> fashionWords = [
           'Tôi đã mang chiếc vòng trở lại tiệm kim hoàn vì chốt bị lỗi.'),
   WordModel(
       word: 'glasses',
-      imageUrl:
-          'https://www.thoughtco.com/thmb/2AcTcEVKWfinOU7JhOfBcmkhK8k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/480811293-56a939853df78cf772a4ecb8.jpg',
+      imageAsset: 'images/lesson/fashion/glasses.jpg',
       audioAsset: 'audio/lesson/fashion/glasses.mp3',
       phonetic: '/ˈɡlæs·əz/',
       vietnameseMeaning: "Kính mắt",
       example:
-          'for principal Michael, his educational journey has been a long but meaningful one',
+          'I usually wear contact lenses, but sometimes I wear glasses when my eyes are tired',
       translateExample:
           'Tôi thường đeo kính áp tròng, nhưng đôi khi tôi đeo kính khi mỏi mắt.'),
   WordModel(
       word: 'glove',
-      imageUrl:
-          'https://img.freepik.com/free-photo/asian-student-woman-reads-books-library-university_7861-3535.jpg?w=900&t=st=1670744252~exp=1670744852~hmac=633e580976d158e1acabec693777702df788b99e13796e15618514eadeeacdf5',
+      imageAsset: 'images/lesson/fashion/glove.jpg',
       audioAsset: 'audio/lesson/fashion/glove.mp3',
       phonetic: '/ɡlʌv/',
       vietnameseMeaning: "Găng tay",
-      example:
-          'I usually wear contact lenses, but I sometimes wear glasses when my eyes are tired.',
+      example: "Put your gloves in your pocket so they don't get lost.",
       translateExample: 'Hãy nhét găng tay vào túi cậu để không bị thất lạc.'),
   WordModel(
       word: 'handbag',
-      imageUrl:
-          'https://img.freepik.com/free-photo/students-knowing-right-answer_329181-14271.jpg?w=740&t=st=1670745383~exp=1670745983~hmac=88f33329e258a7f6bb2a1cf1ed22cce01b914626828182864e5d5e20dfcb2036',
+      imageAsset: 'images/lesson/fashion/handbag.jpg',
       audioAsset: 'audio/lesson/fashion/handbag.mp3',
       phonetic: '/ˈhænd.bæɡ/',
       vietnameseMeaning: "Túi xách",
@@ -678,8 +608,7 @@ final List<WordModel> fashionWords = [
           'Cô lấy chiếc lược từ trong túi xách và bắt đầu chải tóc.'),
   WordModel(
       word: 'jacket',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/school-canteen-with-different-races-pupils-protective-masks-flat-illustration_318844-70.jpg?w=740',
+      imageAsset: 'images/lesson/fashion/jacket.jpg',
       audioAsset: 'audio/lesson/fashion/jacket.mp3',
       phonetic: '/ˈdʒæk.ɪt/',
       vietnameseMeaning: "Áo khoác",
@@ -688,8 +617,7 @@ final List<WordModel> fashionWords = [
       translateExample: 'Anh vắt áo khoác lên lưng ghế và ngồi xuống ăn.'),
   WordModel(
       word: 'scarf',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/cartoon-school-court-gym-with-basketball-basket-football-goal-gymnastic-equipment-comfortable-playground-playing-games-training-vector-gymnasium-sport-hall-workout_176516-3686.jpg?w=900',
+      imageAsset: 'images/lesson/fashion/scarf.jpg',
       audioAsset: 'audio/lesson/fashion/scarf.mp3',
       phonetic: '/skɑːrf/',
       vietnameseMeaning: "Khăn quàng cổ",
@@ -697,8 +625,7 @@ final List<WordModel> fashionWords = [
       translateExample: 'Cô quấn một chiếc khăn quanh cổ.'),
   WordModel(
       word: 'shorts',
-      imageUrl:
-          'https://dictionary.cambridge.org/images/full/school_noun_002_32386.jpg?version=5.0.285',
+      imageAsset: 'images/lesson/fashion/shorts.jpg',
       audioAsset: 'audio/lesson/fashion/shorts.mp3',
       phonetic: '/ʃɔːrts/',
       vietnameseMeaning: "Quần đùi",
@@ -708,8 +635,7 @@ final List<WordModel> fashionWords = [
 final List<WordModel> foodWords = [
   WordModel(
       word: 'bacon',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-woman-using-smartphone-street_296537-5304.jpg?w=740',
+      imageAsset: 'images/lesson/food/bacon.jpg',
       audioAsset: 'audio/lesson/food/bacon.mp3',
       phonetic: '/ˈbeɪ.kən/',
       vietnameseMeaning: "Thị hun khói",
@@ -718,9 +644,8 @@ final List<WordModel> foodWords = [
           'Thịt được sản xuất từ lợn được gọi là thịt lợn, thịt xông khói hoặc giăm bông.'),
   WordModel(
       word: 'noodle',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-teacher-woman-teaching-holding-book-video-conference-with-student-looking-camera-female-teacher-training-mathematics-classroom-blackboard-from-online-course_208349-1803.jpg?w=740',
-      audioAsset: 'audio/lesson/food/noodle.mp3',
+      imageAsset: 'images/lesson/food/milk.jpg',
+      audioAsset: 'audio/lesson/food/milk.mp3',
       phonetic: '/ˈnuː.dəl/',
       vietnameseMeaning: "Mì",
       example:
@@ -729,8 +654,7 @@ final List<WordModel> foodWords = [
           'Công thức mì ống rất đơn giản, chỉ sử dụng mì và một số loại hải sản.'),
   WordModel(
       word: 'milk',
-      imageUrl:
-          'https: //blog.planbook.com/wp-content/uploads/2017/04/high-school-1072x715.jpg',
+      imageAsset: 'images/lesson/food/milk.jpg',
       audioAsset: 'audio/lesson/food/milk.mp3',
       phonetic: '/mɪlk/',
       vietnameseMeaning: "Sữa",
@@ -740,8 +664,7 @@ final List<WordModel> foodWords = [
           'Các sản phẩm thay thế từ thực vật cho sữa như sữa hạnh nhân hoặc hạt phỉ'),
   WordModel(
       word: 'juice',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/stack-books-library-desk_23-2147845946.jpg?w=740',
+      imageAsset: 'images/lesson/food/juice.jpg',
       audioAsset: 'audio/lesson/food/juice.mp3',
       phonetic: '/dʒuːs/',
       vietnameseMeaning: "Nước ép trái cây",
@@ -751,8 +674,7 @@ final List<WordModel> foodWords = [
           'Tôi không uống rượu nên tôi thư giãn bằng vài ly nước cam.'),
   WordModel(
       word: 'cheese',
-      imageUrl:
-          'https://www.thoughtco.com/thmb/2AcTcEVKWfinOU7JhOfBcmkhK8k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/480811293-56a939853df78cf772a4ecb8.jpg',
+      imageAsset: 'images/lesson/food/cheese.jpg',
       audioAsset: 'audio/lesson/food/cheese.mp3',
       phonetic: '/tʃiːz/',
       vietnameseMeaning: "Pho-mát",
@@ -761,8 +683,7 @@ final List<WordModel> foodWords = [
           'Tôi nghĩ rằng loại pho mát này hơi cũ khi xét về mùi của nó'),
   WordModel(
       word: 'soup',
-      imageUrl:
-          'https://img.freepik.com/free-photo/asian-student-woman-reads-books-library-university_7861-3535.jpg?w=900&t=st=1670744252~exp=1670744852~hmac=633e580976d158e1acabec693777702df788b99e13796e15618514eadeeacdf5',
+      imageAsset: 'images/lesson/food/soup.jpg',
       audioAsset: 'audio/lesson/food/soup.mp3',
       phonetic: '/suːp/',
       vietnameseMeaning: "Súp",
@@ -771,8 +692,7 @@ final List<WordModel> foodWords = [
           'Súp nóng rất thoải mái vào một ngày mùa đông lạnh giá.'),
   WordModel(
       word: 'croissant',
-      imageUrl:
-          'https://img.freepik.com/free-photo/students-knowing-right-answer_329181-14271.jpg?w=740&t=st=1670745383~exp=1670745983~hmac=88f33329e258a7f6bb2a1cf1ed22cce01b914626828182864e5d5e20dfcb2036',
+      imageAsset: 'images/lesson/food/croissant.jpg',
       audioAsset: 'audio/lesson/food/croissant.mp3',
       phonetic: '/krəˈsɑnt/',
       vietnameseMeaning: "Bánh sừng bò",
@@ -781,8 +701,7 @@ final List<WordModel> foodWords = [
           'Tôi luôn mua một ít bánh sừng bò cho bữa sáng hôm sau'),
   WordModel(
       word: 'hamburger',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/school-canteen-with-different-races-pupils-protective-masks-flat-illustration_318844-70.jpg?w=740',
+      imageAsset: 'images/lesson/food/hamburger.jpg',
       audioAsset: 'audio/lesson/food/hamburger.mp3',
       phonetic: '/ˈhæmˌbɝː.ɡɚ/',
       vietnameseMeaning: "Bánh hamburger",
@@ -792,8 +711,7 @@ final List<WordModel> foodWords = [
           'Đi bất cứ nơi nào trên thế giới và bạn sẽ tìm thấy một số loại nhà hàng hamburger.'),
   WordModel(
       word: 'jam',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/cartoon-school-court-gym-with-basketball-basket-football-goal-gymnastic-equipment-comfortable-playground-playing-games-training-vector-gymnasium-sport-hall-workout_176516-3686.jpg?w=900',
+      imageAsset: 'images/lesson/food/jam.jpg',
       audioAsset: 'audio/lesson/food/jam.mp3',
       phonetic: '/dʒæm/',
       vietnameseMeaning: "Mứt",
@@ -802,8 +720,7 @@ final List<WordModel> foodWords = [
           'Mứt là thứ không thể thiếu trong mỗi bữa sáng của tôi'),
   WordModel(
       word: 'muffin',
-      imageUrl:
-          'https://dictionary.cambridge.org/images/full/school_noun_002_32386.jpg?version=5.0.285',
+      imageAsset: 'images/lesson/food/muffin.jpg',
       audioAsset: 'audio/lesson/food/muffin.mp3',
       phonetic: '/ˈmʌf.ɪn/',
       vietnameseMeaning: "Bánh nướng xốp",
@@ -815,8 +732,7 @@ final List<WordModel> foodWords = [
 final List<WordModel> houseWords = [
   WordModel(
       word: 'attic',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-woman-using-smartphone-street_296537-5304.jpg?w=740',
+      imageAsset: 'images/lesson/house/attic.jpg',
       audioAsset: 'audio/lesson/house/attic.mp3',
       phonetic: '/ˈæt̬.ɪk/',
       vietnameseMeaning: "Gác mái",
@@ -824,8 +740,7 @@ final List<WordModel> houseWords = [
       translateExample: 'Tôi có những hộp quần áo cũ trên gác mái.'),
   WordModel(
       word: 'balcony',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-teacher-woman-teaching-holding-book-video-conference-with-student-looking-camera-female-teacher-training-mathematics-classroom-blackboard-from-online-course_208349-1803.jpg?w=740',
+      imageAsset: 'images/lesson/house/balcony.jpg',
       audioAsset: 'audio/lesson/house/balcony.mp3',
       phonetic: '/ˈbæl.kə.ni/',
       vietnameseMeaning: "Ban công",
@@ -834,8 +749,7 @@ final List<WordModel> houseWords = [
           'Chúng tôi vừa uống vừa ngắm cảnh từ ban công khách sạn'),
   WordModel(
       word: 'basement',
-      imageUrl:
-          'https://blog.planbook.com/wp-content/uploads/2017/04/high-school-1072x715.jpg',
+      imageAsset: 'images/lesson/house/basement.jpg',
       audioAsset: 'audio/lesson/house/basement.mp3',
       phonetic: '/ˈbeɪs.mənt/',
       vietnameseMeaning: "Tầng hầm",
@@ -843,8 +757,7 @@ final List<WordModel> houseWords = [
       translateExample: 'Tầng hầm này từng là phòng tập nhạc của chúng tôi'),
   WordModel(
       word: 'bathroom',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/stack-books-library-desk_23-2147845946.jpg?w=740',
+      imageAsset: 'images/lesson/house/bathroom.jpg',
       audioAsset: 'audio/lesson/house/bathroom.mp3',
       phonetic: '/ˈbæθ.ruːm/',
       vietnameseMeaning: "Nhà tắm",
@@ -853,8 +766,7 @@ final List<WordModel> houseWords = [
           'Tôi cá là anh ấy không bao giờ dọn phòng tắm vì nó có mùi rất tệ'),
   WordModel(
       word: 'bedroom',
-      imageUrl:
-          'https://www.thoughtco.com/thmb/2AcTcEVKWfinOU7JhOfBcmkhK8k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/480811293-56a939853df78cf772a4ecb8.jpg',
+      imageAsset: 'images/lesson/house/bedroom.jpg',
       audioAsset: 'audio/lesson/house/bedroom.mp3',
       phonetic: '/ˈbed.rʊm/',
       vietnameseMeaning: "Phòng ngủ",
@@ -863,8 +775,7 @@ final List<WordModel> houseWords = [
           'Chúng tôi vừa mới mua một số đồ nội thất phòng ngủ mới.'),
   WordModel(
       word: 'garage',
-      imageUrl:
-          'https://img.freepik.com/free-photo/asian-student-woman-reads-books-library-university_7861-3535.jpg?w=900&t=st=1670744252~exp=1670744852~hmac=633e580976d158e1acabec693777702df788b99e13796e15618514eadeeacdf5',
+      imageAsset: 'images/lesson/house/garage.jpg',
       audioAsset: 'audio/lesson/house/garage.mp3',
       phonetic: '/ɡəˈrɑːʒ/',
       vietnameseMeaning: "Nhà để xe",
@@ -872,8 +783,7 @@ final List<WordModel> houseWords = [
       translateExample: 'Nhiều công ty nổi tiếng đã khởi nghiệp từ nhà để xe'),
   WordModel(
       word: 'living room',
-      imageUrl:
-          'https://img.freepik.com/free-photo/students-knowing-right-answer_329181-14271.jpg?w=740&t=st=1670745383~exp=1670745983~hmac=88f33329e258a7f6bb2a1cf1ed22cce01b914626828182864e5d5e20dfcb2036',
+      imageAsset: 'images/lesson/house/living_room.jpg',
       audioAsset: 'audio/lesson/house/living_room.mp3',
       phonetic: '/ˈlɪv.ɪŋ ˌruːm/',
       vietnameseMeaning: "Phòng khách",
@@ -883,8 +793,7 @@ final List<WordModel> houseWords = [
           'Chúng tôi thường thuê rất nhiều phim và xem chúng trong phòng khách vào mỗi cuối tuần'),
   WordModel(
       word: 'kitchen',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/school-canteen-with-different-races-pupils-protective-masks-flat-illustration_318844-70.jpg?w=740',
+      imageAsset: 'images/lesson/house/kitchen.jpg',
       audioAsset: 'audio/lesson/house/kitchen.mp3',
       phonetic: '/ˈkɪtʃ.ən/',
       vietnameseMeaning: "Nhà bếp",
@@ -892,8 +801,7 @@ final List<WordModel> houseWords = [
       translateExample: 'Chúng tôi thường dùng bữa sáng tại nhà bếp'),
   WordModel(
       word: 'entrance',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/cartoon-school-court-gym-with-basketball-basket-football-goal-gymnastic-equipment-comfortable-playground-playing-games-training-vector-gymnasium-sport-hall-workout_176516-3686.jpg?w=900',
+      imageAsset: 'images/lesson/house/entrance.jpg',
       audioAsset: 'audio/lesson/house/entrance.mp3',
       phonetic: '/ˈen.trəns/',
       vietnameseMeaning: "Lối vào",
@@ -902,8 +810,7 @@ final List<WordModel> houseWords = [
       translateExample: 'Lối vào nhà ông tôi trồng rất nhiều hoa'),
   WordModel(
       word: 'rooftop',
-      imageUrl:
-          'https://dictionary.cambridge.org/images/full/school_noun_002_32386.jpg?version=5.0.285',
+      imageAsset: 'images/lesson/house/rooftop.jpg',
       audioAsset: 'audio/lesson/house/rooftop.mp3',
       phonetic: '/ˈruːf.tɑːp/',
       vietnameseMeaning: "Sân thượng",
@@ -914,8 +821,7 @@ final List<WordModel> houseWords = [
 final List<WordModel> entertainmentVenuesWords = [
   WordModel(
       word: 'art gallery',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-woman-using-smartphone-street_296537-5304.jpg?w=740',
+      imageAsset: 'images/lesson/entertainment_venues/art_gallery.jpg',
       audioAsset: 'audio/lesson/entertainment_venues/art_gallery.mp3',
       phonetic: ' /ˈɑːrt ˌɡæl.ɚ.i/',
       vietnameseMeaning: "Phòng tranh nghệ thuật",
@@ -924,8 +830,7 @@ final List<WordModel> entertainmentVenuesWords = [
           'Cô làm việc tại một phòng tranh nghệ thuật nhỏ ở Brooklyn.'),
   WordModel(
       word: 'movie theater',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/young-asian-teacher-woman-teaching-holding-book-video-conference-with-student-looking-camera-female-teacher-training-mathematics-classroom-blackboard-from-online-course_208349-1803.jpg?w=740',
+      imageAsset: 'images/lesson/entertainment_venues/movie_theater.jpg',
       audioAsset: 'audio/lesson/entertainment_venues/movie_theater.mp3',
       phonetic: '/ˈmuː.vi ˌθiː.ə.t̬ɚ/',
       vietnameseMeaning: "Rạp chiếu phim",
@@ -935,8 +840,7 @@ final List<WordModel> entertainmentVenuesWords = [
           'Thị trấn đã không còn rạp chiếu phim kể từ trận hỏa hoạn 10 năm trước'),
   WordModel(
       word: 'museum',
-      imageUrl:
-          'https://blog.planbook.com/wp-content/uploads/2017/04/high-school-1072x715.jpg',
+      imageAsset: 'images/lesson/entertainment_venues/museum.jpg',
       audioAsset: 'audio/lesson/entertainment_venues/museum.mp3',
       phonetic: '/mjuːˈziː.əm/',
       vietnameseMeaning: "Viện bảo tàng",
@@ -944,8 +848,7 @@ final List<WordModel> entertainmentVenuesWords = [
       translateExample: 'Viện bảo tàng chứa đầy những bảo vật quý hiếm.'),
   WordModel(
       word: 'stadium',
-      imageUrl:
-          'https://img.freepik.com/premium-photo/stack-books-library-desk_23-2147845946.jpg?w=740',
+      imageAsset: 'images/lesson/entertainment_venues/stadium.jpg',
       audioAsset: 'audio/lesson/entertainment_venues/stadium.mp3',
       phonetic: '/ˈsteɪ.di.əm/',
       vietnameseMeaning: "Sân vận động",
@@ -954,8 +857,7 @@ final List<WordModel> entertainmentVenuesWords = [
           'Hàng nghìn cổ động viên chen chúc đến sân theo dõi trận đấu.'),
   WordModel(
       word: 'opera house',
-      imageUrl:
-          'https://www.thoughtco.com/thmb/2AcTcEVKWfinOU7JhOfBcmkhK8k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/480811293-56a939853df78cf772a4ecb8.jpg',
+      imageAsset: 'images/lesson/entertainment_venues/opera_house.jpg',
       audioAsset: 'audio/lesson/entertainment_venues/opera_house.mp3',
       phonetic: '/ˈɑː.pɚ.ə ˌhaʊs/',
       vietnameseMeaning: "Nhà hát opera",
@@ -965,8 +867,7 @@ final List<WordModel> entertainmentVenuesWords = [
           'Nhà hát opera Sydney là một trong những công trình kiến trúc độc đáo nhất thế giới'),
   WordModel(
       word: 'zoo',
-      imageUrl:
-          'https://img.freepik.com/free-photo/asian-student-woman-reads-books-library-university_7861-3535.jpg?w=900&t=st=1670744252~exp=1670744852~hmac=633e580976d158e1acabec693777702df788b99e13796e15618514eadeeacdf5',
+      imageAsset: 'images/lesson/entertainment_venues/zoo.jpg',
       audioAsset: 'audio/lesson/entertainment_venues/zoo.mp3',
       phonetic: '/zuː/',
       vietnameseMeaning: "Sở thú",
@@ -975,8 +876,7 @@ final List<WordModel> entertainmentVenuesWords = [
           'Chúng tôi có thể nghe thấy tiếng sư tử gầm ở đầu kia của sở thú.'),
   WordModel(
       word: 'bowling alley',
-      imageUrl:
-          'https://img.freepik.com/free-photo/students-knowing-right-answer_329181-14271.jpg?w=740&t=st=1670745383~exp=1670745983~hmac=88f33329e258a7f6bb2a1cf1ed22cce01b914626828182864e5d5e20dfcb2036',
+      imageAsset: 'images/lesson/entertainment_venues/bowling_alley.jpg',
       audioAsset: 'audio/lesson/entertainment_venues/bowling_alley.mp3',
       phonetic: '/ˈboʊ.lɪŋ ˌæl.i/',
       vietnameseMeaning: "Sân chơi bô-ling",
@@ -984,8 +884,7 @@ final List<WordModel> entertainmentVenuesWords = [
       translateExample: 'Sau khi ăn xong, chúng tôi sẽ tới khu chơi bowling'),
   WordModel(
       word: 'shopping mall',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/school-canteen-with-different-races-pupils-protective-masks-flat-illustration_318844-70.jpg?w=740',
+      imageAsset: 'images/lesson/entertainment_venues/shopping_mall.jpg',
       audioAsset: 'audio/lesson/entertainment_venues/shopping_mall.mp3',
       phonetic: '/kænˈtiːn/',
       vietnameseMeaning: "Trung tâm mua sắm",
@@ -995,8 +894,7 @@ final List<WordModel> entertainmentVenuesWords = [
           'Dì tôi sở hữu một cửa hàng thời trang ở trung tâm mua sắm lớn nhất thành phố'),
   WordModel(
       word: 'concert',
-      imageUrl:
-          'https://img.freepik.com/premium-vector/cartoon-school-court-gym-with-basketball-basket-football-goal-gymnastic-equipment-comfortable-playground-playing-games-training-vector-gymnasium-sport-hall-workout_176516-3686.jpg?w=900',
+      imageAsset: 'images/lesson/entertainment_venues/concert.jpg',
       audioAsset: 'audio/lesson/entertainment_venues/concert.mp3',
       phonetic: '/ˈkɑːn.sɚt/',
       vietnameseMeaning: "Buổi hòa nhạc",
@@ -1005,8 +903,7 @@ final List<WordModel> entertainmentVenuesWords = [
           'Tôi sẽ chơi trong một buổi hòa nhạc tại hội trường nhà thờ vào cuối tuần tới.'),
   WordModel(
       word: 'theme park',
-      imageUrl:
-          'https://dictionary.cambridge.org/images/full/school_noun_002_32386.jpg?version=5.0.285',
+      imageAsset: 'images/lesson/entertainment_venues/theme_park.jpg',
       audioAsset: 'audio/lesson/entertainment_venues/theme_park.mp3',
       phonetic: '/ˈθiːm ˌpɑːrk/',
       vietnameseMeaning: "Công viên giải trí",

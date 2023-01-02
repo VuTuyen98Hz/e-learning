@@ -55,11 +55,10 @@ class AuthController extends GetxController {
       Get.offAll(SignInScreen());
     } else {
       Get.to(const LoadingDataScreen(), transition: Transition.fadeIn);
-      if(rxFireStoreUser.value==null)
-      {
+      if (rxFireStoreUser.value == null) {
         Get.to(const LoadingDataScreen(), transition: Transition.fadeIn);
       }
-      Timer(const Duration(milliseconds: 1700), () {
+      Timer(const Duration(milliseconds: 2000), () {
         Get.put(HomeController());
         Get.offAll(const HomeUI(), transition: Transition.fadeIn);
       });
@@ -335,7 +334,8 @@ class AuthController extends GetxController {
     final fsUser = rxFireStoreUser.value!;
     fsUser.listFinishedLesson.add(indexLesson);
     fsUser.listLessonStatus[indexLesson].isAllChecked = false;
-    fsUser.listLessonStatus[indexLesson].listWordStatus = List.filled(10, false);
+    fsUser.listLessonStatus[indexLesson].listWordStatus =
+        List.filled(10, false);
     updateUserFireStore();
   }
 }

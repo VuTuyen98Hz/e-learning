@@ -109,17 +109,17 @@ class QuizScreen extends GetView<QuizController> {
                               fontWeight: FontWeight.w500,
                               fontSize: 18)),
                     ]),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Get.to(TestScreen());
-                      },
-                      style: ElevatedButton.styleFrom(
-                          fixedSize: const Size(220, 55),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(25))),
-                      child: const Text('Test Screen',
-                          style: TextStyle(fontSize: 20)),
-                    ),
+                    // ElevatedButton(
+                    //   onPressed: () {
+                    //     // Get.to(TestScreen());
+                    //   },
+                    //   style: ElevatedButton.styleFrom(
+                    //       fixedSize: const Size(220, 55),
+                    //       shape: RoundedRectangleBorder(
+                    //           borderRadius: BorderRadius.circular(25))),
+                    //   child: const Text('Test Screen',
+                    //       style: TextStyle(fontSize: 20)),
+                    // ),
                     const SizedBox(height: 24),
                   ],
                 )
