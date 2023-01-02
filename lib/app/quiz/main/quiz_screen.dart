@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:learn_japanese/app/home/no_internet.dart';
 import '../../authentication/profile_screen.dart';
 import '../../home/home_controller.dart';
-import '../../home/test_screen.dart';
 import '../notebook/notebook.dart';
 import 'quiz_controller.dart';
 

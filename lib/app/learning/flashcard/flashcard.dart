@@ -202,7 +202,7 @@ class FlashCard extends GetView<FlashCardController> {
                     const SizedBox(
                       height: 5,
                     ),
-                    visibleTextButton == false
+                    visibleTextButton == true
                         ? TextButton(
                             onPressed: controller.rxIsDelay.value == true
                                 ? null

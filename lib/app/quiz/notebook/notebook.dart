@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_japanese/app/quiz/notebook/selected_word2.dart';
 import '../../authentication/auth_controller.dart';
-import 'selected_word.dart';
 import '../../home/home.dart';
 import '../../../models/lesson_topic_model.dart';
 

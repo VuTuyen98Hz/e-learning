@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:learn_japanese/app/home/no_internet.dart';
 import 'package:learn_japanese/app/learning/flashcard/flashcard.dart';
-import '../../../animation/bouncing_animation.dart';
 import '../../authentication/profile_screen.dart';
 import '../../../models/lesson_topic_model.dart';
 import '../../home/home_controller.dart';
