@@ -32,9 +32,6 @@ class _ShowAnswerState extends State<ShowAnswer> {
   @override
   void initState() {
     super.initState();
-    audioPlayer.onPlayerStateChanged.listen((state) {
-      state == PlayerState.playing;
-    });
     if (widget.result == true) {
       audioPlayer.play(AssetSource('audio/sound_effect/correct_answer.mp3'));
     } else {
@@ -47,7 +44,7 @@ class _ShowAnswerState extends State<ShowAnswer> {
     final size = MediaQuery.of(context).size;
     return Container(
       width: size.width,
-      height: size.height * 0.30,
+      height: size.height * 0.34,
       alignment: Alignment.center,
       color: widget.result == true ? Colors.green : Colors.red,
       child: Padding(

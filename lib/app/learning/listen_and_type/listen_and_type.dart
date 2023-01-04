@@ -31,10 +31,10 @@ class ListenAndType extends GetView<ListenAndTypeController> {
                 child: Column(children: [
                   const Text("Nghe và viết lại",
                       style: TextStyle(color: Colors.black, fontSize: 30)),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 30),
                   ElevatedButton(
                     onPressed: () async {
-                      controller.audioPlayer.play(
+                      controller.audio.play(
                           AssetSource(controller.rxListWord[index].audioAsset));
                     },
                     style: ElevatedButton.styleFrom(
@@ -49,6 +49,7 @@ class ListenAndType extends GetView<ListenAndTypeController> {
                   ),
                   const SizedBox(height: 30),
                   TextFormField(
+                    autofocus: true,
                     enabled:
                         controller.rxChangeButton.value == false ? true : false,
                     onChanged: (value) {

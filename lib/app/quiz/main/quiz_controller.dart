@@ -155,7 +155,13 @@ class QuizController extends GetxController
   }
 
   String getTopTitleBarChart(int index) {
-    return user.listTopTitleBarChart[index];
+    final parsedLine = user.listTopTitleBarChart[index].split(" ");
+    return parsedLine[0];
+  }
+
+  String getBottomTitleBarChart(int index) {
+    final parsedLine = user.listTopTitleBarChart[index].split(" ");
+    return parsedLine[1];
   }
 
   double calculatePercent(int lengthListTrueWord, int lengthListTotal) {

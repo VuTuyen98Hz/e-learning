@@ -12,24 +12,29 @@ class MultipleChoiceController extends GetxController {
   List<String> listValueOption = [];
   final audioPlayer = AudioPlayer();
 
-  @override
-  void onInit() {
-    super.onInit();
-    audioPlayer.onPlayerStateChanged.listen((state) {
-      state == PlayerState.playing;
-    });
-  }
-
   void initListValueOption(WordModel quizWord) {
-    final listOtherOption =
-        listLessonModel[randomIndex(min: 0, max: listLessonModel.length)]
-            .lesson;
-    listValueOption = [
-      listOtherOption[randomIndex(min: 0, max: listOtherOption.length)]
-          .vietnameseMeaning,
-      listOtherOption[randomIndex(min: 0, max: listOtherOption.length)]
-          .vietnameseMeaning
+    List<WordModel> listOption1 = [
+      ...listLessonModel[randomIndex(min: 0, max: listLessonModel.length)]
+          .lesson
     ];
+    List<WordModel> listOption2 = [
+      ...listLessonModel[randomIndex(min: 0, max: listLessonModel.length)]
+          .lesson
+    ];
+
+    int index1 = randomIndex(min: 0, max: listOption1.length);
+    String option1 = listOption1[index1].vietnameseMeaning;
+
+    // prevent options with the same value and the same topic
+    listOption1.removeWhere((word) =>
+        word.vietnameseMeaning == option1 || word.word == quizWord.word);
+    listOption2.removeWhere((word) =>
+        word.vietnameseMeaning == option1 || word.word == quizWord.word);
+
+    int index2 = randomIndex(min: 0, max: listOption2.length);
+    String option2 = listOption2[index2].vietnameseMeaning;
+
+    listValueOption = [option1, option2];
     listValueOption.add(quizWord.vietnameseMeaning);
     listValueOption.shuffle();
   }

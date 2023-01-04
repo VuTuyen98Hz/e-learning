@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:learn_japanese/app/quiz/notebook/selected_word2.dart';
+import 'package:learn_japanese/app/quiz/notebook/selected_word.dart';
 import '../../authentication/auth_controller.dart';
 import '../../home/home.dart';
 import '../../../models/lesson_topic_model.dart';
@@ -34,7 +34,7 @@ class Notebook extends StatelessWidget {
         ),
         body: TabBarView(
           children: <Widget>[
-            for (int i = 0; i < 10; i++) SelectedWord2(indexLesson: i)
+            for (int i = 0; i < 10; i++) SelectedWord(indexLesson: i)
 
           ],
         ),

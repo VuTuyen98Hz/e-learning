@@ -38,7 +38,6 @@ dependencies:
   get: ^4.6.5
   firebase_auth: ^4.1.2
   firebase_core: ^2.2.0
-  get_storage: ^2.0.3
   cloud_firestore: ^4.1.0
   flutter_facebook_auth: ^4.4.1+1
   google_sign_in: ^5.4.2
@@ -82,6 +81,7 @@ flutter:
     - assets/images/lesson/nature_landscape/
     - assets/images/lesson/school/
     - assets/images/lesson/vehicle/
+    - assets/images/topics/
     - assets/images/
     - assets/icons/
     - assets/audio/lesson/animal/

@@ -19,7 +19,7 @@ class LoadingDataScreen extends GetView<AuthController> {
             ),
             Padding(
               padding: EdgeInsets.only(top: 16),
-              child: Text('Đang tải dữ liệu...',
+              child: Text('Bạn đợi một chút nhé...',
                   style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w500,

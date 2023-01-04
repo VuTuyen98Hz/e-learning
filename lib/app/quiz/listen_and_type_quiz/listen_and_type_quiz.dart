@@ -32,8 +32,9 @@ class ListenAndTypeQuiz extends GetView<ListenAndTypeQuizController> {
                 child: Column(children: [
                   const Text("Nghe và viết lại",
                       style: TextStyle(color: Colors.black, fontSize: 30)),
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 30),
                   ElevatedButton(
+                    autofocus: true,
                     onPressed: () async {
                       controller.audioPlayer
                           .play(AssetSource(quizWord.audioAsset));

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-
 showExample({String example = '', String highlightWord = ''}) {
   int findLen(String word) {
     return word.replaceAll(RegExp(r'[a-zA-Z]'), "").length;
   }
 
+  final longWord = highlightWord.split(" ");
   var styleNormal = const TextStyle(
     color: Colors.black,
     fontSize: 20,
@@ -27,7 +27,8 @@ showExample({String example = '', String highlightWord = ''}) {
           .map((word) => TextSpan(
               text: "$word ",
               style: findLen(word) == word.length ||
-                      word.substring(0).contains(highlightWord)
+                      word.substring(0).contains(highlightWord) ||
+                      longWord.contains(word.substring(0))
                   ? styleHighlight
                   : styleNormal))
           .toList(),

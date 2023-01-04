@@ -41,12 +41,10 @@ class LearningController extends GetxController
     }
   }
 
-  void plusProgressbarPoint(){
-        rxProgressBarPoint += 1;
-        animationController.forward();
+  void plusProgressbarPoint() {
+    rxProgressBarPoint += 1;
+    animationController.forward();
   }
-
-
 
   bool didFinishedLesson(int indexLesson) {
     final fireStoreUser = AuthController.to.rxFireStoreUser.value!;
@@ -57,10 +55,7 @@ class LearningController extends GetxController
     }
   }
 
-  void skipFlashCard() {
-    rxProgressBarPoint += 1;
-    animationController.forward();
-  }
+
 
   void resetLearning() {
     rxIsEndRoundOne = RxBool(false);

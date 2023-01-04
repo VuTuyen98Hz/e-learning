@@ -20,7 +20,7 @@ Widget lessonCard(LessonTopicModel topic, int indexLesson) {
             height: 100.0,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: NetworkImage(topic.imageUrl),
+                  image: AssetImage(topic.imageAssets),
                   fit: BoxFit.cover,
                 ),
                 border: Border.all(color: Colors.green),

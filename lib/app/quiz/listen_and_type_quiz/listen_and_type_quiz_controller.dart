@@ -18,9 +18,6 @@ class ListenAndTypeQuizController extends GetxController {
   void onInit() {
     super.onInit();
     inputController = TextEditingController();
-    audioPlayer.onPlayerStateChanged.listen((state) {
-      state == PlayerState.playing;
-    });
   }
 
   checkResult(String value, WordModel quizWord){

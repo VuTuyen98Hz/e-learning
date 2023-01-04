@@ -315,7 +315,7 @@ class AuthController extends GetxController {
 
   void updateBarChartData(int numberTrue, int numberTotal) {
     double value = QuizController.to.calculatePercent(numberTrue, numberTotal);
-    String title = "${value.toInt()}%($numberTrue/$numberTotal)";
+    String title = "${value.toInt()}% ($numberTrue/$numberTotal)";
     final fsUser = rxFireStoreUser.value!;
     // keep only the last 5 resultQuiz
     if (fsUser.listValueBarChart.length >= 5) {

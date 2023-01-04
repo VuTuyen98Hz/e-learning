@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../authentication/auth_controller.dart';
 import '../../home/home.dart';
-import '../../quiz/notebook/selected_word2.dart';
+import '../../quiz/notebook/selected_word.dart';
 
 class Ending2 extends StatefulWidget {
   const Ending2({this.indexLesson = 0, super.key});
@@ -28,7 +28,7 @@ class _Ending2State extends State<Ending2> {
                       color: Colors.black,
                       fontSize: 20,
                       fontWeight: FontWeight.w500)),
-              SelectedWord2(indexLesson: widget.indexLesson),
+              SelectedWord(indexLesson: widget.indexLesson),
               const SizedBox(height: 20),
               ElevatedButton(
                   onPressed: () {

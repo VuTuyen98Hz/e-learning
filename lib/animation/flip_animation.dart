@@ -32,7 +32,7 @@ class _FlipAnimationState extends State<FlipAnimation>
   void initState() {
     super.initState();
     controller = AnimationController(
-        duration: const Duration(milliseconds: 800), vsync: this);
+        duration: const Duration(milliseconds: 500), vsync: this);
     widget.controller._state = this;
 
   }

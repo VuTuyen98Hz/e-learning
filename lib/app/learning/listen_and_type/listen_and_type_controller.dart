@@ -18,22 +18,18 @@ class ListenAndTypeController extends GetxController {
   RxBool rxIsVisibleMeaning = RxBool(false);
   RxList<WordModel> rxListWord = RxList<WordModel>();
   RxInt rxIndex = RxInt(0);
-  final audioPlayer = AudioPlayer();
+  final audio = AudioPlayer();
   final LearningController learnController = LearningController.to;
 
   @override
   void onInit() {
     super.onInit();
     inputController = TextEditingController();
-    audioPlayer.onPlayerStateChanged.listen((state) {
-      state == PlayerState.playing;
-    });
   }
-
 
   @override
   void onReady() {
-    audioPlayer.play(AssetSource(rxListWord[rxIndex.value].audioAsset));
+    audio.play(AssetSource(rxListWord[rxIndex.value].audioAsset));
   }
 
   void onChangedTextFormField(String value, int index) {
@@ -61,9 +57,7 @@ class ListenAndTypeController extends GetxController {
     } else {
       // run round two
       if (learnController.rxListWordRoundTwo.isNotEmpty) {
-        int index = randomIndex(
-            max: learnController
-                .rxListWordRoundTwo.length);
+        int index = randomIndex(max: learnController.rxListWordRoundTwo.length);
         Get.offAll(
             TypeWithHint(
               index: learnController.rxListWordRoundTwo[index],
@@ -85,10 +79,7 @@ class ListenAndTypeController extends GetxController {
     FocusManager.instance.primaryFocus?.unfocus();
     // run round two
     if (learnController.rxIsEndRoundOne.value == true) {
-      learnController.checkResulRoundTwo(
-          rxListenResult.value, index);
+      learnController.checkResulRoundTwo(rxListenResult.value, index);
     }
   }
-
-
 }

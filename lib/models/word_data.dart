@@ -242,7 +242,7 @@ final List<WordModel> animalWords = [
       imageAsset: 'images/lesson/animal/dog.jpg',
       audioAsset: 'audio/lesson/animal/dog.mp3',
       phonetic: '/dɑːɡ/',
-      vietnameseMeaning: "Chim hồng hạc",
+      vietnameseMeaning: "Chó",
       example: 'We could hear dogs barking in the distance.',
       translateExample: 'Chúng tôi có thể nghe thấy tiếng chó sủa từ xa.'),
   WordModel(
@@ -259,7 +259,7 @@ final List<WordModel> animalWords = [
       imageAsset: 'images/lesson/animal/eagle.jpg',
       audioAsset: 'audio/lesson/animal/eagle.mp3',
       phonetic: '/ˈiː.ɡəl/',
-      vietnameseMeaning: "Chim ưng",
+      vietnameseMeaning: "Chim đại bàng",
       example: 'We saw the eagle swoop from the sky to catch its prey.',
       translateExample:
           'Chúng tôi đã thấy con đại bàng sà xuống từ bầu trời để bắt con mồi của nó.'),

@@ -11,46 +11,46 @@ class HomeUI extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     Get.put(HomeController());
-    // controller.rxTabIndex.value = Get.arguments;
-    return Obx(()=> Scaffold(
-      body: SafeArea(
-        child: IndexedStack(
-          index: controller.rxTabIndex.value,
-          children: const [
-            LearningScreen(),
-            QuizScreen(),
+    return Obx(
+      () => Scaffold(
+        body: SafeArea(
+          child: IndexedStack(
+            index: controller.rxTabIndex.value,
+            children: const [
+              LearningScreen(),
+              QuizScreen(),
+            ],
+          ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          unselectedItemColor: Colors.grey,
+          selectedItemColor: Colors.blueAccent,
+          onTap: controller.changeTabIndex,
+          currentIndex: controller.rxTabIndex.value,
+          showSelectedLabels: true,
+          showUnselectedLabels: true,
+          type: BottomNavigationBarType.fixed,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          items: [
+            _bottomNavigationBarItem(
+              iconSource: "assets/icons/read.png",
+              label: 'Học tập',
+            ),
+            _bottomNavigationBarItem(
+              iconSource: "assets/icons/quiz.png",
+              label: 'Ôn tập',
+            ),
           ],
         ),
       ),
-
-      bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.blueAccent,
-        onTap: controller.changeTabIndex,
-        currentIndex: controller.rxTabIndex.value,
-        showSelectedLabels: true,
-        showUnselectedLabels: true,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
-        elevation: 0,
-        items: [
-          _bottomNavigationBarItem(
-            icon: Icons.newspaper,
-            label: 'Học tập',
-          ),
-          _bottomNavigationBarItem(
-            icon: Icons.table_chart,
-            label: 'Ôn tập',
-          ),
-        ],
-      ),
-    ),
     );
   }
 
-  _bottomNavigationBarItem({required IconData icon, required String label}) {
+  _bottomNavigationBarItem(
+      {required String iconSource, required String label}) {
     return BottomNavigationBarItem(
-      icon: Icon(icon),
+      icon: ImageIcon(AssetImage(iconSource),size: 30.0),
       label: label,
     );
   }

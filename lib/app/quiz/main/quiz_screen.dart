@@ -41,14 +41,18 @@ class QuizScreen extends GetView<QuizController> {
                         width: size.width * 0.85,
                         height: size.height * 0.35,
                         decoration: BoxDecoration(
+                            image: const DecorationImage(
+                                image: AssetImage(
+                                  "assets/images/background1.png",
+                                ),
+                                fit: BoxFit.cover),
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(10)),
                         child: controller.user.listValueBarChart.isNotEmpty
                             ? BarChart(
                                 BarChartData(
                                   alignment: BarChartAlignment.spaceAround,
-                                  maxY: 10,
-                                  groupsSpace: 5,
+                                  maxY: 10.5,
                                   barGroups: QuizController.to.chartGroups(),
                                   barTouchData: BarTouchData(enabled: false),
                                   borderData: FlBorderData(
@@ -72,7 +76,9 @@ class QuizScreen extends GetView<QuizController> {
                             : const Center(
                                 child: Text("Chưa có thống kế nào",
                                     style: TextStyle(
-                                        fontSize: 18, color: Colors.black)))),
+                                        fontSize: 19,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black)))),
                     const SizedBox(height: 40),
                     Text(
                         "Chuẩn bị ôn tập: ${QuizController.to.rxListQuizWord.length} từ",
@@ -108,17 +114,6 @@ class QuizScreen extends GetView<QuizController> {
                               fontWeight: FontWeight.w500,
                               fontSize: 18)),
                     ]),
-                    // ElevatedButton(
-                    //   onPressed: () {
-                    //     // Get.to(TestScreen());
-                    //   },
-                    //   style: ElevatedButton.styleFrom(
-                    //       fixedSize: const Size(220, 55),
-                    //       shape: RoundedRectangleBorder(
-                    //           borderRadius: BorderRadius.circular(25))),
-                    //   child: const Text('Test Screen',
-                    //       style: TextStyle(fontSize: 20)),
-                    // ),
                     const SizedBox(height: 24),
                   ],
                 )
@@ -149,42 +144,50 @@ class QuizScreen extends GetView<QuizController> {
             break;
         }
         return Padding(
-            padding: const EdgeInsets.only(bottom: 0),
-            child: Text(text, style: const TextStyle(color: Colors.black)));
+          padding: const EdgeInsets.only(bottom: 2.0),
+          child: Text(
+            text,
+            style: const TextStyle(
+                fontWeight: FontWeight.w500, color: Colors.black),
+            maxLines: 2,
+          ),
+        );
       },
     );
   }
+  SideTitles get _bottomTitles => SideTitles(
+    showTitles: true,
+    getTitlesWidget: (value, meta) {
+      String text = '';
+      switch (value.toInt()) {
+        case 0:
+          text = controller.getBottomTitleBarChart(value.toInt());
+          break;
+        case 1:
+          text = controller.getBottomTitleBarChart(value.toInt());
+          break;
+        case 2:
+          text = controller.getBottomTitleBarChart(value.toInt());
+          break;
+        case 3:
+          text = controller.getBottomTitleBarChart(value.toInt());
+          break;
+        case 4:
+          text = controller.getBottomTitleBarChart(value.toInt());
+          break;
+      }
+      return Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: Text(
+            text,
+            style: const TextStyle(
+                fontWeight: FontWeight.w500, color: Colors.black),
+          ));
+    },
+  );
 }
 
-SideTitles get _bottomTitles => SideTitles(
-      showTitles: true,
-      getTitlesWidget: (value, meta) {
-        String text = '';
-        switch (value.toInt()) {
-          case 0:
-            text = 'Lần 1';
-            break;
-          case 1:
-            text = 'Lần 2';
-            break;
-          case 2:
-            text = 'Lần 3';
-            break;
-          case 3:
-            text = 'Lần 4';
-            break;
-          case 4:
-            text = 'Lần 5';
-            break;
-        }
-        return Padding(
-            padding: const EdgeInsets.only(top: 5),
-            child: Text(
-              text,
-              style: const TextStyle(color: Colors.black),
-            ));
-      },
-    );
+
 
 class StatisticalPoint {
   final double x;

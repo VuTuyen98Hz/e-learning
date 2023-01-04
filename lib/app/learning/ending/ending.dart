@@ -1,6 +1,9 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_japanese/app/home/home.dart';
 import '../../authentication/auth_controller.dart';
+import '../main/learning_controller.dart';
 import 'ending2.dart';
 
 class Ending extends GetView<AuthController> {
@@ -10,6 +13,8 @@ class Ending extends GetView<AuthController> {
 
   @override
   Widget build(BuildContext context) {
+    final audio = AudioPlayer();
+    audio.play(AssetSource("audio/sound_effect/congratulations.mp3"));
     return Scaffold(
       body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         const Center(
@@ -32,15 +37,21 @@ class Ending extends GetView<AuthController> {
         ),
         ElevatedButton(
           onPressed: () {
-            controller.updateFinishLesson(indexLesson);
-            Get.offAll(Ending2(indexLesson: indexLesson),
-                transition: Transition.fadeIn);
+            if (LearningController.to.didFinishedLesson(indexLesson) == false) {
+              controller.updateFinishLesson(indexLesson);
+              Get.offAll(Ending2(indexLesson: indexLesson),
+                  transition: Transition.fadeIn);
+            } else {
+              Get.offAll(const HomeUI(), transition: Transition.fadeIn);
+            }
           },
           style: ElevatedButton.styleFrom(
               fixedSize: const Size(200, 45),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20))),
-          child: const Text('TIẾP TỤC'),
+          child: Text(LearningController.to.didFinishedLesson(indexLesson)==false
+              ? "TIẾP TỤC"
+              : "TRỞ VỀ"),
         ),
       ]),
     );
